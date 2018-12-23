@@ -10,6 +10,8 @@
 		3AB822DA21D0562300ED7576 /* ContainerScrollViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; };
 		3AB822DF21D0562300ED7576 /* ContainerScrollViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB822DE21D0562300ED7576 /* ContainerScrollViewControllerTests.swift */; };
 		3AB822E121D0562300ED7576 /* ContainerScrollViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AB822D321D0562300ED7576 /* ContainerScrollViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3AB822ED21D057B700ED7576 /* ContainerScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB822EC21D057B700ED7576 /* ContainerScrollViewController.swift */; };
+		3AB822EE21D057DD00ED7576 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3AB822EB21D0575200ED7576 /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,7 @@
 		3AB822E021D0562300ED7576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AB822EA21D0575200ED7576 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3AB822EB21D0575200ED7576 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3AB822EC21D057B700ED7576 /* ContainerScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerScrollViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				3AB822D321D0562300ED7576 /* ContainerScrollViewController.h */,
+				3AB822EC21D057B700ED7576 /* ContainerScrollViewController.swift */,
 				3AB822D421D0562300ED7576 /* Info.plist */,
 			);
 			path = ContainerScrollViewController;
@@ -152,6 +156,7 @@
 				TargetAttributes = {
 					3AB822CF21D0562300ED7576 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					3AB822D821D0562300ED7576 = {
 						CreatedOnToolsVersion = 10.1;
@@ -181,6 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB822EE21D057DD00ED7576 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB822ED21D057B700ED7576 /* ContainerScrollViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +352,7 @@
 		3AB822E521D0562300ED7576 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -363,6 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.ContainerScrollViewController;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -371,6 +380,7 @@
 		3AB822E621D0562300ED7576 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -397,6 +407,7 @@
 		3AB822E821D0562300ED7576 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
 				INFOPLIST_FILE = ContainerScrollViewControllerTests/Info.plist;
@@ -415,6 +426,7 @@
 		3AB822E921D0562300ED7576 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
 				INFOPLIST_FILE = ContainerScrollViewControllerTests/Info.plist;
