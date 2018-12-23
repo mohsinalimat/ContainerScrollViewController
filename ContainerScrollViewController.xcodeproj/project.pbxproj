@@ -29,6 +29,8 @@
 		3AB822D921D0562300ED7576 /* ContainerScrollViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContainerScrollViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB822DE21D0562300ED7576 /* ContainerScrollViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerScrollViewControllerTests.swift; sourceTree = "<group>"; };
 		3AB822E021D0562300ED7576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AB822EA21D0575200ED7576 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3AB822EB21D0575200ED7576 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,8 @@
 		3AB822C621D0562300ED7576 = {
 			isa = PBXGroup;
 			children = (
+				3AB822EB21D0575200ED7576 /* LICENSE */,
+				3AB822EA21D0575200ED7576 /* README.md */,
 				3AB822D221D0562300ED7576 /* ContainerScrollViewController */,
 				3AB822DD21D0562300ED7576 /* ContainerScrollViewControllerTests */,
 				3AB822D121D0562300ED7576 /* Products */,
