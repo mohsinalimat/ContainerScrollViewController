@@ -10,12 +10,45 @@ import UIKit
 
 class PillTextField: UITextField {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
     }
-    */
+
+    required init?(coder decoder: NSCoder) {
+        super.init(coder: decoder)
+        commonInit()
+    }
+
+    private func commonInit() {
+        borderStyle = .none
+
+        let fillColor = UIColor(white: 1, alpha: 0.1)
+        let outlineColor = UIColor(white: 1, alpha: 0.15)
+        let placeholderColor = UIColor(white: 1, alpha: 0.4)
+
+        background = roundedCornersImage(fillColor: fillColor, outlineColor: outlineColor, cornerRadius: bounds.height/2)
+
+        let placeholderAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: placeholderColor,
+            .font: UIFont.systemFont(ofSize: 17, weight: .medium),
+        ]
+        if let placeholder = placeholder {
+            attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholderAttributes)
+        }
+
+        font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        textColor = .white
+
+        tintColor = .white
+    }
+
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return editingRect(forBounds: bounds)
+    }
+
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: round(bounds.height*0.45), dy: 0)
+    }
 
 }
