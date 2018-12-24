@@ -24,6 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="42" y="134"/>
         </scene>
         <!--Sign Up Embedded View Controller-->
         <scene sceneID="ZD8-Yo-6dX">
@@ -37,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dgg-jS-z1L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948" y="134"/>
+            <point key="canvasLocation" x="865" y="134"/>
         </scene>
     </scenes>
 </document>
