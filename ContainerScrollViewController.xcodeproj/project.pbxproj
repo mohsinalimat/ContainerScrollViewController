@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A2279D221D1356500D1CD38 /* ContainerScrollViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; };
+		3A2279D321D1356500D1CD38 /* ContainerScrollViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A7C480121D09DC200E464FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480021D09DC200E464FD /* AppDelegate.swift */; };
 		3A7C480321D09DC200E464FD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480221D09DC200E464FD /* SignUpViewController.swift */; };
 		3A7C480621D09DC200E464FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480421D09DC200E464FD /* Main.storyboard */; };
 		3A7C480821D09DC300E464FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480721D09DC300E464FD /* Assets.xcassets */; };
 		3A7C480B21D09DC300E464FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */; };
 		3A7C481121D09EAE00E464FD /* SignUpEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C481021D09EAE00E464FD /* SignUpEmbeddedViewController.swift */; };
-		3A7C481321D0A06200E464FD /* ContainerScrollViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; };
 		3AB822DA21D0562300ED7576 /* ContainerScrollViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; };
 		3AB822DF21D0562300ED7576 /* ContainerScrollViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB822DE21D0562300ED7576 /* ContainerScrollViewControllerTests.swift */; };
 		3AB822E121D0562300ED7576 /* ContainerScrollViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AB822D321D0562300ED7576 /* ContainerScrollViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -22,6 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3A2279D421D1356500D1CD38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AB822C721D0562300ED7576 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AB822CF21D0562300ED7576;
+			remoteInfo = ContainerScrollViewController;
+		};
 		3AB822DB21D0562300ED7576 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AB822C721D0562300ED7576 /* Project object */;
@@ -30,6 +38,20 @@
 			remoteInfo = ContainerScrollViewController;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3A2279D621D1356500D1CD38 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3A2279D321D1356500D1CD38 /* ContainerScrollViewController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3A7C47F921D091B100E464FD /* ContainerScrollViewController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ContainerScrollViewController.podspec; sourceTree = "<group>"; };
@@ -57,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A7C481321D0A06200E464FD /* ContainerScrollViewController.framework in Frameworks */,
+				3A2279D221D1356500D1CD38 /* ContainerScrollViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,10 +186,12 @@
 				3A7C47FA21D09DC200E464FD /* Sources */,
 				3A7C47FB21D09DC200E464FD /* Frameworks */,
 				3A7C47FC21D09DC200E464FD /* Resources */,
+				3A2279D621D1356500D1CD38 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3A2279D521D1356500D1CD38 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -310,6 +334,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3A2279D521D1356500D1CD38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AB822CF21D0562300ED7576 /* ContainerScrollViewController */;
+			targetProxy = 3A2279D421D1356500D1CD38 /* PBXContainerItemProxy */;
+		};
 		3AB822DC21D0562300ED7576 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3AB822CF21D0562300ED7576 /* ContainerScrollViewController */;
@@ -340,6 +369,7 @@
 		3A7C480E21D09DC300E464FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
@@ -348,7 +378,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.ContainerScrollViewControllerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -358,6 +388,7 @@
 		3A7C480F21D09DC300E464FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
@@ -366,7 +397,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.ContainerScrollViewControllerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
