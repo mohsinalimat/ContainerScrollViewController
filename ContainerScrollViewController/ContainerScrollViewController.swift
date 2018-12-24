@@ -40,7 +40,7 @@ open class ContainerScrollViewController: UIViewController {
     public let scrollView = UIScrollView()
 
     /// The view controller embedded within the container scroll view.
-    private(set) var embeddedViewController: UIViewController?
+    public private(set) var embeddedViewController: UIViewController?
 
     /// The behavior for adjusting the scroll view when the keyboard is presented.
     /// The default value of this property is `.updateAdditionalSafeAreaInsets`.

@@ -11,13 +11,14 @@ import ContainerScrollViewController
 
 class SignUpViewController: ContainerScrollViewController {
 
+    private var signUpEmbeddedViewController: SignUpEmbeddedViewController? {
+        return embeddedViewController as? SignUpEmbeddedViewController
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         scrollView.keyboardDismissMode = .interactive
     }
-
-
-
 
 }

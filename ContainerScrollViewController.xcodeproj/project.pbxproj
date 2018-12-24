@@ -13,6 +13,7 @@
 		3A7C480821D09DC300E464FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480721D09DC300E464FD /* Assets.xcassets */; };
 		3A7C480B21D09DC300E464FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */; };
 		3A7C481121D09EAE00E464FD /* SignUpEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C481021D09EAE00E464FD /* SignUpEmbeddedViewController.swift */; };
+		3A7C481321D0A06200E464FD /* ContainerScrollViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; };
 		3AB822DA21D0562300ED7576 /* ContainerScrollViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; };
 		3AB822DF21D0562300ED7576 /* ContainerScrollViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB822DE21D0562300ED7576 /* ContainerScrollViewControllerTests.swift */; };
 		3AB822E121D0562300ED7576 /* ContainerScrollViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AB822D321D0562300ED7576 /* ContainerScrollViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A7C481321D0A06200E464FD /* ContainerScrollViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +93,13 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
+		3A7C481221D0A06200E464FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3AB822C621D0562300ED7576 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +110,7 @@
 				3AB822DD21D0562300ED7576 /* ContainerScrollViewControllerTests */,
 				3A7C47FF21D09DC200E464FD /* Example */,
 				3AB822D121D0562300ED7576 /* Products */,
+				3A7C481221D0A06200E464FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
