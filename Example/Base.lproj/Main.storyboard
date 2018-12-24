@@ -14,7 +14,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SignUpViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="I6h-RB-odK">
+                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="I6h-RB-odK" customClass="SignUpBackgroundView" customModule="Example" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,7 +78,6 @@
                                 <state key="normal" title="Already have an account? Sign In"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="IiB-zO-H3z" firstAttribute="top" secondItem="8BW-Aw-gvm" secondAttribute="bottom" constant="48" id="2I6-gr-Mko"/>
                             <constraint firstItem="8BW-Aw-gvm" firstAttribute="centerX" secondItem="0sT-rP-U7t" secondAttribute="centerX" id="6Mp-7u-BXL"/>
