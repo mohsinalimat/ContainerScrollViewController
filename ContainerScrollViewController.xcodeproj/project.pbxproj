@@ -10,6 +10,8 @@
 		3A2279D221D1356500D1CD38 /* ContainerScrollViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; };
 		3A2279D321D1356500D1CD38 /* ContainerScrollViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A2279DD21D13C9C00D1CD38 /* SignUpBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279DC21D13C9C00D1CD38 /* SignUpBackgroundView.swift */; };
+		3A2279DF21D14BFE00D1CD38 /* PillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279DE21D14BFE00D1CD38 /* PillButton.swift */; };
+		3A2279E121D14C1500D1CD38 /* PillTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279E021D14C1500D1CD38 /* PillTextField.swift */; };
 		3A7C480121D09DC200E464FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480021D09DC200E464FD /* AppDelegate.swift */; };
 		3A7C480321D09DC200E464FD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480221D09DC200E464FD /* SignUpViewController.swift */; };
 		3A7C480621D09DC200E464FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480421D09DC200E464FD /* Main.storyboard */; };
@@ -56,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		3A2279DC21D13C9C00D1CD38 /* SignUpBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBackgroundView.swift; sourceTree = "<group>"; };
+		3A2279DE21D14BFE00D1CD38 /* PillButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillButton.swift; sourceTree = "<group>"; };
+		3A2279E021D14C1500D1CD38 /* PillTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillTextField.swift; sourceTree = "<group>"; };
 		3A7C47F921D091B100E464FD /* ContainerScrollViewController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ContainerScrollViewController.podspec; sourceTree = "<group>"; };
 		3A7C47FE21D09DC200E464FD /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7C480021D09DC200E464FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				3A7C480221D09DC200E464FD /* SignUpViewController.swift */,
 				3A7C481021D09EAE00E464FD /* SignUpEmbeddedViewController.swift */,
 				3A2279DC21D13C9C00D1CD38 /* SignUpBackgroundView.swift */,
+				3A2279DE21D14BFE00D1CD38 /* PillButton.swift */,
+				3A2279E021D14C1500D1CD38 /* PillTextField.swift */,
 				3A7C480421D09DC200E464FD /* Main.storyboard */,
 				3A7C480721D09DC300E464FD /* Assets.xcassets */,
 				3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */,
@@ -312,9 +318,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A2279DF21D14BFE00D1CD38 /* PillButton.swift in Sources */,
 				3A7C481121D09EAE00E464FD /* SignUpEmbeddedViewController.swift in Sources */,
 				3A7C480321D09DC200E464FD /* SignUpViewController.swift in Sources */,
 				3A2279DD21D13C9C00D1CD38 /* SignUpBackgroundView.swift in Sources */,
+				3A2279E121D14C1500D1CD38 /* PillTextField.swift in Sources */,
 				3A7C480121D09DC200E464FD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
