@@ -296,6 +296,14 @@ open class ContainerScrollViewController: UIViewController {
             return
         }
 
+        // If we don't do this, then if the user taps on another text field while the
+        // keyboard is already visible, we may see unwanted animation. For example, if the
+        // text field's border style is none and it defines a custom text rectangle, this
+        // may have awkward side effects.
+        UIView.performWithoutAnimation {
+            view.layoutIfNeeded()
+        }
+
         // Compute the intersection of the keyboard's frame with the scroll view in the
         // scroll view's coordinate space. This correctly handles the case where the scroll
         // view doesn't cover the entire screen.
