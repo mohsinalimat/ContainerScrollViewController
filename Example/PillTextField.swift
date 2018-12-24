@@ -44,10 +44,14 @@ class PillTextField: UITextField {
     }
 
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return editingRect(forBounds: bounds)
+        return textRect(forBounds: bounds)
     }
 
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return textRect(forBounds: bounds)
+    }
+
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: round(bounds.height*0.45), dy: 0)
     }
 

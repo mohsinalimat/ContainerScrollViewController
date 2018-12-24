@@ -38,7 +38,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KHf-Ih-6Zy" customClass="PillTextField" customModule="Example" customModuleProvider="target">
                                 <rect key="frame" x="47.666666666666657" y="388" width="280" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" priority="500" constant="280" id="EZ1-Dr-LtH"/>
+                                    <constraint firstAttribute="width" constant="280" id="EZ1-Dr-LtH"/>
                                     <constraint firstAttribute="height" constant="44" id="b8U-5U-wDe"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -48,7 +48,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y6x-Gv-wx5" customClass="PillTextField" customModule="Example" customModuleProvider="target">
                                 <rect key="frame" x="47.666666666666657" y="452" width="280" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" priority="500" constant="280" id="GC0-f1-zFe"/>
+                                    <constraint firstAttribute="width" constant="280" id="GC0-f1-zFe"/>
                                     <constraint firstAttribute="height" constant="44" id="w3q-Ps-Xcp"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -58,7 +58,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VoQ-gV-n0W" customClass="PillTextField" customModule="Example" customModuleProvider="target">
                                 <rect key="frame" x="47.666666666666657" y="516" width="280" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" priority="500" constant="280" id="a7t-Wz-yxb"/>
+                                    <constraint firstAttribute="width" constant="280" id="a7t-Wz-yxb"/>
                                     <constraint firstAttribute="height" constant="44" id="kN7-Kh-gYd"/>
                                 </constraints>
                                 <nil key="textColor"/>
