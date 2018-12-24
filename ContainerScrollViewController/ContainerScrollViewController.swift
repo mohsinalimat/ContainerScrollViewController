@@ -39,7 +39,7 @@ open class ContainerScrollViewController: UIViewController {
     /// The scroll view within which another view will be embedded.
     public let scrollView = UIScrollView()
 
-    /// The view controller embedded within the view.
+    /// The view controller embedded within the container scroll view.
     private(set) var embeddedViewController: UIViewController?
 
     /// The behavior for adjusting the scroll view when the keyboard is presented.
