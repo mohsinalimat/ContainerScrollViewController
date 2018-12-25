@@ -66,6 +66,12 @@ open class ContainerScrollViewController: UIViewController {
     // This property is true if viewDidLoad has already been called.
     private var viewDidLoadWasCalled = false
 
+    // The embedded view's height constraint. We use this to compensate for the change
+    // we make to the bottom adjusted safe area inset when the keyboard is presented,
+    // so that the embedded view's height doesn't change, even though it is constrained
+    // to the height of the safe area, which usually includes the adjusted safe area inset.
+    private var embeddedViewHeightConstraint: NSLayoutConstraint?
+
     // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
     // defined in a subclass of `ContainerScrollViewController`, it must call
     // `super.prepare(for:sender:)`.
@@ -152,6 +158,9 @@ open class ContainerScrollViewController: UIViewController {
             return
         }
 
+        let embeddedViewHeightConstraint = embeddedView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.safeAreaLayoutGuide.heightAnchor, multiplier: 1)
+        self.embeddedViewHeightConstraint = embeddedViewHeightConstraint
+
         embeddedView.translatesAutoresizingMaskIntoConstraints = false
         let constraints: [NSLayoutConstraint] = [
             scrollView.contentLayoutGuide.leftAnchor.constraint(equalTo: embeddedView.leftAnchor),
@@ -159,7 +168,7 @@ open class ContainerScrollViewController: UIViewController {
             scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: embeddedView.topAnchor),
             scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: embeddedView.bottomAnchor),
             embeddedView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.safeAreaLayoutGuide.widthAnchor, multiplier: 1),
-            embeddedView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.safeAreaLayoutGuide.heightAnchor, multiplier: 1),
+            embeddedViewHeightConstraint,
             ]
         scrollView.addConstraints(constraints)
     }
@@ -291,10 +300,11 @@ open class ContainerScrollViewController: UIViewController {
 
         // If we don't do this, then we may see unwanted animation of UITextField text
         // as the focus moves between text fields.
-        UIView.performWithoutAnimation {
-            scrollView.layoutIfNeeded()
-        }
+//        UIView.performWithoutAnimation {
+//            scrollView.layoutIfNeeded()
+//        }
 
+        #if false
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
             NSLog("keyboardWillHideNotification")
@@ -307,13 +317,13 @@ open class ContainerScrollViewController: UIViewController {
         default:
             break
         }
-
-        NSLog("keyboard frame = \(self.keyboardIntersectionFrameInScrollView(from: notification))")
+        #endif
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
             self.additionalSafeAreaInsets.bottom = 0
-            self.view.layoutIfNeeded()
+            self.embeddedViewHeightConstraint?.constant = 0
+//            self.view.layoutIfNeeded()
         case UIResponder.keyboardWillShowNotification:
             guard let keyboardIntersectionFrameInScrollView = self.keyboardIntersectionFrameInScrollView(from: notification) else {
                 return
@@ -321,7 +331,8 @@ open class ContainerScrollViewController: UIViewController {
             let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (self.scrollView.safeAreaInsets.bottom - self.additionalSafeAreaInsets.bottom)
             if self.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
                 self.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
-                self.view.layoutIfNeeded()
+                self.embeddedViewHeightConstraint?.constant = newBottomSafeAreaInset
+//                self.view.layoutIfNeeded()
             }
         default:
             // Do nothing.
