@@ -22,6 +22,12 @@ class PillButton: UIButton {
 
     private func commonInit() {
         tintColor = .white
+
+        let outlineColor = UIColor(white: 1, alpha: 0.4)
+        let backgroundImage = roundedCornersImage(fillColor: nil, outlineColor: outlineColor, cornerRadius: bounds.height/2)
+
+        setBackgroundImage(backgroundImage, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
     }
 
 }
