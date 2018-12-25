@@ -10,6 +10,8 @@ import UIKit
 
 class ContainerScrollViewKeyboardObserver: NSObject {
 
+    // See https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
+
     private weak var containerScrollViewController: ContainerScrollViewController?
 
     init(containerScrollViewController: ContainerScrollViewController) {
@@ -56,8 +58,10 @@ class ContainerScrollViewKeyboardObserver: NSObject {
         switch keyboardAdjustmentBehavior {
         case .none:
             return
-        case .updateAdditionalSafeAreaInsets:
-            updateAdditionalSafeAreaInsetsForKeyboard(notification: notification)
+        case .resizeSafeArea:
+            resizeSafeArea(notification: notification)
+        case .resizeEmbeddedView:
+            resizeEmbeddedView(notification: notification)
         }
     }
 
@@ -67,33 +71,53 @@ class ContainerScrollViewKeyboardObserver: NSObject {
     ///
     /// - Parameter notification: The notification in response to which the additional
     ///       safe area insets will be updated.
-    private func updateAdditionalSafeAreaInsetsForKeyboard(notification: Notification) {
-        // See https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
-
+    private func resizeSafeArea(notification: Notification) {
         guard let containerScrollViewController = containerScrollViewController else {
             return
         }
-
-        // If we don't do this, then we may see unwanted animation of UITextField text
-        // as the focus moves between text fields.
-        //        UIView.performWithoutAnimation {
-        //            scrollView.layoutIfNeeded()
-        //        }
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
             containerScrollViewController.additionalSafeAreaInsets.bottom = 0
             containerScrollViewController.embeddedViewHeightConstraint?.constant = 0
-        // self.view.layoutIfNeeded()
         case UIResponder.keyboardWillShowNotification:
-            guard let keyboardIntersectionFrameInScrollView = self.keyboardIntersectionFrameInScrollView(from: notification) else {
+            guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
                 return
             }
             let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom)
             if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
                 containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
                 containerScrollViewController.embeddedViewHeightConstraint?.constant = newBottomSafeAreaInset
-                // self.view.layoutIfNeeded()
+            }
+        default:
+            // Do nothing.
+            break
+        }
+    }
+
+    private func resizeEmbeddedView(notification: Notification) {
+        guard let containerScrollViewController = containerScrollViewController else {
+            return
+        }
+
+        // If we don't do this, then we may see unwanted animation of UITextField text
+        // as the focus moves between text fields.
+        UIView.performWithoutAnimation {
+            containerScrollViewController.scrollView.layoutIfNeeded()
+        }
+
+        switch notification.name {
+        case UIResponder.keyboardWillHideNotification:
+            containerScrollViewController.additionalSafeAreaInsets.bottom = 0
+            containerScrollViewController.scrollView.layoutIfNeeded()
+        case UIResponder.keyboardWillShowNotification:
+            guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
+                return
+            }
+            let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom)
+            if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
+                containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
+                containerScrollViewController.scrollView.layoutIfNeeded()
             }
         default:
             // Do nothing.

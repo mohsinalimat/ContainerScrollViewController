@@ -47,13 +47,14 @@ open class ContainerScrollViewController: UIViewController {
     public enum KeyboardAdjustmentBehavior {
         /// Don't adjust the scroll view when the keyboard is presented.
         case none
-        /// Compensate for the presented keyboard by adjusting the scroll view's additional
-        /// safe area insets.
-        case updateAdditionalSafeAreaInsets
+        /// Compensate for the presented keyboard by resizing the scroll view's safe area.
+        case resizeSafeArea
+        /// Compensate for the presented keyboard by resizing the scroll view's embedded view.
+        case resizeEmbeddedView
     }
 
     /// The behavior for adjusting the view when the keyboard is presented.
-    public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .updateAdditionalSafeAreaInsets {
+    public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .resizeSafeArea {
         willSet {
             // This property cannot be modified while the view is visible. The viewWillAppear
             // and viewDidDisappear methods add and remove keyboard visibility notification
