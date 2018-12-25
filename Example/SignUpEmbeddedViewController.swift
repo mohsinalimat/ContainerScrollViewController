@@ -19,6 +19,23 @@ class SignUpEmbeddedViewController: UIViewController {
 
         logoImageView.tintColor = .white
 
-        signInButton.tintColor = .white
+        let signInButtonTitleColor: UIColor = .white
+        let signInButtonTitleFontSize: CGFloat = 15
+
+        let signInButtonTitle = NSMutableAttributedString()
+
+        let signInButtonTitleRegularFontAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: signInButtonTitleColor,
+            .font: UIFont.systemFont(ofSize: signInButtonTitleFontSize, weight: .regular),
+            ]
+        let signInButtonTitleMediumFontAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: signInButtonTitleColor,
+            .font: UIFont.systemFont(ofSize: signInButtonTitleFontSize, weight: .medium),
+            ]
+
+        signInButtonTitle.append(NSAttributedString(string: "Already have an account? ", attributes: signInButtonTitleRegularFontAttributes))
+        signInButtonTitle.append(NSAttributedString(string: "Sign In", attributes: signInButtonTitleMediumFontAttributes))
+
+        signInButton.setAttributedTitle(signInButtonTitle, for: .normal)
     }
 }
