@@ -58,9 +58,9 @@ class ContainerScrollViewKeyboardObserver: NSObject {
         switch keyboardAdjustmentBehavior {
         case .none:
             return
-        case .resizeSafeArea:
+        case .adjustScrollView:
             resizeSafeArea(notification: notification)
-        case .resizeEmbeddedView:
+        case .adjustScrollViewAndEmbeddedView:
             resizeEmbeddedView(notification: notification)
         }
     }
@@ -111,7 +111,7 @@ class ContainerScrollViewKeyboardObserver: NSObject {
             let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom)
             if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
                 containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
-                containerScrollViewController.scrollView.layoutIfNeeded()
+                containerScrollViewController.view.layoutIfNeeded()
             }
         default:
             // Do nothing.
