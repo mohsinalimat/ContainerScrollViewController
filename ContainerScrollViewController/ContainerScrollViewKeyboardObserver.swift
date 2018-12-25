@@ -61,13 +61,13 @@ class ContainerScrollViewKeyboardObserver: NSObject {
         case .none:
             return
         case .adjustScrollView:
-            resizeSafeArea(notification: notification)
+            adjustScrollView(notification: notification)
         case .adjustScrollViewAndEmbeddedView:
-            resizeEmbeddedView(notification: notification)
+            adjustScrollViewAndEmbeddedView(notification: notification)
         }
     }
 
-    private func resizeSafeArea(notification: Notification) {
+    private func adjustScrollView(notification: Notification) {
         guard let containerScrollViewController = containerScrollViewController else {
             return
         }
@@ -91,7 +91,7 @@ class ContainerScrollViewKeyboardObserver: NSObject {
         }
     }
 
-    private func resizeEmbeddedView(notification: Notification) {
+    private func adjustScrollViewAndEmbeddedView(notification: Notification) {
         guard let containerScrollViewController = containerScrollViewController else {
             return
         }
