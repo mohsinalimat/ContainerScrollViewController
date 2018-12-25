@@ -16,10 +16,17 @@ class ContainerScrollViewKeyboardObserver: NSObject {
 
     init(containerScrollViewController: ContainerScrollViewController) {
         self.containerScrollViewController = containerScrollViewController
+
         super.init()
+
+        addObservers()
     }
 
-    func addObservers() {
+    deinit {
+        removeObservers()
+    }
+
+    private func addObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardDidShowNotification, object: nil)
@@ -27,7 +34,7 @@ class ContainerScrollViewKeyboardObserver: NSObject {
         notificationCenter.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
 
-    func removeObservers() {
+    private func removeObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         notificationCenter.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)

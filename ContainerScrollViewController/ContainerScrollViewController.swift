@@ -77,7 +77,7 @@ open class ContainerScrollViewController: UIViewController {
     // to the height of the safe area, which usually includes the adjusted safe area inset.
     internal var embeddedViewHeightConstraint: NSLayoutConstraint?
 
-    private lazy var containerScrollViewKeyboardObserver = ContainerScrollViewKeyboardObserver(containerScrollViewController: self)
+    private var containerScrollViewKeyboardObserver: ContainerScrollViewKeyboardObserver?
 
     // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
     // defined in a subclass of `ContainerScrollViewController`, it must call
@@ -134,6 +134,8 @@ open class ContainerScrollViewController: UIViewController {
         scrollView.addSubview(embeddedView)
 
         addScrollViewEmbeddedViewConstraints()
+
+        containerScrollViewKeyboardObserver = ContainerScrollViewKeyboardObserver(containerScrollViewController: self)
     }
 
     /// Embeds a view controller within the scroll view. If a view a container view
@@ -182,14 +184,8 @@ open class ContainerScrollViewController: UIViewController {
 
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        containerScrollViewKeyboardObserver.addObservers()
 
         assert(embeddedViewController != nil, "Either embedViewController must be called in viewDidLoad, or a container view controller relationship must be established in Interface Builder, in which case prepare(for:sender:), if overridden, must call super.prepare(for:sender:)")
-    }
-
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        containerScrollViewKeyboardObserver.removeObservers()
     }
 
     // Responds to changes in the size of the view, for example in response to device
