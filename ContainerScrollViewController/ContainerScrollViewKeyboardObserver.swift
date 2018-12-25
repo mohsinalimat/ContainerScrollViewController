@@ -1,0 +1,124 @@
+//
+//  ContainerScrollViewKeyboardObserver.swift
+//  ContainerScrollViewController
+//
+//  Created by Drew Olbrich on 12/25/18.
+//  Copyright © 2018 Drew Olbrich. All rights reserved.
+//
+
+import UIKit
+
+class ContainerScrollViewKeyboardObserver: NSObject {
+
+    private weak var containerScrollViewController: ContainerScrollViewController?
+
+    init(containerScrollViewController: ContainerScrollViewController) {
+        self.containerScrollViewController = containerScrollViewController
+        super.init()
+    }
+
+    func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+
+    /// Updates the view controller to compensate for the appearance or disappearance of
+    /// the keyboard.
+    @objc private func updateForKeyboardVisibility(notification: Notification) {
+        #if false
+        switch notification.name {
+        case UIResponder.keyboardWillHideNotification:
+            NSLog("keyboardWillHideNotification")
+        case UIResponder.keyboardDidHideNotification:
+            NSLog("keyboardDidHideNotification")
+        case UIResponder.keyboardWillShowNotification:
+            NSLog("keyboardWillShowNotification")
+        case UIResponder.keyboardDidShowNotification:
+            NSLog("keyboardDidShowNotification")
+        default:
+            break
+        }
+        #endif
+
+        guard let keyboardAdjustmentBehavior = containerScrollViewController?.keyboardAdjustmentBehavior else {
+            return
+        }
+
+        switch keyboardAdjustmentBehavior {
+        case .none:
+            return
+        case .updateAdditionalSafeAreaInsets:
+            updateAdditionalSafeAreaInsetsForKeyboard(notification: notification)
+        }
+    }
+
+    /// Updates the view controller's `additionalSafeAreaInsets` property to compensate
+    /// for the appearance or disappearance of the keyboard, in response to
+    /// `keyboardWillShowNotification` or `keyboardWillHideNotification` notifications.
+    ///
+    /// - Parameter notification: The notification in response to which the additional
+    ///       safe area insets will be updated.
+    private func updateAdditionalSafeAreaInsetsForKeyboard(notification: Notification) {
+        // See https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
+
+        guard let containerScrollViewController = containerScrollViewController else {
+            return
+        }
+
+        // If we don't do this, then we may see unwanted animation of UITextField text
+        // as the focus moves between text fields.
+        //        UIView.performWithoutAnimation {
+        //            scrollView.layoutIfNeeded()
+        //        }
+
+        switch notification.name {
+        case UIResponder.keyboardWillHideNotification:
+            containerScrollViewController.additionalSafeAreaInsets.bottom = 0
+            containerScrollViewController.embeddedViewHeightConstraint?.constant = 0
+        // self.view.layoutIfNeeded()
+        case UIResponder.keyboardWillShowNotification:
+            guard let keyboardIntersectionFrameInScrollView = self.keyboardIntersectionFrameInScrollView(from: notification) else {
+                return
+            }
+            let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom)
+            if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
+                containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
+                containerScrollViewController.embeddedViewHeightConstraint?.constant = newBottomSafeAreaInset
+                // self.view.layoutIfNeeded()
+            }
+        default:
+            // Do nothing.
+            break
+        }
+    }
+
+    // Computes the intersection of the keyboard's frame with the scroll view in the
+    // scroll view's coordinate space. This correctly handles the case where the scroll
+    // view doesn't cover the entire screen.
+    private func keyboardIntersectionFrameInScrollView(from notification: Notification) -> CGRect? {
+        guard let userInfo = notification.userInfo,
+            let keyboardFrameEndUserInfoValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+                return nil
+        }
+
+        guard let scrollView = containerScrollViewController?.scrollView, let window = scrollView.window else {
+            return nil
+        }
+
+        let keyboardWindowEndFrame = keyboardFrameEndUserInfoValue.cgRectValue
+        let scrollViewFrameInWindow = window.convert(scrollView.frame, from: scrollView.superview)
+        let keyboardIntersectionFrameInWindow = scrollViewFrameInWindow.intersection(keyboardWindowEndFrame)
+
+        return window.convert(keyboardIntersectionFrameInWindow, to: scrollView.superview)
+    }
+
+}

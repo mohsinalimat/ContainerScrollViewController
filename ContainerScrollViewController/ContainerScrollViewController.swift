@@ -70,7 +70,9 @@ open class ContainerScrollViewController: UIViewController {
     // we make to the bottom adjusted safe area inset when the keyboard is presented,
     // so that the embedded view's height doesn't change, even though it is constrained
     // to the height of the safe area, which usually includes the adjusted safe area inset.
-    private var embeddedViewHeightConstraint: NSLayoutConstraint?
+    internal var embeddedViewHeightConstraint: NSLayoutConstraint?
+
+    private lazy var containerScrollViewKeyboardObserver = ContainerScrollViewKeyboardObserver(containerScrollViewController: self)
 
     // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
     // defined in a subclass of `ContainerScrollViewController`, it must call
@@ -173,10 +175,16 @@ open class ContainerScrollViewController: UIViewController {
         scrollView.addConstraints(constraints)
     }
 
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        containerScrollViewKeyboardObserver.addObservers()
 
         assert(embeddedViewController != nil, "Either embedViewController must be called in viewDidLoad, or a container view controller relationship must be established in Interface Builder, in which case prepare(for:sender:), if overridden, must call super.prepare(for:sender:)")
+    }
+
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        containerScrollViewKeyboardObserver.removeObservers()
     }
 
     // Responds to changes in the size of the view, for example in response to device
@@ -246,118 +254,6 @@ open class ContainerScrollViewController: UIViewController {
     /// applied.
     private func visibleContentSize(of scrollView: UIScrollView) -> CGSize {
         return scrollView.bounds.inset(by: scrollView.adjustedContentInset).size
-    }
-
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        addObservers()
-    }
-
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        removeObservers()
-    }
-
-    private func addObservers() {
-        guard keyboardAdjustmentBehavior != .none else {
-            return
-        }
-        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardDidHideNotification, object: nil)
-    }
-
-    private func removeObservers() {
-        guard keyboardAdjustmentBehavior != .none else {
-            return
-        }
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
-    }
-
-    /// Updates the view controller to compensate for the appearance or disappearance of
-    /// the keyboard.
-    @objc private func updateForKeyboardVisibility(notification: Notification) {
-        #if false
-        switch notification.name {
-        case UIResponder.keyboardWillHideNotification:
-            NSLog("keyboardWillHideNotification")
-        case UIResponder.keyboardDidHideNotification:
-            NSLog("keyboardDidHideNotification")
-        case UIResponder.keyboardWillShowNotification:
-            NSLog("keyboardWillShowNotification")
-        case UIResponder.keyboardDidShowNotification:
-            NSLog("keyboardDidShowNotification")
-        default:
-            break
-        }
-        #endif
-
-        switch keyboardAdjustmentBehavior {
-        case .none:
-            assertionFailure("Unexpected notification observer call when keyboardAdjustmentBehavior is .none")
-        case .updateAdditionalSafeAreaInsets:
-            updateAdditionalSafeAreaInsetsForKeyboard(notification: notification)
-        }
-    }
-
-    /// Updates the view controller's `additionalSafeAreaInsets` property to compensate
-    /// for the appearance or disappearance of the keyboard, in response to
-    /// `keyboardWillShowNotification` or `keyboardWillHideNotification` notifications.
-    ///
-    /// - Parameter notification: The notification in response to which the additional
-    ///       safe area insets will be updated.
-    private func updateAdditionalSafeAreaInsetsForKeyboard(notification: Notification) {
-        // See https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
-
-        // If we don't do this, then we may see unwanted animation of UITextField text
-        // as the focus moves between text fields.
-//        UIView.performWithoutAnimation {
-//            scrollView.layoutIfNeeded()
-//        }
-
-        switch notification.name {
-        case UIResponder.keyboardWillHideNotification:
-            self.additionalSafeAreaInsets.bottom = 0
-            self.embeddedViewHeightConstraint?.constant = 0
-//            self.view.layoutIfNeeded()
-        case UIResponder.keyboardWillShowNotification:
-            guard let keyboardIntersectionFrameInScrollView = self.keyboardIntersectionFrameInScrollView(from: notification) else {
-                return
-            }
-            let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (self.scrollView.safeAreaInsets.bottom - self.additionalSafeAreaInsets.bottom)
-            if self.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
-                self.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
-                self.embeddedViewHeightConstraint?.constant = newBottomSafeAreaInset
-//                self.view.layoutIfNeeded()
-            }
-        default:
-            // Do nothing.
-            break
-        }
-    }
-
-    // Computes the intersection of the keyboard's frame with the scroll view in the
-    // scroll view's coordinate space. This correctly handles the case where the scroll
-    // view doesn't cover the entire screen.
-    private func keyboardIntersectionFrameInScrollView(from notification: Notification) -> CGRect? {
-        guard let userInfo = notification.userInfo,
-            let keyboardFrameEndUserInfoValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
-                return nil
-        }
-
-        guard let window = self.scrollView.window else {
-            return nil
-        }
-
-        let keyboardWindowEndFrame = keyboardFrameEndUserInfoValue.cgRectValue
-        let scrollViewFrameInWindow = window.convert(self.scrollView.frame, from: self.scrollView.superview)
-        let keyboardIntersectionFrameInWindow = scrollViewFrameInWindow.intersection(keyboardWindowEndFrame)
-
-        return window.convert(keyboardIntersectionFrameInWindow, to: self.scrollView.superview)
     }
 
 }
