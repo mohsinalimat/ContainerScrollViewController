@@ -297,6 +297,21 @@ open class ContainerScrollViewController: UIViewController {
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
+            NSLog("keyboardWillHideNotification")
+        case UIResponder.keyboardDidHideNotification:
+            NSLog("keyboardDidHideNotification")
+        case UIResponder.keyboardWillShowNotification:
+            NSLog("keyboardWillShowNotification")
+        case UIResponder.keyboardDidShowNotification:
+            NSLog("keyboardDidShowNotification")
+        default:
+            break
+        }
+
+        NSLog("keyboard frame = \(self.keyboardIntersectionFrameInScrollView(from: notification))")
+
+        switch notification.name {
+        case UIResponder.keyboardWillHideNotification:
             self.additionalSafeAreaInsets.bottom = 0
             self.view.layoutIfNeeded()
         case UIResponder.keyboardWillShowNotification:
