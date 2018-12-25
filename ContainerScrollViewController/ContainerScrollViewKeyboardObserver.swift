@@ -81,14 +81,18 @@ class ContainerScrollViewKeyboardObserver: NSObject {
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
-            containerScrollViewController.additionalSafeAreaInsets.bottom = 0
-            embeddedViewHeightConstraint.constant = 0
+            if containerScrollViewController.additionalSafeAreaInsets.bottom != 0 {
+                NSLog(">>> Setting bottom to 0")
+                containerScrollViewController.additionalSafeAreaInsets.bottom = 0
+                embeddedViewHeightConstraint.constant = 0
+            }
         case UIResponder.keyboardWillShowNotification:
             guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
                 return
             }
             let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom)
             if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
+                NSLog(">>> Setting bottom to \(newBottomSafeAreaInset)")
                 containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
                 embeddedViewHeightConstraint.constant = newBottomSafeAreaInset
             }
@@ -111,8 +115,10 @@ class ContainerScrollViewKeyboardObserver: NSObject {
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
-            containerScrollViewController.additionalSafeAreaInsets.bottom = 0
-            containerScrollViewController.scrollView.layoutIfNeeded()
+            if containerScrollViewController.additionalSafeAreaInsets.bottom != 0 {
+                containerScrollViewController.additionalSafeAreaInsets.bottom = 0
+                containerScrollViewController.scrollView.layoutIfNeeded()
+            }
         case UIResponder.keyboardWillShowNotification:
             guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
                 return
