@@ -254,7 +254,9 @@ open class ContainerScrollViewController: UIViewController {
             return
         }
         NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
 
     private func removeObservers() {
@@ -262,7 +264,9 @@ open class ContainerScrollViewController: UIViewController {
             return
         }
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
 
     /// Updates the view controller to compensate for the appearance or disappearance of
@@ -285,41 +289,49 @@ open class ContainerScrollViewController: UIViewController {
     private func updateAdditionalSafeAreaInsetsForKeyboard(notification: Notification) {
         // See https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
 
+        // If we don't do this, then we may see unwanted animation of UITextField text
+        // as the focus moves between text fields.
+        UIView.performWithoutAnimation {
+            scrollView.layoutIfNeeded()
+        }
+
+        switch notification.name {
+        case UIResponder.keyboardWillHideNotification:
+            self.additionalSafeAreaInsets.bottom = 0
+            self.view.layoutIfNeeded()
+        case UIResponder.keyboardWillShowNotification:
+            guard let keyboardIntersectionFrameInScrollView = self.keyboardIntersectionFrameInScrollView(from: notification) else {
+                return
+            }
+            let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (self.scrollView.safeAreaInsets.bottom - self.additionalSafeAreaInsets.bottom)
+            if self.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
+                self.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
+                self.view.layoutIfNeeded()
+            }
+        default:
+            // Do nothing.
+            break
+        }
+    }
+
+    // Computes the intersection of the keyboard's frame with the scroll view in the
+    // scroll view's coordinate space. This correctly handles the case where the scroll
+    // view doesn't cover the entire screen.
+    private func keyboardIntersectionFrameInScrollView(from notification: Notification) -> CGRect? {
         guard let userInfo = notification.userInfo,
             let keyboardFrameEndUserInfoValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
-                return
+                return nil
+        }
+
+        guard let window = self.scrollView.window else {
+            return nil
         }
 
         let keyboardWindowEndFrame = keyboardFrameEndUserInfoValue.cgRectValue
-
-        guard let window = scrollView.window else {
-            return
-        }
-
-        // If we don't do this, then if the user taps on another text field while the
-        // keyboard is already visible, we may see unwanted animation. For example, if the
-        // text field's border style is none and it defines a custom text rectangle, this
-        // may have awkward side effects.
-        UIView.performWithoutAnimation {
-            view.layoutIfNeeded()
-        }
-
-        // Compute the intersection of the keyboard's frame with the scroll view in the
-        // scroll view's coordinate space. This correctly handles the case where the scroll
-        // view doesn't cover the entire screen.
-        let scrollViewFrameInWindow = window.convert(scrollView.frame, from: scrollView.superview)
+        let scrollViewFrameInWindow = window.convert(self.scrollView.frame, from: self.scrollView.superview)
         let keyboardIntersectionFrameInWindow = scrollViewFrameInWindow.intersection(keyboardWindowEndFrame)
-        let keyboardIntersectionFrameInScrollView = window.convert(keyboardIntersectionFrameInWindow, to: scrollView.superview)
 
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            additionalSafeAreaInsets.bottom = 0
-        } else {
-            additionalSafeAreaInsets.bottom = keyboardIntersectionFrameInScrollView.height - (scrollView.safeAreaInsets.bottom - additionalSafeAreaInsets.bottom)
-        }
-
-        // If we don't do this, then Auto Layout constraints in the embedded view that
-        // depend on the safe area won't animate with the keyboard as it is presented.
-        view.layoutIfNeeded()
+        return window.convert(keyboardIntersectionFrameInWindow, to: self.scrollView.superview)
     }
 
 }

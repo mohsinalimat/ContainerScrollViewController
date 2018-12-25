@@ -10,4 +10,15 @@ import UIKit
 
 class SignUpEmbeddedViewController: UIViewController {
 
+    @IBOutlet weak var logoImageView: UIImageView!
+
+    @IBOutlet weak var signInButton: UIButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        logoImageView.tintColor = .white
+
+        signInButton.tintColor = .white
+    }
 }
