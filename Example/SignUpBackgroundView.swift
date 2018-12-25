@@ -44,8 +44,8 @@ class SignUpBackgroundView: UIView {
             return
         }
 
-        gradientLayer.startPoint = CGPoint(x: 0.3, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0.7, y: 1)
+        gradientLayer.startPoint = CGPoint(x: 0.2, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.8, y: 1)
     }
 
 }
