@@ -42,8 +42,8 @@ open class ContainerScrollViewController: UIViewController {
     /// The view controller embedded within the container scroll view.
     public private(set) var embeddedViewController: UIViewController?
 
-    /// The behavior for adjusting the scroll view when the keyboard is presented.
-    /// The default value of this property is `.updateAdditionalSafeAreaInsets`.
+    /// The behavior for adjusting the view when the keyboard is presented. The default
+    /// value of this property is `.updateAdditionalSafeAreaInsets`.
     public enum KeyboardAdjustmentBehavior {
         /// Don't adjust the scroll view when the keyboard is presented.
         case none
@@ -52,7 +52,7 @@ open class ContainerScrollViewController: UIViewController {
         case updateAdditionalSafeAreaInsets
     }
 
-    /// The behavior for adjusting the scroll view when the keyboard is presented.
+    /// The behavior for adjusting the view when the keyboard is presented.
     public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .updateAdditionalSafeAreaInsets {
         willSet {
             // This property cannot be modified while the view is visible. The viewWillAppear
@@ -281,6 +281,21 @@ open class ContainerScrollViewController: UIViewController {
     /// Updates the view controller to compensate for the appearance or disappearance of
     /// the keyboard.
     @objc private func updateForKeyboardVisibility(notification: Notification) {
+        #if false
+        switch notification.name {
+        case UIResponder.keyboardWillHideNotification:
+            NSLog("keyboardWillHideNotification")
+        case UIResponder.keyboardDidHideNotification:
+            NSLog("keyboardDidHideNotification")
+        case UIResponder.keyboardWillShowNotification:
+            NSLog("keyboardWillShowNotification")
+        case UIResponder.keyboardDidShowNotification:
+            NSLog("keyboardDidShowNotification")
+        default:
+            break
+        }
+        #endif
+
         switch keyboardAdjustmentBehavior {
         case .none:
             assertionFailure("Unexpected notification observer call when keyboardAdjustmentBehavior is .none")
@@ -303,21 +318,6 @@ open class ContainerScrollViewController: UIViewController {
 //        UIView.performWithoutAnimation {
 //            scrollView.layoutIfNeeded()
 //        }
-
-        #if false
-        switch notification.name {
-        case UIResponder.keyboardWillHideNotification:
-            NSLog("keyboardWillHideNotification")
-        case UIResponder.keyboardDidHideNotification:
-            NSLog("keyboardDidHideNotification")
-        case UIResponder.keyboardWillShowNotification:
-            NSLog("keyboardWillShowNotification")
-        case UIResponder.keyboardDidShowNotification:
-            NSLog("keyboardDidShowNotification")
-        default:
-            break
-        }
-        #endif
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
