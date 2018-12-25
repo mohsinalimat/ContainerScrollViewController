@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KHf-Ih-6Zy" customClass="PillTextField" customModule="Example" customModuleProvider="target">
-                                <rect key="frame" x="47.666666666666657" y="400.66666666666669" width="280" height="44"/>
+                                <rect key="frame" x="47.666666666666657" y="398.33333333333331" width="280" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="EZ1-Dr-LtH"/>
                                     <constraint firstAttribute="height" constant="44" id="b8U-5U-wDe"/>
@@ -46,7 +46,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y6x-Gv-wx5" customClass="PillTextField" customModule="Example" customModuleProvider="target">
-                                <rect key="frame" x="47.666666666666657" y="460.66666666666669" width="280" height="44"/>
+                                <rect key="frame" x="47.666666666666657" y="458.33333333333331" width="280" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="GC0-f1-zFe"/>
                                     <constraint firstAttribute="height" constant="44" id="w3q-Ps-Xcp"/>
@@ -56,17 +56,17 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VoQ-gV-n0W" customClass="PillTextField" customModule="Example" customModuleProvider="target">
-                                <rect key="frame" x="47.666666666666657" y="520.66666666666663" width="280" height="44"/>
+                                <rect key="frame" x="47.666666666666657" y="518.33333333333337" width="280" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="a7t-Wz-yxb"/>
                                     <constraint firstAttribute="height" constant="44" id="kN7-Kh-gYd"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="new-password"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8BW-Aw-gvm" customClass="PillButton" customModule="Example" customModuleProvider="target">
-                                <rect key="frame" x="47.666666666666657" y="612.66666666666663" width="280" height="44"/>
+                                <rect key="frame" x="47.666666666666657" y="610.33333333333337" width="280" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="DIj-cd-Qzk"/>
                                     <constraint firstAttribute="width" priority="500" constant="280" id="KDz-tW-f1d"/>
@@ -78,24 +78,24 @@
                                 <state key="normal" title="Already have an account? Sign In"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lorem-Ipsum-Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ihH-xN-OTN">
-                                <rect key="frame" x="90.666666666666686" y="166.33333333333334" width="194" height="112.00000000000003"/>
+                                <rect key="frame" x="90.666666666666686" y="171.33333333333334" width="194" height="100.00000000000003"/>
                             </imageView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wt9-FD-3So">
-                                <rect key="frame" x="167.66666666666666" y="43.999999999999993" width="40" height="122.33333333333331"/>
+                                <rect key="frame" x="167.66666666666666" y="43.999999999999993" width="40" height="127.33333333333331"/>
                                 <color key="backgroundColor" red="1" green="0.39317666330000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="0pd-gz-Noz"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nM5-oY-YOS">
-                                <rect key="frame" x="167.66666666666666" y="278.33333333333331" width="40" height="122.33333333333331"/>
+                                <rect key="frame" x="167.66666666666666" y="271.33333333333331" width="40" height="127"/>
                                 <color key="backgroundColor" red="1" green="0.39317666330000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="AON-b9-HP2"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L52-gN-ihI">
-                                <rect key="frame" x="167.66666666666666" y="656.66666666666663" width="40" height="61.333333333333371"/>
+                                <rect key="frame" x="167.66666666666666" y="654.33333333333337" width="40" height="63.666666666666629"/>
                                 <color key="backgroundColor" red="1" green="0.39317666330000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="Mw4-hH-LPd"/>
@@ -139,6 +139,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Lorem-Ipsum-Logo" width="194" height="112"/>
+        <image name="Lorem-Ipsum-Logo" width="194" height="100"/>
     </resources>
 </document>
