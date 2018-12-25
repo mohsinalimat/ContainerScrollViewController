@@ -65,12 +65,6 @@ class ContainerScrollViewKeyboardObserver: NSObject {
         }
     }
 
-    /// Updates the view controller's `additionalSafeAreaInsets` property to compensate
-    /// for the appearance or disappearance of the keyboard, in response to
-    /// `keyboardWillShowNotification` or `keyboardWillHideNotification` notifications.
-    ///
-    /// - Parameter notification: The notification in response to which the additional
-    ///       safe area insets will be updated.
     private func resizeSafeArea(notification: Notification) {
         guard let containerScrollViewController = containerScrollViewController else {
             return
