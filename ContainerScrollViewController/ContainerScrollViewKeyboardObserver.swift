@@ -68,14 +68,14 @@ class ContainerScrollViewKeyboardObserver: NSObject {
     }
 
     private func adjustScrollView(notification: Notification) {
-        guard let containerScrollViewController = containerScrollViewController else {
+        guard let containerScrollViewController = containerScrollViewController, let embeddedViewHeightConstraint = containerScrollViewController.embeddedViewHeightConstraint else {
             return
         }
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
             containerScrollViewController.additionalSafeAreaInsets.bottom = 0
-            containerScrollViewController.embeddedViewHeightConstraint?.constant = 0
+            embeddedViewHeightConstraint.constant = 0
         case UIResponder.keyboardWillShowNotification:
             guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
                 return
@@ -83,7 +83,7 @@ class ContainerScrollViewKeyboardObserver: NSObject {
             let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom)
             if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
                 containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
-                containerScrollViewController.embeddedViewHeightConstraint?.constant = newBottomSafeAreaInset
+                embeddedViewHeightConstraint.constant = newBottomSafeAreaInset
             }
         default:
             // Do nothing.
