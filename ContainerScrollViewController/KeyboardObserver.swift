@@ -24,7 +24,6 @@ class KeyboardObserver {
 
     init(containerScrollViewController: ContainerScrollViewController) {
         self.containerScrollViewController = containerScrollViewController
-
         addObservers()
     }
 
