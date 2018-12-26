@@ -90,7 +90,7 @@ class ContainerScrollViewKeyboardObserver: NSObject {
             guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
                 return
             }
-            let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom)
+            let newBottomSafeAreaInset = max(0, keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom))
             if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
                 NSLog(">>> Setting bottom to \(newBottomSafeAreaInset)")
                 containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
@@ -123,7 +123,7 @@ class ContainerScrollViewKeyboardObserver: NSObject {
             guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
                 return
             }
-            let newBottomSafeAreaInset = keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom)
+            let newBottomSafeAreaInset = max(0, keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom))
             if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
                 containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
                 containerScrollViewController.view.layoutIfNeeded()
