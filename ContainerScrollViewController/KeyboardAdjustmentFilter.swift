@@ -53,8 +53,8 @@ class KeyboardAdjustmentFilter {
         // We use RunLoop.Mode.common instead of the default run loop mode, because
         // otherwise the timer will not fire while the scroll view is scrolling, which will
         // be the case when the user swipes to dismiss the keyboard when the scroll view's
-        // keyboardDismissMode is set to interactive, in which case a long delay will be
-        // observed before the scroll view's bottom inset is adjusted by KeyboardObserver.
+        // keyboardDismissMode is set to interactive, in which case the scroll view's
+        // bottom inset will be adjusted by KeyboardObserver only after an extended delay.
         RunLoop.current.add(timer, forMode: .common)
     }
 
