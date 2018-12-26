@@ -55,7 +55,9 @@ class KeyboardAdjustmentFilter {
             self.timer = nil
             self.presentationBottomInset = self.bottomInset
         })
+
         self.timer = timer
+
         // We use RunLoop.Mode.common instead of the default run loop mode, because
         // otherwise the timer will not fire while the scroll view is scrolling, which will
         // be the case when the user swipes to dismiss the keyboard when the scroll view's
