@@ -100,7 +100,6 @@ class KeyboardObserver {
         }
     }
 
-
     /// Returns the height of portion of the keyboard's frame that overlaps the scroll
     /// view.
     ///
