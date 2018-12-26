@@ -1,5 +1,5 @@
 //
-//  ContainerScrollViewKeyboardObserver.swift
+//  KeyboardObserver.swift
 //  ContainerScrollViewController
 //
 //  Created by Drew Olbrich on 12/25/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContainerScrollViewKeyboardObserver: NSObject {
+class KeyboardObserver: NSObject {
 
     // See https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
 

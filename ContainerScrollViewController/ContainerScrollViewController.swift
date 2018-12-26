@@ -77,7 +77,7 @@ open class ContainerScrollViewController: UIViewController {
     // to the height of the safe area, which usually includes the adjusted safe area inset.
     internal var embeddedViewHeightConstraint: NSLayoutConstraint?
 
-    private var containerScrollViewKeyboardObserver: ContainerScrollViewKeyboardObserver?
+    private var containerScrollViewKeyboardObserver: KeyboardObserver?
 
     // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
     // defined in a subclass of `ContainerScrollViewController`, it must call
@@ -135,7 +135,7 @@ open class ContainerScrollViewController: UIViewController {
 
         addScrollViewEmbeddedViewConstraints()
 
-        containerScrollViewKeyboardObserver = ContainerScrollViewKeyboardObserver(containerScrollViewController: self)
+        containerScrollViewKeyboardObserver = KeyboardObserver(containerScrollViewController: self)
     }
 
     /// Embeds a view controller within the scroll view. If a view a container view
