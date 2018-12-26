@@ -47,25 +47,6 @@ class KeyboardObserver {
     /// Updates the view controller to compensate for the appearance or disappearance of
     /// the keyboard.
     @objc private func updateForKeyboardVisibility(notification: Notification) {
-        #if false
-        switch notification.name {
-        case UIResponder.keyboardWillHideNotification:
-            NSLog("keyboardWillHideNotification")
-        case UIResponder.keyboardDidHideNotification:
-            NSLog("keyboardDidHideNotification")
-        case UIResponder.keyboardWillShowNotification:
-            NSLog("keyboardWillShowNotification")
-        case UIResponder.keyboardDidShowNotification:
-            NSLog("keyboardDidShowNotification")
-        default:
-            break
-        }
-        if let userInfo = notification.userInfo,
-            let animationDuration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue {
-            NSLog("    animationDuration = \(animationDuration)")
-        }
-        #endif
-
         guard let containerScrollViewController = containerScrollViewController else {
             return
         }
