@@ -36,15 +36,7 @@ class KeyboardAdjustmentFilter {
     }
 
     deinit {
-        cancel()
-    }
-
-    func cancel() {
         timer?.invalidate()
-    }
-
-    func flush() {
-        timer?.fire()
     }
 
     private func didSetBottomInset() {
