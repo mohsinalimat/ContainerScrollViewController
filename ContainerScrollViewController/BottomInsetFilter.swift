@@ -1,5 +1,5 @@
 //
-//  KeyboardAdjustmentFilter.swift
+//  BottomInsetFilter.swift
 //  ContainerScrollViewController
 //
 //  Created by Drew Olbrich on 12/26/18.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class KeyboardAdjustmentFilter {
+class BottomInsetFilter {
 
     var delay: TimeInterval = 0.15
 
-    private weak var delegate: KeyboardAdjustmentFilterDelegate?
+    private weak var delegate: BottomInsetFilterDelegate?
 
     var bottomInset: CGFloat = 0 {
         didSet {
@@ -31,7 +31,7 @@ class KeyboardAdjustmentFilter {
 
     private var timer: Timer?
 
-    init(delegate: KeyboardAdjustmentFilterDelegate) {
+    init(delegate: BottomInsetFilterDelegate) {
         self.delegate = delegate
     }
 

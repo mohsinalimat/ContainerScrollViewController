@@ -14,7 +14,7 @@ class KeyboardObserver: NSObject {
 
     private weak var containerScrollViewController: ContainerScrollViewController?
 
-    private lazy var keyboardAdjustmentFilter = KeyboardAdjustmentFilter(delegate: self)
+    private lazy var keyboardAdjustmentFilter = BottomInsetFilter(delegate: self)
 
     init(containerScrollViewController: ContainerScrollViewController) {
         self.containerScrollViewController = containerScrollViewController
@@ -149,9 +149,9 @@ class KeyboardObserver: NSObject {
     }
 }
 
-extension KeyboardObserver: KeyboardAdjustmentFilterDelegate {
+extension KeyboardObserver: BottomInsetFilterDelegate {
 
-    func keyboardAdjustmentFilter(_ keyboardAdjustmentFilter: KeyboardAdjustmentFilter, didChangeBottomInset bottomInset: CGFloat) {
+    func keyboardAdjustmentFilter(_ keyboardAdjustmentFilter: BottomInsetFilter, didChangeBottomInset bottomInset: CGFloat) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
             self.setBottomInset(bottomInset)
             self.containerScrollViewController?.view.layoutIfNeeded()
