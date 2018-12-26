@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Object that applies a temporal filter to the scroll view's bottom additional
+/// An object that applies a temporal filter to the scroll view's bottom additional
 /// safe area inset, so rapid sequences of adjustments are filtered out.
 ///
 /// When a text field becomes the first responder, or the first responder changes
