@@ -9,7 +9,7 @@
 import UIKit
 
 /// An object that applies a temporal filter to the scroll view's bottom additional
-/// safe area inset, so rapid sequences of adjustments are filtered out.
+/// safe area inset, so that rapid sequences of adjustments are filtered out.
 ///
 /// When a text field becomes the first responder, UIKit presents the keyboard. If
 /// the user taps on another text field, changing the first responder, UIKit may
