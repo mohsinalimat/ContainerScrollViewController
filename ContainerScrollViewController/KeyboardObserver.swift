@@ -46,28 +46,15 @@ class KeyboardObserver {
     /// Updates the view controller to compensate for the appearance or disappearance of
     /// the keyboard.
     @objc private func updateForKeyboardVisibility(notification: Notification) {
-        guard let containerScrollViewController = containerScrollViewController else {
-            return
-        }
-
-        // If we don't do this, then we may see unwanted animation of UITextField text
-        // as the focus moves between text fields.
-        UIView.performWithoutAnimation {
-            containerScrollViewController.embeddedViewController?.view.layoutIfNeeded()
-        }
+        suppressTextFieldTextAnimation()
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
             setFilteredBottomInset(0)
         case UIResponder.keyboardWillShowNotification:
-            guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
-                return
+            if let bottomInset = bottomInsetFromKeyboardIntersectionFrameInScrollView(from: notification) {
+                setFilteredBottomInset(bottomInset)
             }
-            let keyboardHeight = keyboardIntersectionFrameInScrollView.height
-            let safeAreaBottomInset = containerScrollViewController.scrollView.safeAreaInsets.bottom
-            let additionalSafeAreaBottomInset = containerScrollViewController.additionalSafeAreaInsets.bottom
-            let bottomInset = max(0, keyboardHeight - (safeAreaBottomInset - additionalSafeAreaBottomInset))
-            setFilteredBottomInset(bottomInset)
         default:
             // Do nothing.
             break
@@ -98,16 +85,35 @@ class KeyboardObserver {
         }
     }
 
-    // Computes the intersection of the keyboard's frame with the scroll view in the
-    // scroll view's coordinate space. This correctly handles the case where the scroll
-    // view doesn't cover the entire screen.
-    private func keyboardIntersectionFrameInScrollView(from notification: Notification) -> CGRect? {
-        guard let userInfo = notification.userInfo,
-            let keyboardFrameEndUserInfoValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
-                return nil
+    /// Suppresses unwanted text field text animation.
+    ///
+    /// If the user taps on a sequence of text fields, we may see unwanted animation in
+    /// the position of the text within the text fields. This method suppresses this
+    /// behavior by calling `layoutIfNeeded` within a `performWithoutAnimation` closure.
+    private func suppressTextFieldTextAnimation() {
+        guard let containerScrollViewController = containerScrollViewController else {
+            return
         }
 
-        guard let scrollView = containerScrollViewController?.scrollView, let window = scrollView.window else {
+        UIView.performWithoutAnimation {
+            containerScrollViewController.embeddedViewController?.view.layoutIfNeeded()
+        }
+    }
+
+
+    // Returns the height of portion of the keyboard's frame that overlaps the scroll
+    // view. This method correctly handles the case where the scroll view doesn't cover
+    // the entire screen.
+    private func bottomInsetFromKeyboardIntersectionFrameInScrollView(from notification: Notification) -> CGFloat? {
+        guard let userInfo = notification.userInfo,
+            let keyboardFrameEndUserInfoValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let containerScrollViewController = containerScrollViewController else {
+            return nil
+        }
+
+        let scrollView = containerScrollViewController.scrollView
+
+        guard let window = scrollView.window else {
             return nil
         }
 
@@ -122,10 +128,21 @@ class KeyboardObserver {
         // the keyboard changes over time.
         keyboardWindowEndFrame = CGRect(x: 0, y: window.bounds.height - keyboardWindowEndFrame.size.height, width: keyboardWindowEndFrame.size.width, height: keyboardWindowEndFrame.size.height)
 
+        // The frame of the scroll view in the window's coordinate space.
         let scrollViewFrameInWindow = window.convert(scrollView.frame, from: scrollView.superview)
+
         let keyboardIntersectionFrameInWindow = scrollViewFrameInWindow.intersection(keyboardWindowEndFrame)
 
-        return window.convert(keyboardIntersectionFrameInWindow, to: scrollView.superview)
+        let overlappingKeyboardFrame = window.convert(keyboardIntersectionFrameInWindow, to: scrollView.superview)
+
+        let overlappingKeyboardHeight = overlappingKeyboardFrame.height
+
+        let safeAreaBottomInset = containerScrollViewController.scrollView.safeAreaInsets.bottom
+        let additionalSafeAreaBottomInset = containerScrollViewController.additionalSafeAreaInsets.bottom
+
+        let bottomInset = max(0, overlappingKeyboardHeight - (safeAreaBottomInset - additionalSafeAreaBottomInset))
+
+        return bottomInset
     }
 }
 
