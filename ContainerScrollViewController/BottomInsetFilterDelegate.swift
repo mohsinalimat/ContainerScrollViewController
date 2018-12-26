@@ -8,8 +8,17 @@
 
 import UIKit
 
+/// Delegate of the `BottomInsetFilterDelegate` object.
 protocol BottomInsetFilterDelegate: class {
 
-    func keyboardAdjustmentFilter(_ keyboardAdjustmentFilter: BottomInsetFilter, didChangeBottomInset bottomInset: CGFloat)
+    /// Tells the delegate that `presentationBottomInset` has changed.
+    ///
+    /// When `BottomInsetFilter.bottomInset` changes, this delegate method is called
+    /// only after a short period of time elapses.
+    ///
+    /// - Parameters:
+    ///   - bottomInsetFilter: The object tracking changes to the bottom inset.
+    ///   - bottomInset: The new bottom inset to present to the user.
+    func keyboardAdjustmentFilter(_ bottomInsetFilter: BottomInsetFilter, didChangeBottomInset bottomInset: CGFloat)
 
 }
