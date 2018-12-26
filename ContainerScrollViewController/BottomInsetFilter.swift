@@ -11,20 +11,21 @@ import UIKit
 /// An object that applies a temporal filter to the scroll view's bottom additional
 /// safe area inset, so rapid sequences of adjustments are filtered out.
 ///
-/// When a text field becomes the first responder, or the first responder changes
-/// when the user taps on another text field, UIKit will present the keyboard or
-/// adjust its height if an input accessory view is specified.
+/// When a text field becomes the first responder, UIKit presents the keyboard. If
+/// the user taps on another text field, changing the first responder, UIKit may
+/// adjust the keyboard's height if an input accessory view is specified. Often,
+/// these changes will generate a sequence of keyboardWillShow notifications, each
+/// with different keyboard heights.
 ///
-/// Often, these changes will generate a sequence of keyboardWillShow notifications,
-/// often with radically different values. As an extreme example, if a text field is
-/// populated using the auto-fill input accessory view, and this action causes a
-/// password text field to automatically become the first responder, one
-/// keyboardWillHide notifications and two keyboardWillShow notifications will be
-/// posted within the span of 0.1 seconds.
+/// As an extreme example, if the user populates a text field by tapping on an
+/// AutoFill input accessory view, and this action causes a password text field to
+/// automatically become the first responder, one keyboardWillHide notifications and
+/// two keyboardWillShow notifications will be posted within the span of 0.1
+/// seconds.
 ///
-/// If KeyboardObserver responded to each of these notifications individually, this
-/// would cause discontinuities in our scroll view animation that accompanies
-/// keyboard changes.
+/// If KeyboardObserver were to respond to each of these notifications individually,
+/// this would cause awkward discontinuities in our scroll view animation that
+/// accompanies changes to the keyboard's height.
 ///
 /// To work around this issue, BottomInsetFilter filters out sequences of
 /// notifications that occur within a small time window, acting only on the final
