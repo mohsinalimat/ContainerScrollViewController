@@ -8,7 +8,7 @@
 
 import UIKit
 
-class KeyboardObserver: NSObject {
+class KeyboardObserver {
 
     // See https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
 
@@ -18,8 +18,6 @@ class KeyboardObserver: NSObject {
 
     init(containerScrollViewController: ContainerScrollViewController) {
         self.containerScrollViewController = containerScrollViewController
-
-        super.init()
 
         addObservers()
     }
