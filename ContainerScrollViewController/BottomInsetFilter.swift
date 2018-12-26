@@ -8,6 +8,27 @@
 
 import UIKit
 
+/// Object that applies a temporal filter to the scroll view's bottom additional
+/// safe area inset, so rapid sequences of adjustments are filtered out.
+///
+/// When a text field becomes the first responder, or the first responder changes
+/// when the user taps on another text field, UIKit will present the keyboard or
+/// adjust its height if an input accessory view is specified.
+///
+/// Often, these changes will generate a sequence of keyboardWillShow notifications,
+/// often with radically different values. As an extreme example, if a text field is
+/// populated using the auto-fill input accessory view, and this action causes a
+/// password text field to automatically become the first responder, one
+/// keyboardWillHide notifications and two keyboardWillShow notifications will be
+/// posted within the span of 0.1 seconds.
+///
+/// If KeyboardObserver responded to each of these notifications individually, this
+/// would cause discontinuities in our scroll view animation that accompanies
+/// keyboard changes.
+///
+/// To work around this issue, BottomInsetFilter filters out sequences of
+/// notifications that occur within a small time window, acting only on the final
+/// assigned bottom inset in the sequence.
 class BottomInsetFilter {
 
     var delay: TimeInterval = 0.15
