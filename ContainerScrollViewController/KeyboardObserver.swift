@@ -14,6 +14,8 @@ class KeyboardObserver: NSObject {
 
     private weak var containerScrollViewController: ContainerScrollViewController?
 
+    private lazy var keyboardAdjustmentFilter = KeyboardAdjustmentFilter(delegate: self)
+
     init(containerScrollViewController: ContainerScrollViewController) {
         self.containerScrollViewController = containerScrollViewController
 
@@ -45,7 +47,7 @@ class KeyboardObserver: NSObject {
     /// Updates the view controller to compensate for the appearance or disappearance of
     /// the keyboard.
     @objc private func updateForKeyboardVisibility(notification: Notification) {
-        #if true
+        #if false
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
             NSLog("keyboardWillHideNotification")
@@ -58,51 +60,12 @@ class KeyboardObserver: NSObject {
         default:
             break
         }
+        if let userInfo = notification.userInfo,
+            let animationDuration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue {
+            NSLog("    animationDuration = \(animationDuration)")
+        }
         #endif
 
-        guard let keyboardAdjustmentBehavior = containerScrollViewController?.keyboardAdjustmentBehavior else {
-            return
-        }
-
-        switch keyboardAdjustmentBehavior {
-        case .none:
-            return
-        case .adjustScrollView:
-            adjustScrollView(notification: notification)
-        case .adjustScrollViewAndEmbeddedView:
-            adjustScrollViewAndEmbeddedView(notification: notification)
-        }
-    }
-
-    private func adjustScrollView(notification: Notification) {
-        guard let containerScrollViewController = containerScrollViewController, let embeddedViewHeightConstraint = containerScrollViewController.embeddedViewHeightConstraint else {
-            return
-        }
-
-        switch notification.name {
-        case UIResponder.keyboardWillHideNotification:
-            if containerScrollViewController.additionalSafeAreaInsets.bottom != 0 {
-                NSLog(">>> Setting bottom to 0")
-                containerScrollViewController.additionalSafeAreaInsets.bottom = 0
-                embeddedViewHeightConstraint.constant = 0
-            }
-        case UIResponder.keyboardWillShowNotification:
-            guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
-                return
-            }
-            let newBottomSafeAreaInset = max(0, keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom))
-            if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
-                NSLog(">>> Setting bottom to \(newBottomSafeAreaInset)")
-                containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
-                embeddedViewHeightConstraint.constant = newBottomSafeAreaInset
-            }
-        default:
-            // Do nothing.
-            break
-        }
-    }
-
-    private func adjustScrollViewAndEmbeddedView(notification: Notification) {
         guard let containerScrollViewController = containerScrollViewController else {
             return
         }
@@ -110,27 +73,48 @@ class KeyboardObserver: NSObject {
         // If we don't do this, then we may see unwanted animation of UITextField text
         // as the focus moves between text fields.
         UIView.performWithoutAnimation {
-            containerScrollViewController.scrollView.layoutIfNeeded()
+            containerScrollViewController.embeddedViewController?.view.layoutIfNeeded()
         }
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
-            if containerScrollViewController.additionalSafeAreaInsets.bottom != 0 {
-                containerScrollViewController.additionalSafeAreaInsets.bottom = 0
-                containerScrollViewController.scrollView.layoutIfNeeded()
-            }
+            setFilteredBottomInset(0)
         case UIResponder.keyboardWillShowNotification:
             guard let keyboardIntersectionFrameInScrollView = keyboardIntersectionFrameInScrollView(from: notification) else {
                 return
             }
-            let newBottomSafeAreaInset = max(0, keyboardIntersectionFrameInScrollView.height - (containerScrollViewController.scrollView.safeAreaInsets.bottom - containerScrollViewController.additionalSafeAreaInsets.bottom))
-            if containerScrollViewController.additionalSafeAreaInsets.bottom != newBottomSafeAreaInset {
-                containerScrollViewController.additionalSafeAreaInsets.bottom = newBottomSafeAreaInset
-                containerScrollViewController.view.layoutIfNeeded()
-            }
+            let keyboardHeight = keyboardIntersectionFrameInScrollView.height
+            let safeAreaBottomInset = containerScrollViewController.scrollView.safeAreaInsets.bottom
+            let additionalSafeAreaBottomInset = containerScrollViewController.additionalSafeAreaInsets.bottom
+            let bottomInset = max(0, keyboardHeight - (safeAreaBottomInset - additionalSafeAreaBottomInset))
+            setFilteredBottomInset(bottomInset)
         default:
             // Do nothing.
             break
+        }
+    }
+
+    private func setFilteredBottomInset(_ bottomInset: CGFloat) {
+        keyboardAdjustmentFilter.bottomInset = bottomInset
+
+        // Continues in keyboardAdjustmentFilter(_:didChangeBottomInset:)...
+    }
+
+    private func setBottomInset(_ bottomInset: CGFloat) {
+        guard let keyboardAdjustmentBehavior = containerScrollViewController?.keyboardAdjustmentBehavior,
+            let containerScrollViewController = containerScrollViewController,
+            let embeddedViewHeightConstraint = containerScrollViewController.embeddedViewHeightConstraint else {
+            return
+        }
+
+        switch keyboardAdjustmentBehavior {
+        case .none:
+            return
+        case .adjustScrollView:
+            containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
+            embeddedViewHeightConstraint.constant = bottomInset
+        case .adjustScrollViewAndEmbeddedView:
+            containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
         }
     }
 
@@ -162,6 +146,16 @@ class KeyboardObserver: NSObject {
         let keyboardIntersectionFrameInWindow = scrollViewFrameInWindow.intersection(keyboardWindowEndFrame)
 
         return window.convert(keyboardIntersectionFrameInWindow, to: scrollView.superview)
+    }
+}
+
+extension KeyboardObserver: KeyboardAdjustmentFilterDelegate {
+
+    func keyboardAdjustmentFilter(_ keyboardAdjustmentFilter: KeyboardAdjustmentFilter, didChangeBottomInset bottomInset: CGFloat) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
+            self.setBottomInset(bottomInset)
+            self.containerScrollViewController?.view.layoutIfNeeded()
+        }, completion: nil)
     }
 
 }
