@@ -126,8 +126,9 @@ class KeyboardObserver {
     /// - Parameter notification: The keyboard notification that provides the keyboard's
     /// frame.
     /// - Returns: The height of portion of the keyboard's frame that overlaps the view.
-    private func bottomInset(from keyboardFrame: CGRect) -> CGFloat? {
-        guard let containerScrollViewController = containerScrollViewController,
+    private func bottomInset(from keyboardFrame: CGRect?) -> CGFloat? {
+        guard let keyboardFrame = keyboardFrame,
+            let containerScrollViewController = containerScrollViewController,
             let view = containerScrollViewController.view,
             let window = view.window else {
             return nil
@@ -180,11 +181,10 @@ class KeyboardObserver {
 extension KeyboardObserver: KeyboardFrameFilterDelegate {
 
     func keyboardAdjustmentFilter(_ keyboardAdjustmentFilter: KeyboardFrameFilter, didChangeKeyboardFrame keyboardFrame: CGRect?) {
+        guard let bottomInset = self.bottomInset(from: keyboardFrame) else {
+            return
+        }
         UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
-            guard let keyboardFrame = keyboardFrame,
-                let bottomInset = self.bottomInset(from: keyboardFrame) else {
-                    return
-            }
             self.adjustContainerScrollViewControllerForKeyboard(with: bottomInset)
             self.containerScrollViewController?.view.layoutIfNeeded()
         }, completion: nil)
