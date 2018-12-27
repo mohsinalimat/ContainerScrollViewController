@@ -16,6 +16,7 @@ class SignUpEmbeddedViewController: UIViewController {
     @IBOutlet weak var emailTextField: PillTextField!
     @IBOutlet weak var passwordTextField: PillTextField!
 
+    @IBOutlet weak var signUpButton: PillButton!
     @IBOutlet weak var signInButton: UIButton!
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -49,6 +50,8 @@ class SignUpEmbeddedViewController: UIViewController {
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
+
+        signUpButton.isEnabled = false
     }
 
 }

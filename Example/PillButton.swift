@@ -21,13 +21,22 @@ class PillButton: UIButton {
     }
 
     private func commonInit() {
-        tintColor = .white
+        let normalOutlineColor = UIColor(white: 1, alpha: 0.4)
+        let normalBackgroundImage = roundedCornersImage(fillColor: nil, outlineColor: normalOutlineColor, cornerRadius: bounds.height/2)
 
-        let outlineColor = UIColor(white: 1, alpha: 0.4)
-        let backgroundImage = roundedCornersImage(fillColor: nil, outlineColor: outlineColor, cornerRadius: bounds.height/2)
+        let disabledOutlineColor = UIColor(white: 1, alpha: 0.25)
+        let disabledBackgroundImage = roundedCornersImage(fillColor: nil, outlineColor: disabledOutlineColor, cornerRadius: bounds.height/2)
 
-        setBackgroundImage(backgroundImage, for: .normal)
+        setBackgroundImage(normalBackgroundImage, for: .normal)
+        setBackgroundImage(disabledBackgroundImage, for: .disabled)
+
+        adjustsImageWhenHighlighted = false
+        adjustsImageWhenDisabled = false
+
         titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+
+        setTitleColor(.white, for: .normal)
+        setTitleColor(disabledOutlineColor, for: .disabled)
     }
 
 }
