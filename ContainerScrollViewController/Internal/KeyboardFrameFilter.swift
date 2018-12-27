@@ -93,7 +93,7 @@ class KeyboardFrameFilter {
         timer?.fire()
     }
 
-    /// Suspends the filter, starting it again when `resume` is called.
+    /// Suspends the filter. The filter can be started again by calling `resume`.
     func suspend() {
         assert(!isSuspended)
 
