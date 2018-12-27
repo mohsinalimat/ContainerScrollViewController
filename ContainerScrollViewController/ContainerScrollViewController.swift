@@ -26,7 +26,7 @@ open class ContainerScrollViewController: UIViewController {
 
     /// If `true`, the embedded view should be resized to compensate for the portion of
     /// the view occupied by the keyboard, if possible. The default value is `false`.
-    public var shouldResizeEmbeddedViewForKeyboard: Bool = false
+    public var shouldResizeEmbeddedViewForKeyboard = false
 
     /// The behavior for adjusting the view when the keyboard is presented. The default
     /// value of this property is `.adjustAdditionalSafeAreaInsets`.
