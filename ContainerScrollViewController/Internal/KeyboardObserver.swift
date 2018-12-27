@@ -57,6 +57,18 @@ class KeyboardObserver {
 
         keyboardAdjustmentFilter.keyboardFrame = keyboardFrame
 
+        // If the keyboard is being dismissed by way of a drag gesture, respond to the
+        // change in the keyboard's frame immediately, without the temporal filtering
+        // normally provided by KeyboardAdjustmentFilter, so the animation of the scroll
+        // view's frame change will be handled immediately, within UIKit's animation block
+        // that accompanies the keyboardWillHide notification. This results in more
+        // pleasing animation. If we instead waited until KeyboardAdjustmentFilter's timer
+        // fired, we'd see an awkward double jump of the scroll view's contents as its
+        // content area was resized.
+        if let scrollView = containerScrollViewController?.scrollView, notification.name == UIResponder.keyboardWillHideNotification && scrollView.keyboardDismissMode != .none && scrollView.isTracking {
+            keyboardAdjustmentFilter.flush()
+        }
+
         // Continues in keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)...
     }
 
@@ -181,6 +193,7 @@ extension KeyboardObserver: KeyboardFrameFilterDelegate {
         guard let bottomInset = self.bottomInset(from: keyboardFrame) else {
             return
         }
+
         UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
             self.adjustContainerScrollViewControllerForKeyboard(with: bottomInset)
             self.containerScrollViewController?.view.layoutIfNeeded()
