@@ -32,7 +32,7 @@ open class ContainerScrollViewController: UIViewController {
         /// Adjust the view controller's additional safe area insets. This is the default
         /// behavior.
         case adjustAdditionalSafeAreaInsets
-        /// Adjust the the scroll view's content size. This approach leaves the view
+        /// Adjust the scroll view's content size. This approach leaves the view
         /// controller's additional safe area insets untouched, but will result in
         /// misaligned scroll indicators when the left and right safe area insets are
         /// nonzero, for example in landscape orientation on iPhone X. This appears to be a
@@ -303,7 +303,7 @@ open class ContainerScrollViewController: UIViewController {
                 embeddedViewMinimumHeightConstraint?.constant = bottomInset
             }
         case .adjustScrollViewContentSize:
-            // Adjust the the scroll view's content size. This approach leaves the view
+            // Adjust the scroll view's content size. This approach leaves the view
             // controller's additional safe area insets untouched, but will result in
             // misaligned scroll indicators when the left and right safe area insets are
             // nonzero, for example in landscape orientation on iPhone X. This appears to be a
