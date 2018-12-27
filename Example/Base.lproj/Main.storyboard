@@ -63,7 +63,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8BW-Aw-gvm" customClass="PillButton" customModule="Example" customModuleProvider="target">
                                 <rect key="frame" x="47.666666666666657" y="610.33333333333337" width="280" height="44"/>
@@ -129,7 +129,10 @@
                         <viewLayoutGuide key="safeArea" id="0sT-rP-U7t"/>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="y6x-Gv-wx5" id="gZR-TS-Jig"/>
                         <outlet property="logoImageView" destination="ihH-xN-OTN" id="mrc-Mu-wo8"/>
+                        <outlet property="nameTextField" destination="KHf-Ih-6Zy" id="YQY-ds-ka3"/>
+                        <outlet property="passwordTextField" destination="VoQ-gV-n0W" id="48d-cI-Cvu"/>
                         <outlet property="signInButton" destination="IiB-zO-H3z" id="mNI-Rq-c2M"/>
                     </connections>
                 </viewController>

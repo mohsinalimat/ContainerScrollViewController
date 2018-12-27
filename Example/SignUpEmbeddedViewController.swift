@@ -11,6 +11,10 @@ import UIKit
 class SignUpEmbeddedViewController: UIViewController {
 
     @IBOutlet weak var logoImageView: UIImageView!
+    
+    @IBOutlet weak var nameTextField: PillTextField!
+    @IBOutlet weak var emailTextField: PillTextField!
+    @IBOutlet weak var passwordTextField: PillTextField!
 
     @IBOutlet weak var signInButton: UIButton!
 
@@ -41,6 +45,28 @@ class SignUpEmbeddedViewController: UIViewController {
         signInButtonTitle.append(NSAttributedString(string: "Sign In", attributes: signInButtonTitleMediumFontAttributes))
 
         signInButton.setAttributedTitle(signInButtonTitle, for: .normal)
+
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
+}
+
+extension SignUpEmbeddedViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case nameTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            passwordTextField.resignFirstResponder()
+        default:
+            assertionFailure("Unrecognized text field")
+        }
+        return true
+    }
+    
 }
