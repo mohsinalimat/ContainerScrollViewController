@@ -22,7 +22,8 @@ class KeyboardObserver {
 
     private lazy var keyboardAdjustmentFilter = BottomInsetFilter(delegate: self)
 
-    private let keyboardAdjustmentAnimationDuration: TimeInterval = 0.5
+    // The duration of the animation of a change to the view's bottom inset.
+    private let bottomInsetAnimationDuration: TimeInterval = 0.5
 
     init(containerScrollViewController: ContainerScrollViewController) {
         self.containerScrollViewController = containerScrollViewController
@@ -162,7 +163,7 @@ class KeyboardObserver {
 extension KeyboardObserver: BottomInsetFilterDelegate {
 
     func keyboardAdjustmentFilter(_ keyboardAdjustmentFilter: BottomInsetFilter, didChangeBottomInset bottomInset: CGFloat) {
-        UIView.animate(withDuration: keyboardAdjustmentAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
+        UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
             self.setBottomInset(bottomInset)
             self.containerScrollViewController?.view.layoutIfNeeded()
         }, completion: nil)
