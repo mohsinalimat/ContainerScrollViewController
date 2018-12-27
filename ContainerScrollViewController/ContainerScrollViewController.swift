@@ -25,7 +25,7 @@ open class ContainerScrollViewController: UIViewController {
     }
 
     /// The behavior for adjusting the view when the keyboard is presented. The default
-    /// value of this property is `.adjustScrollView`.
+    /// value of this property is `.adjustAdditionalSafeAreaInsets`.
     public enum KeyboardAdjustmentBehavior {
         /// Make no view adjustments when the keyboard is presented.
         case none
