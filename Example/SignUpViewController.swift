@@ -22,7 +22,7 @@ class SignUpViewController: ContainerScrollViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        #if false
+        #if true
         keyboardAdjustmentBehavior = .adjustScrollViewAndEmbeddedView
         #endif
 

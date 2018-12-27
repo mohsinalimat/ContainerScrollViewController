@@ -25,8 +25,8 @@
 		3AB822E121D0562300ED7576 /* ContainerScrollViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AB822D321D0562300ED7576 /* ContainerScrollViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AB822ED21D057B700ED7576 /* ContainerScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB822EC21D057B700ED7576 /* ContainerScrollViewController.swift */; };
 		3AB822EE21D057DD00ED7576 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3AB822EB21D0575200ED7576 /* LICENSE */; };
-		3AFEB51821D3D4FD00BAAC5A /* BottomInsetFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEB51721D3D4FD00BAAC5A /* BottomInsetFilter.swift */; };
-		3AFEB51A21D3D51200BAAC5A /* BottomInsetFilterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEB51921D3D51200BAAC5A /* BottomInsetFilterDelegate.swift */; };
+		3AFEB51821D3D4FD00BAAC5A /* KeyboardFrameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */; };
+		3AFEB51A21D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +84,8 @@
 		3AB822EA21D0575200ED7576 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3AB822EB21D0575200ED7576 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3AB822EC21D057B700ED7576 /* ContainerScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerScrollViewController.swift; sourceTree = "<group>"; };
-		3AFEB51721D3D4FD00BAAC5A /* BottomInsetFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomInsetFilter.swift; sourceTree = "<group>"; };
-		3AFEB51921D3D51200BAAC5A /* BottomInsetFilterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomInsetFilterDelegate.swift; sourceTree = "<group>"; };
+		3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFrameFilter.swift; sourceTree = "<group>"; };
+		3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFrameFilterDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,8 +170,8 @@
 				3AB822D321D0562300ED7576 /* ContainerScrollViewController.h */,
 				3AB822EC21D057B700ED7576 /* ContainerScrollViewController.swift */,
 				3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */,
-				3AFEB51721D3D4FD00BAAC5A /* BottomInsetFilter.swift */,
-				3AFEB51921D3D51200BAAC5A /* BottomInsetFilterDelegate.swift */,
+				3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */,
+				3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */,
 				3AB822D421D0562300ED7576 /* Info.plist */,
 			);
 			path = ContainerScrollViewController;
@@ -344,9 +344,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AFEB51821D3D4FD00BAAC5A /* BottomInsetFilter.swift in Sources */,
+				3AFEB51821D3D4FD00BAAC5A /* KeyboardFrameFilter.swift in Sources */,
 				3A2A2C4D21D29CE400FA3D20 /* KeyboardObserver.swift in Sources */,
-				3AFEB51A21D3D51200BAAC5A /* BottomInsetFilterDelegate.swift in Sources */,
+				3AFEB51A21D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift in Sources */,
 				3AB822ED21D057B700ED7576 /* ContainerScrollViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

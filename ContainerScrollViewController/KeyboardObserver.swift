@@ -20,7 +20,7 @@ class KeyboardObserver {
 
     private weak var containerScrollViewController: ContainerScrollViewController?
 
-    private lazy var keyboardAdjustmentFilter = BottomInsetFilter(delegate: self)
+    private lazy var keyboardAdjustmentFilter = KeyboardFrameFilter(delegate: self)
 
     // The duration of the animation of a change to the view's bottom inset.
     private let bottomInsetAnimationDuration: TimeInterval = 0.5
@@ -51,40 +51,11 @@ class KeyboardObserver {
     @objc private func updateForKeyboardVisibility(notification: Notification) {
         suppressTextFieldTextAnimation()
 
-        switch notification.name {
-        case UIResponder.keyboardWillHideNotification:
-            setFilteredBottomInset(0)
-        case UIResponder.keyboardWillShowNotification:
-            if let bottomInset = bottomInsetFromKeyboardIntersectionFrame(from: notification) {
-                setFilteredBottomInset(bottomInset)
-            }
-        default:
-            // Do nothing.
-            break
-        }
-    }
-
-    private func setFilteredBottomInset(_ bottomInset: CGFloat) {
-        keyboardAdjustmentFilter.bottomInset = bottomInset
-
-        // Continues in keyboardAdjustmentFilter(_:didChangeBottomInset:)...
-    }
-
-    private func setBottomInset(_ bottomInset: CGFloat) {
-        guard let containerScrollViewController = containerScrollViewController,
-            let embeddedViewHeightConstraint = containerScrollViewController.embeddedViewHeightConstraint else {
+        guard let keyboardFrame = self.keyboardFrame(from: notification) else {
             return
         }
 
-        switch containerScrollViewController.keyboardAdjustmentBehavior {
-        case .none:
-            return
-        case .adjustScrollView:
-            containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
-            embeddedViewHeightConstraint.constant = bottomInset
-        case .adjustScrollViewAndEmbeddedView:
-            containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
-        }
+        setFilteredKeyboardFrame(keyboardFrame)
     }
 
     /// Suppresses unwanted text field text animation.
@@ -105,6 +76,40 @@ class KeyboardObserver {
         }
     }
 
+    private func keyboardFrame(from notification: Notification) -> CGRect? {
+        guard let userInfo = notification.userInfo,
+            let keyboardFrameEndUserInfoValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let window = containerScrollViewController?.view.window else {
+                return nil
+        }
+
+        let keyboardWindowEndFrame = keyboardFrameEndUserInfoValue.cgRectValue
+
+        // From https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
+        // "Note: The rectangle contained in the UIKeyboardFrameBeginUserInfoKey and
+        // UIKeyboardFrameEndUserInfoKey properties of the userInfo dictionary should be
+        // used only for the size information it contains. Do not use the origin of the
+        // rectangle (which is always {0.0, 0.0}) in rectangle-intersection operations.
+        // Because the keyboard is animated into position, the actual bounding rectangle of
+        // the keyboard changes over time."
+
+        switch notification.name {
+        case UIResponder.keyboardWillHideNotification:
+            return CGRect(x: 0, y: window.bounds.height, width: keyboardWindowEndFrame.size.width, height: 0)
+        case UIResponder.keyboardWillShowNotification:
+            return CGRect(x: 0, y: window.bounds.height - keyboardWindowEndFrame.size.height, width: keyboardWindowEndFrame.size.width, height: keyboardWindowEndFrame.size.height)
+        default:
+            assertionFailure("Unexpected notification type")
+            return nil
+        }
+    }
+
+    private func setFilteredKeyboardFrame(_ keyboardFrame: CGRect?) {
+        keyboardAdjustmentFilter.keyboardFrame = keyboardFrame
+
+        // Continues in keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)...
+    }
+
     /// Returns the height of portion of the keyboard's frame that overlaps
     /// ContainerScrollViewController's view.
     ///
@@ -114,32 +119,19 @@ class KeyboardObserver {
     /// - Parameter notification: The keyboard notification that provides the keyboard's
     /// frame.
     /// - Returns: The height of portion of the keyboard's frame that overlaps the view.
-    private func bottomInsetFromKeyboardIntersectionFrame(from notification: Notification) -> CGFloat? {
-        guard let userInfo = notification.userInfo,
-            let keyboardFrameEndUserInfoValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-            let containerScrollViewController = containerScrollViewController,
+    private func bottomInset(from keyboardFrame: CGRect) -> CGFloat? {
+        guard let containerScrollViewController = containerScrollViewController,
             let view = containerScrollViewController.view,
             let window = view.window else {
             return nil
         }
-
-        var keyboardWindowEndFrame = keyboardFrameEndUserInfoValue.cgRectValue
-
-        // From https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
-        // "Note: The rectangle contained in the UIKeyboardFrameBeginUserInfoKey and
-        // UIKeyboardFrameEndUserInfoKey properties of the userInfo dictionary should be
-        // used only for the size information it contains. Do not use the origin of the
-        // rectangle (which is always {0.0, 0.0}) in rectangle-intersection operations.
-        // Because the keyboard is animated into position, the actual bounding rectangle of
-        // the keyboard changes over time."
-        keyboardWindowEndFrame = CGRect(x: 0, y: window.bounds.height - keyboardWindowEndFrame.size.height, width: keyboardWindowEndFrame.size.width, height: keyboardWindowEndFrame.size.height)
 
         // The frame of the view in the window's coordinate space.
         let viewFrameInWindow = window.convert(view.frame, from: view.superview)
 
         // The intersection of the keyboard's frame with the frame of the view in the
         // window's coordinate space.
-        let keyboardViewIntersectionFrameInWindow = viewFrameInWindow.intersection(keyboardWindowEndFrame)
+        let keyboardViewIntersectionFrameInWindow = viewFrameInWindow.intersection(keyboardFrame)
 
         // The intersection of the keyboard's frame with the frame of the view in the
         // view's coordinate space.
@@ -158,12 +150,34 @@ class KeyboardObserver {
 
         return bottomInset
     }
+
+    private func setBottomInset(_ bottomInset: CGFloat) {
+        guard let containerScrollViewController = containerScrollViewController,
+            let embeddedViewHeightConstraint = containerScrollViewController.embeddedViewHeightConstraint else {
+                return
+        }
+
+        switch containerScrollViewController.keyboardAdjustmentBehavior {
+        case .none:
+            return
+        case .adjustScrollView:
+            containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
+            embeddedViewHeightConstraint.constant = bottomInset
+        case .adjustScrollViewAndEmbeddedView:
+            containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
+        }
+    }
+
 }
 
-extension KeyboardObserver: BottomInsetFilterDelegate {
+extension KeyboardObserver: KeyboardFrameFilterDelegate {
 
-    func keyboardAdjustmentFilter(_ keyboardAdjustmentFilter: BottomInsetFilter, didChangeBottomInset bottomInset: CGFloat) {
+    func keyboardAdjustmentFilter(_ keyboardAdjustmentFilter: KeyboardFrameFilter, didChangeKeyboardFrame keyboardFrame: CGRect?) {
         UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
+            guard let keyboardFrame = keyboardFrame,
+                let bottomInset = self.bottomInset(from: keyboardFrame) else {
+                    return
+            }
             self.setBottomInset(bottomInset)
             self.containerScrollViewController?.view.layoutIfNeeded()
         }, completion: nil)
