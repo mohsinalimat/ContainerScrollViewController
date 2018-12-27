@@ -146,7 +146,7 @@ open class ContainerScrollViewController: UIViewController {
     ///
     /// - Parameter embeddedViewController: The view controller to embed in the scroll view.
     public func embedViewController(_ embeddedViewController: UIViewController) {
-        assert(self.embeddedViewController == nil, "Only one view controller may be embedded in an ContainerScrollViewController")
+        assert(self.embeddedViewController == nil, "Only one view controller may be embedded in a ContainerScrollViewController")
 
         self.embeddedViewController = embeddedViewController
 
