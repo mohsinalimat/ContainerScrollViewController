@@ -56,8 +56,6 @@ class SignUpEmbeddedViewController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(updateSignUpButtonIsEnabledState), for: .editingChanged)
 
         signUpButton.isEnabled = false
-
-        view.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)
     }
 
     @objc private func updateSignUpButtonIsEnabledState() {
