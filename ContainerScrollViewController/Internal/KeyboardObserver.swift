@@ -55,7 +55,7 @@ class KeyboardObserver {
             return
         }
 
-        setFilteredKeyboardFrame(keyboardFrame)
+        setKeyboardFrame(keyboardFrame)
     }
 
     /// Suppresses unwanted text field text animation.
@@ -110,8 +110,12 @@ class KeyboardObserver {
 
     /// Sets the keyboard frame, filtered over time by `KeyboardFrameFilter`.
     ///
+    /// After a short delay, `keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)` will
+    /// be called with the new keyboard frame value, assuming no subsequent keyboard
+    /// frame values are assigned during this time period.
+    ///
     /// - Parameter keyboardFrame: The new keyboard frame value to assign.
-    private func setFilteredKeyboardFrame(_ keyboardFrame: CGRect?) {
+    private func setKeyboardFrame(_ keyboardFrame: CGRect) {
         keyboardAdjustmentFilter.keyboardFrame = keyboardFrame
 
         // Continues in keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)...
