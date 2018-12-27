@@ -40,6 +40,7 @@ class PillTextField: UITextField {
         font = UIFont.systemFont(ofSize: 17, weight: .medium)
         textColor = .white
 
+        // The insertion point's color and the color of selected text.
         tintColor = .white
     }
 
