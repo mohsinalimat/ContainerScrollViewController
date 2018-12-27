@@ -120,23 +120,10 @@ open class ContainerScrollViewController: UIViewController {
         if embeddedViewController != nil {
             // An embedded view controller was specified in Interface Builder, in which case
             // prepare(for:sender:) was called before viewDidLoad.
-            guard let embeddedView = embeddedViewController?.view else {
-                assertionFailure("The embedded view controller's view is undefined")
-                return
+
+            embedView() { (embeddedView: UIView) in
+                scrollView.addSubview(embeddedView)
             }
-
-            addScrollView()
-            scrollView.addSubview(embeddedView)
-            addEmbeddedViewConstraints()
-
-            // Some UIViewController properties, like childViewControllerForStatusBarStyle, are
-            // queried by UIKit before viewDidLoad is called. To handle the case where
-            // childViewControllerForStatusBarStyle forwards responsibility for these values to
-            // the newly embedded view controller, we call the following methods to ensure that
-            // the correct state is presented to the user.
-            setNeedsStatusBarAppearanceUpdate()
-            setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
-            setNeedsUpdateOfHomeIndicatorAutoHidden()
 
             return
         }
@@ -158,25 +145,39 @@ open class ContainerScrollViewController: UIViewController {
 
         self.embeddedViewController = embeddedViewController
 
-        guard let embeddedView = embeddedViewController.view else {
-            assertionFailure("The embedded view controller's view is undefined")
-            assertionFailure()
-            return
+        embedView() { (embeddedView: UIView) in
+            addChild(embeddedViewController)
+            scrollView.addSubview(embeddedView)
+            embeddedViewController.didMove(toParent: self)
         }
-
-        addScrollView()
-
-        addChild(embeddedViewController)
-        scrollView.addSubview(embeddedView)
-        embeddedViewController.didMove(toParent: self)
-
-        addEmbeddedViewConstraints()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         assert(embeddedViewController != nil, "Either embedViewController must be called in viewDidLoad, or a container view controller relationship must be established in Interface Builder, in which case prepare(for:sender:), if overridden, must call super.prepare(for:sender:)")
+    }
+
+    private func embedView(embed: (_ embeddedView: UIView) -> Void) {
+        guard let embeddedView = embeddedViewController?.view else {
+            assertionFailure("The embedded view controller's view is undefined")
+            return
+        }
+
+        addScrollView()
+
+        embed(embeddedView)
+
+        addEmbeddedViewConstraints()
+
+        // Some UIViewController properties, like childViewControllerForStatusBarStyle, are
+        // queried by UIKit before viewDidLoad is called. To handle the case where
+        // childViewControllerForStatusBarStyle forwards the definition of these properties
+        // to the newly embedded view controller, we call the following methods to ensure
+        // that the correct state is presented to the user when the view is presented.
+        setNeedsStatusBarAppearanceUpdate()
+        setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
+        setNeedsUpdateOfHomeIndicatorAutoHidden()
     }
 
     private func addScrollView() {
