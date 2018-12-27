@@ -47,7 +47,7 @@ open class ContainerScrollViewController: UIViewController {
     /// value of this property is `.adjustAdditionalSafeAreaInsets`.
     public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .adjustAdditionalSafeAreaInsets
 
-    /// This property is `true` if viewDidLoad has already been called.
+    /// This property is `true` if `viewDidLoad` has already been called.
     private var viewDidLoadWasCalled = false
 
     /// The embedded view's height constraint.
