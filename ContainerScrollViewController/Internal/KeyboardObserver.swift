@@ -55,7 +55,9 @@ class KeyboardObserver {
             return
         }
 
-        setKeyboardFrame(keyboardFrame)
+        keyboardAdjustmentFilter.keyboardFrame = keyboardFrame
+
+        // Continues in keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)...
     }
 
     /// Suppresses unwanted text field text animation.
@@ -106,19 +108,6 @@ class KeyboardObserver {
             assertionFailure("Unexpected notification type")
             return nil
         }
-    }
-
-    /// Sets the keyboard frame, filtered over time by `KeyboardFrameFilter`.
-    ///
-    /// After a short delay, `keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)` will
-    /// be called with the new keyboard frame value, assuming no subsequent keyboard
-    /// frame values are assigned during this time period.
-    ///
-    /// - Parameter keyboardFrame: The new keyboard frame value to assign.
-    private func setKeyboardFrame(_ keyboardFrame: CGRect) {
-        keyboardAdjustmentFilter.keyboardFrame = keyboardFrame
-
-        // Continues in keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)...
     }
 
     /// Returns the height of portion of the keyboard's frame that overlaps
