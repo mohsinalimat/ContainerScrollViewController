@@ -108,6 +108,9 @@ class KeyboardObserver {
         }
     }
 
+    /// Sets the keyboard frame, filtered over time by `KeyboardFrameFilter`.
+    ///
+    /// - Parameter keyboardFrame: The new keyboard frame value to assign.
     private func setFilteredKeyboardFrame(_ keyboardFrame: CGRect?) {
         keyboardAdjustmentFilter.keyboardFrame = keyboardFrame
 
