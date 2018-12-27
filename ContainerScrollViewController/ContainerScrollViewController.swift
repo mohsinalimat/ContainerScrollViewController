@@ -62,9 +62,9 @@ open class ContainerScrollViewController: UIViewController {
     private var keyboardObserver: KeyboardObserver?
 
     /// An object that modifies the scroll view's `alwaysBounceVertical` property to
-    /// reflect the state of the presented keyboard. This ensures that the
-    /// `.interactive` `keyboardDismissMode` will work, even if the embedded view is
-    /// short enough to not require scrolling.
+    /// reflect the state of the presented keyboard. This ensures that when
+    /// `keyboardDismissMode` is set to `.interactive` it will work as expected, even if
+    /// the embedded view is short enough to not require scrolling.
     private lazy var scrollViewBounceController = ScrollViewBounceController(scrollView: scrollView)
 
     // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
