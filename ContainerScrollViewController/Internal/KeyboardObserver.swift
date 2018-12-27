@@ -90,7 +90,7 @@ class KeyboardObserver {
         }
 
         UIView.performWithoutAnimation {
-            containerScrollViewController.embeddedViewController?.view.layoutIfNeeded()
+            containerScrollViewController.embeddedView?.layoutIfNeeded()
         }
     }
 

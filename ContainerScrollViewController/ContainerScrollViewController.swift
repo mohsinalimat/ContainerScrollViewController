@@ -39,8 +39,13 @@ open class ContainerScrollViewController: UIViewController {
     /// The scroll view within which another view will be embedded.
     public let scrollView = UIScrollView()
 
-    /// The view controller embedded within the container scroll view.
+    /// The view controller whose view is embedded within the container scroll view.
     public private(set) var embeddedViewController: UIViewController?
+
+    /// The view embedded in the scroll view.
+    public var embeddedView: UIView? {
+        return embeddedViewController?.view
+    }
 
     /// The behavior for adjusting the view when the keyboard is presented. The default
     /// value of this property is `.adjustScrollView`.
@@ -68,16 +73,17 @@ open class ContainerScrollViewController: UIViewController {
         }
     }
 
-    // This property is true if viewDidLoad has already been called.
+    /// This property is `true` if viewDidLoad has already been called.
     private var viewDidLoadWasCalled = false
 
     // The embedded view's height constraint. We use this to compensate for the change
     // we make to the bottom adjusted safe area inset when the keyboard is presented,
     // so that the embedded view's height doesn't change, even though it is constrained
-    // to the height of the safe area, which usually includes the adjusted safe area inset.
+    // to the height of the safe area, which usually includes the adjusted safe area
+    // inset.
     internal var embeddedViewHeightConstraint: NSLayoutConstraint?
 
-    private var containerScrollViewKeyboardObserver: KeyboardObserver?
+    private var keyboardObserver: KeyboardObserver?
 
     // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
     // defined in a subclass of `ContainerScrollViewController`, it must call
@@ -99,7 +105,7 @@ open class ContainerScrollViewController: UIViewController {
 
         viewDidLoadWasCalled = true
 
-        containerScrollViewKeyboardObserver = KeyboardObserver(containerScrollViewController: self)
+        keyboardObserver = KeyboardObserver(containerScrollViewController: self)
 
         // If we don't do this, and instead leave contentInsetAdjustmentBehavior at
         // .automatic (its default value), then in the case when a container view
@@ -111,31 +117,32 @@ open class ContainerScrollViewController: UIViewController {
         // on iPhone X in landscape orientation with the keyboard presented.
         scrollView.contentInsetAdjustmentBehavior = .always
 
-        assert(view.subviews.count <= 1, "The ContainerScrollViewController view is expected to have at most one subview embedded by Interface Builder")
+        if embeddedViewController != nil {
+            // An embedded view controller was specified in Interface Builder, in which case
+            // prepare(for:sender:) was called before viewDidLoad.
+            guard let embeddedView = embeddedViewController?.view else {
+                assertionFailure("The embedded view controller's view is undefined")
+                return
+            }
 
-        let firstSubview = view.subviews.first
+            addScrollView()
+            scrollView.addSubview(embeddedView)
+            addEmbeddedViewConstraints()
 
-        // Insert our scroll view between the container view and the embedded view.
-        // Instead of this approach, we'd instead prefer to directly specify UIScrollView
-        // as the container view's class in Interface Builder, but this results in the
-        // following exception when the embed segue is performed:
-        //     *** Terminating app due to uncaught exception 'NSInternalInconsistencyException',
-        //     reason: 'There are unexpected subviews in the container view. Perhaps the embed
-        //     segue has already fired once or a subview was added programmatically?'
-        view.addSubview(scrollView)
-        scrollView.frame = view.bounds
-        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            // Some UIViewController properties, like childViewControllerForStatusBarStyle, are
+            // queried by UIKit before viewDidLoad is called. To handle the case where
+            // childViewControllerForStatusBarStyle forwards responsibility for these values to
+            // the newly embedded view controller, we call the following methods to ensure that
+            // the correct state is presented to the user.
+            setNeedsStatusBarAppearanceUpdate()
+            setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
+            setNeedsUpdateOfHomeIndicatorAutoHidden()
 
-        guard let embeddedView = firstSubview else {
-            // The view controller's view had no subviews. It's assumed that the view
-            // controller will embed a view controller manually by calling embedViewController
-            // in viewDidLoad.
             return
         }
 
-        scrollView.addSubview(embeddedView)
-
-        addScrollViewEmbeddedViewConstraints()
+        // At this point, it is expected that embedViewController will be called in
+        // the ContainerScrollViewController subclass's viewDidLoad method.
     }
 
     /// Embeds a view controller within the scroll view. If a view a container view
@@ -151,19 +158,46 @@ open class ContainerScrollViewController: UIViewController {
 
         self.embeddedViewController = embeddedViewController
 
+        guard let embeddedView = embeddedViewController.view else {
+            assertionFailure("The embedded view controller's view is undefined")
+            assertionFailure()
+            return
+        }
+
+        addScrollView()
+
         addChild(embeddedViewController)
-        scrollView.addSubview(embeddedViewController.view)
+        scrollView.addSubview(embeddedView)
         embeddedViewController.didMove(toParent: self)
 
-        addScrollViewEmbeddedViewConstraints()
+        addEmbeddedViewConstraints()
+    }
+
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        assert(embeddedViewController != nil, "Either embedViewController must be called in viewDidLoad, or a container view controller relationship must be established in Interface Builder, in which case prepare(for:sender:), if overridden, must call super.prepare(for:sender:)")
+    }
+
+    private func addScrollView() {
+        // Insert our scroll view between the container view and the embedded view.
+        // Instead of this approach, we'd instead prefer to directly specify UIScrollView
+        // as the container view's class in Interface Builder, but this results in the
+        // following exception when the embed segue is performed:
+        //     *** Terminating app due to uncaught exception 'NSInternalInconsistencyException',
+        //     reason: 'There are unexpected subviews in the container view. Perhaps the embed
+        //     segue has already fired once or a subview was added programmatically?'
+        view.addSubview(scrollView)
+        scrollView.frame = view.bounds
+        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
 
     /// Constrains the embedded view to the scroll view's content layout guide.
-    private func addScrollViewEmbeddedViewConstraints() {
+    private func addEmbeddedViewConstraints() {
         // See https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html
 
-        guard let embeddedView = embeddedViewController?.view else {
-            assertionFailure("Embedded view controller is undefined")
+        guard let embeddedView = embeddedView else {
+            assertionFailure("The embedded view is undefined")
             return
         }
 
@@ -180,12 +214,6 @@ open class ContainerScrollViewController: UIViewController {
             embeddedViewHeightConstraint,
             ]
         scrollView.addConstraints(constraints)
-    }
-
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        assert(embeddedViewController != nil, "Either embedViewController must be called in viewDidLoad, or a container view controller relationship must be established in Interface Builder, in which case prepare(for:sender:), if overridden, must call super.prepare(for:sender:)")
     }
 
     // Responds to changes in the size of the view, for example in response to device
