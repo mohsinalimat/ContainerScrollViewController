@@ -89,6 +89,9 @@ class KeyboardObserver {
     /// If the user taps on a sequence of text fields, we may see unwanted animation in
     /// the position of the text within the text fields. This method suppresses this
     /// behavior by calling `layoutIfNeeded` within a `performWithoutAnimation` closure.
+    ///
+    /// We suspect it's the case that UIKit posts `UIResponder` keyboard notifications
+    /// after updating text fields within animation blocks.
     private func suppressTextFieldTextAnimation() {
         guard let containerScrollViewController = containerScrollViewController else {
             return
