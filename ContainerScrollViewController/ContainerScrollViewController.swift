@@ -63,15 +63,7 @@ open class ContainerScrollViewController: UIViewController {
     }
 
     /// The behavior for adjusting the view when the keyboard is presented.
-    public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .adjustScrollView {
-        willSet {
-            // This property cannot be modified while the view is visible. The viewWillAppear
-            // and viewDidDisappear methods add and remove keyboard visibility notification
-            // observers only if keyboardAdjustmentBehavior is not .none, and the state of
-            // these notification observers would become inconsistent otherwise.
-            assert(view.window == nil, "keyboardAdjustmentBehavior may only be modified when the view isn't visible")
-        }
-    }
+    public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .adjustScrollView
 
     /// This property is `true` if viewDidLoad has already been called.
     private var viewDidLoadWasCalled = false
