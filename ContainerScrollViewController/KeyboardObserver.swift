@@ -158,7 +158,7 @@ class KeyboardObserver {
         return bottomInset
     }
 
-    private func setBottomInset(_ bottomInset: CGFloat) {
+    private func adjustContainerScrollViewControllerForKeyboard(with bottomInset: CGFloat) {
         guard let containerScrollViewController = containerScrollViewController,
             let embeddedViewHeightConstraint = containerScrollViewController.embeddedViewHeightConstraint else {
                 return
@@ -185,7 +185,7 @@ extension KeyboardObserver: KeyboardFrameFilterDelegate {
                 let bottomInset = self.bottomInset(from: keyboardFrame) else {
                     return
             }
-            self.setBottomInset(bottomInset)
+            self.adjustContainerScrollViewControllerForKeyboard(with: bottomInset)
             self.containerScrollViewController?.view.layoutIfNeeded()
         }, completion: nil)
     }
