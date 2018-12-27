@@ -65,8 +65,11 @@ class KeyboardObserver {
         // pleasing animation. If we instead waited until KeyboardAdjustmentFilter's timer
         // fired, we'd see an awkward double jump of the scroll view's contents as its
         // content area was resized.
-        if let scrollView = containerScrollViewController?.scrollView, notification.name == UIResponder.keyboardWillHideNotification && scrollView.keyboardDismissMode != .none && scrollView.isTracking {
-            keyboardAdjustmentFilter.flush()
+        if let scrollView = containerScrollViewController?.scrollView,
+            let keyboardAdjustmentBehavior = containerScrollViewController?.keyboardAdjustmentBehavior {
+            if notification.name == UIResponder.keyboardWillHideNotification && keyboardAdjustmentBehavior == .adjustScrollViewAndEmbeddedView && scrollView.keyboardDismissMode != .none && scrollView.isTracking {
+                keyboardAdjustmentFilter.flush()
+            }
         }
 
         // Continues in keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)...
