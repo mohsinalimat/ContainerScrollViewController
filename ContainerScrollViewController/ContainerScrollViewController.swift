@@ -76,18 +76,18 @@ open class ContainerScrollViewController: UIViewController {
     /// This property is `true` if viewDidLoad has already been called.
     private var viewDidLoadWasCalled = false
 
-    // The embedded view's height constraint. We use this to compensate for the change
-    // we make to the bottom adjusted safe area inset when the keyboard is presented,
-    // so that the embedded view's height doesn't change, even though it is constrained
-    // to the height of the safe area, which usually includes the adjusted safe area
-    // inset.
+    /// The embedded view's height constraint. We use this to compensate for the change
+    /// we make to the bottom adjusted safe area inset when the keyboard is presented,
+    /// so that the embedded view's height doesn't change, even though it is constrained
+    /// to the height of the safe area, which usually includes the adjusted safe area
+    /// inset.
     internal var embeddedViewHeightConstraint: NSLayoutConstraint?
 
     private var keyboardObserver: KeyboardObserver?
 
-    // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
-    // defined in a subclass of `ContainerScrollViewController`, it must call
-    // `super.prepare(for:sender:)`.
+    /// Prepares for the container view embedding segue. If `prepare(for:sender:)` is
+    /// defined in a subclass of `ContainerScrollViewController`, it must call
+    /// `super.prepare(for:sender:)`.
     open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
