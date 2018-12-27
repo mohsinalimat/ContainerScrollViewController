@@ -46,10 +46,10 @@ open class ContainerScrollViewController: UIViewController {
     private var viewDidLoadWasCalled = false
 
     /// The embedded view's height constraint.
-    var embeddedViewHeightConstraint: NSLayoutConstraint?
+    private var embeddedViewHeightConstraint: NSLayoutConstraint?
 
     /// The scroll view's bottom anchor constraint.
-    var scrollViewBottomAnchorConstraint: NSLayoutConstraint?
+    private var scrollViewBottomAnchorConstraint: NSLayoutConstraint?
 
     /// An object that responds to notifications posted by UIKit when the keyboard is
     /// presented or dismissed, and which adjusts the `ContainerScrollViewController`
@@ -273,5 +273,37 @@ open class ContainerScrollViewController: UIViewController {
     private func visibleContentSize(of scrollView: UIScrollView) -> CGSize {
         return scrollView.bounds.inset(by: scrollView.adjustedContentInset).size
     }
+
+    /// Adjusts the ContainerScrollViewController view to compenate for the portion of
+    /// the keyboard that overlaps the view.
+    ///
+    /// - Parameter bottomInset: The height of the area of keyboard's frame that
+    /// overlaps the view.
+    func adjustView(for bottomInset: CGFloat) {
+        switch keyboardAdjustmentBehavior {
+        case .none:
+            return
+        case .adjustScrollView:
+            /// Compensate for the presented keyboard by adjusting the scroll view's additional
+            /// safe area insets.
+            additionalSafeAreaInsets.bottom = bottomInset
+            embeddedViewHeightConstraint?.constant = bottomInset
+
+            //            scrollViewBottomAnchorConstraint?.constant = bottomInset
+            //            scrollView.scrollIndicatorInsets.bottom = bottomInset
+
+        case .adjustScrollViewAndEmbeddedView:
+            /// Compensate for the presented keyboard by adjusting the scroll view's additional
+            /// safe area insets and, if the embedded view was smaller than the scroll view's
+            /// safe area before the keyboard was presented, reducing the size of the embedded
+            /// view to fit the new size of the scroll view's safe area.
+            additionalSafeAreaInsets.bottom = bottomInset
+
+            //            scrollViewBottomAnchorConstraint?.constant = bottomInset
+            //            embeddedViewHeightConstraint?.constant = -bottomInset
+            //            scrollView.scrollIndicatorInsets.bottom = bottomInset
+        }
+    }
+
 
 }

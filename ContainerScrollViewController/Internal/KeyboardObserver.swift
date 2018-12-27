@@ -179,41 +179,6 @@ class KeyboardObserver {
         return max(0, overlappingKeyboardHeight - (safeAreaBottomInset - additionalSafeAreaBottomInset))
     }
 
-    /// Adjust the ContainerScrollViewController given a bottom inset that corresponds
-    /// to the height of the area of keyboard that overlaps the view.
-    ///
-    /// - Parameter bottomInset: The height of the area of keyboard's frame that
-    /// overlaps the view.
-    private func adjustContainerScrollViewControllerForKeyboard(with bottomInset: CGFloat) {
-        guard let containerScrollViewController = containerScrollViewController,
-            let embeddedViewHeightConstraint = containerScrollViewController.embeddedViewHeightConstraint else {
-                return
-        }
-
-        switch containerScrollViewController.keyboardAdjustmentBehavior {
-        case .none:
-            return
-        case .adjustScrollView:
-            /// Compensate for the presented keyboard by adjusting the scroll view's additional
-            /// safe area insets.
-            containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
-            embeddedViewHeightConstraint.constant = bottomInset
-
-//            containerScrollViewController.scrollViewBottomAnchorConstraint?.constant = bottomInset
-//            containerScrollViewController.scrollView.scrollIndicatorInsets.bottom = bottomInset
-        case .adjustScrollViewAndEmbeddedView:
-            /// Compensate for the presented keyboard by adjusting the scroll view's additional
-            /// safe area insets and, if the embedded view was smaller than the scroll view's
-            /// safe area before the keyboard was presented, reducing the size of the embedded
-            /// view to fit the new size of the scroll view's safe area.
-            containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
-
-//            containerScrollViewController.scrollViewBottomAnchorConstraint?.constant = bottomInset
-//            embeddedViewHeightConstraint.constant = -bottomInset
-//            containerScrollViewController.scrollView.scrollIndicatorInsets.bottom = bottomInset
-        }
-    }
-
 }
 
 extension KeyboardObserver: KeyboardFrameFilterDelegate {
@@ -224,7 +189,7 @@ extension KeyboardObserver: KeyboardFrameFilterDelegate {
         }
 
         UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
-            self.adjustContainerScrollViewControllerForKeyboard(with: bottomInset)
+            self.containerScrollViewController?.adjustView(for: bottomInset)
             self.containerScrollViewController?.view.layoutIfNeeded()
         }, completion: nil)
     }
