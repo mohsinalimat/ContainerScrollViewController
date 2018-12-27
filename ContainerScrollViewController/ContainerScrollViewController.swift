@@ -104,7 +104,7 @@ open class ContainerScrollViewController: UIViewController {
         if embeddedViewController != nil {
             // An embedded view controller was specified in Interface Builder, in which case
             // prepare(for:sender:) was called before viewDidLoad.
-            embedView() { (embeddedView: UIView) in
+            embedViewInScrollView() { (embeddedView: UIView) in
                 scrollView.addSubview(embeddedView)
             }
             return
@@ -127,7 +127,7 @@ open class ContainerScrollViewController: UIViewController {
 
         self.embeddedViewController = embeddedViewController
 
-        embedView() { (embeddedView: UIView) in
+        embedViewInScrollView() { (embeddedView: UIView) in
             addChild(embeddedViewController)
             scrollView.addSubview(embeddedView)
             embeddedViewController.didMove(toParent: self)
@@ -140,7 +140,9 @@ open class ContainerScrollViewController: UIViewController {
         assert(embeddedViewController != nil, "Either embedViewController must be called in viewDidLoad, or a container view controller relationship must be established in Interface Builder, in which case prepare(for:sender:), if overridden, must call super.prepare(for:sender:)")
     }
 
-    private func embedView(embed: (_ embeddedView: UIView) -> Void) {
+    /// Performs common setup required to embed athe embedded view controller's view in
+    /// the container view controller's scroll view.
+    private func embedViewInScrollView(embed: (_ embeddedView: UIView) -> Void) {
         guard let embeddedView = embeddedViewController?.view else {
             assertionFailure("The embedded view controller's view is undefined")
             return
