@@ -99,6 +99,8 @@ open class ContainerScrollViewController: UIViewController {
 
         viewDidLoadWasCalled = true
 
+        containerScrollViewKeyboardObserver = KeyboardObserver(containerScrollViewController: self)
+
         // If we don't do this, and instead leave contentInsetAdjustmentBehavior at
         // .automatic (its default value), then in the case when a container view
         // controller is presented outside of the context of a navigation controller,
@@ -134,8 +136,6 @@ open class ContainerScrollViewController: UIViewController {
         scrollView.addSubview(embeddedView)
 
         addScrollViewEmbeddedViewConstraints()
-
-        containerScrollViewKeyboardObserver = KeyboardObserver(containerScrollViewController: self)
     }
 
     /// Embeds a view controller within the scroll view. If a view a container view
