@@ -117,6 +117,8 @@ open class ContainerScrollViewController: UIViewController {
         // on iPhone X in landscape orientation with the keyboard presented.
         scrollView.contentInsetAdjustmentBehavior = .always
 
+        assert(view.subviews.count <= 1, "The ContainerScrollViewController view is expected to have at most one subview embedded by Interface Builder")
+
         if embeddedViewController != nil {
             // An embedded view controller was specified in Interface Builder, in which case
             // prepare(for:sender:) was called before viewDidLoad.
