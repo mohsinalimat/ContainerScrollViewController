@@ -83,6 +83,9 @@ open class ContainerScrollViewController: UIViewController {
     /// inset.
     internal var embeddedViewHeightConstraint: NSLayoutConstraint?
 
+    /// An object that responds to notifications posted by UIKit when the keyboard is
+    /// presented or dismissed, and which adjusts the `ContainerScrollViewController`
+    /// scroll view to compensate.
     private var keyboardObserver: KeyboardObserver?
 
     // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
