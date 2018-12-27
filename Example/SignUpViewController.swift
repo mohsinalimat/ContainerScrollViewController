@@ -23,7 +23,6 @@ class SignUpViewController: ContainerScrollViewController {
         super.viewDidLoad()
 
         keyboardAdjustmentBehavior = .adjustAdditionalSafeAreaInsets
-//        keyboardAdjustmentBehavior = .adjustScrollViewContentSize
 
         shouldResizeEmbeddedViewForKeyboard = true
 
