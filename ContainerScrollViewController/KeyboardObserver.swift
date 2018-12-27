@@ -159,6 +159,11 @@ class KeyboardObserver {
         return bottomInset
     }
 
+    /// Adjust the ContainerScrollViewController given a bottom inset that corresponds
+    /// to the height of the region of keyboard that overlaps the view.
+    ///
+    /// - Parameter bottomInset: The height of the region of keyboard that overlaps the
+    /// view.
     private func adjustContainerScrollViewControllerForKeyboard(with bottomInset: CGFloat) {
         guard let containerScrollViewController = containerScrollViewController,
             let embeddedViewHeightConstraint = containerScrollViewController.embeddedViewHeightConstraint else {
