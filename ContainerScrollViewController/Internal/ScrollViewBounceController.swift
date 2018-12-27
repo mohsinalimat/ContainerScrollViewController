@@ -24,19 +24,20 @@ class ScrollViewBounceController {
 
     var bottomInset: CGFloat = 0 {
         didSet {
-            guard scrollView?.keyboardDismissMode != .none else {
+            guard let scrollView = scrollView,
+                scrollView.keyboardDismissMode != .none else {
                 return
             }
 
             if bottomInset != 0 && oldValue == 0 {
-                initialAlwaysBounceVertical = scrollView?.alwaysBounceVertical == true
-                scrollView?.alwaysBounceVertical = true
+                initialAlwaysBounceVertical = scrollView.alwaysBounceVertical
+                scrollView.alwaysBounceVertical = true
             } else if bottomInset == 0 && oldValue != 0 {
                 guard let initialAlwaysBounceVertical = initialAlwaysBounceVertical else {
                     assertionFailure()
                     return
                 }
-                scrollView?.alwaysBounceVertical = initialAlwaysBounceVertical
+                scrollView.alwaysBounceVertical = initialAlwaysBounceVertical
             }
         }
     }
