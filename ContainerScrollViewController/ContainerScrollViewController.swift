@@ -65,7 +65,7 @@ open class ContainerScrollViewController: UIViewController {
     /// state of the presented keyboard. This ensures that the interactive
     /// `keyboardDismissMode` will work, even if the embedded view is short enough to
     /// not require scroling.
-    private lazy var bounceController = BounceController(scrollView: scrollView)
+    private lazy var scrollViewBounceController = ScrollViewBounceController(scrollView: scrollView)
 
     // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
     // defined in a subclass of `ContainerScrollViewController`, it must call
@@ -291,7 +291,7 @@ open class ContainerScrollViewController: UIViewController {
     /// - Parameter bottomInset: The height of the area of keyboard's frame that
     /// overlaps the view.
     func adjustViewForKeyboard(with bottomInset: CGFloat) {
-        bounceController.bottomInset = bottomInset
+        scrollViewBounceController.bottomInset = bottomInset
 
         switch keyboardAdjustmentBehavior {
         case .none:

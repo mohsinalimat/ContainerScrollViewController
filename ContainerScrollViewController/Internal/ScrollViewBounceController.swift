@@ -1,5 +1,5 @@
 //
-//  BounceController.swift
+//  ScrollViewBounceController.swift
 //  ContainerScrollViewController
 //
 //  Created by Drew Olbrich on 12/27/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BounceController {
+class ScrollViewBounceController {
 
     weak var scrollView: UIScrollView?
 

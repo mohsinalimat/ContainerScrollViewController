@@ -25,7 +25,7 @@
 		3AB822E121D0562300ED7576 /* ContainerScrollViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AB822D321D0562300ED7576 /* ContainerScrollViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AB822ED21D057B700ED7576 /* ContainerScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB822EC21D057B700ED7576 /* ContainerScrollViewController.swift */; };
 		3AB822EE21D057DD00ED7576 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3AB822EB21D0575200ED7576 /* LICENSE */; };
-		3AE3A43D21D595310071F2F1 /* BounceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE3A43C21D595310071F2F1 /* BounceController.swift */; };
+		3AE3A43D21D595310071F2F1 /* ScrollViewBounceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE3A43C21D595310071F2F1 /* ScrollViewBounceController.swift */; };
 		3AFEB51821D3D4FD00BAAC5A /* KeyboardFrameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */; };
 		3AFEB51A21D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -85,7 +85,7 @@
 		3AB822EA21D0575200ED7576 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3AB822EB21D0575200ED7576 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3AB822EC21D057B700ED7576 /* ContainerScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerScrollViewController.swift; sourceTree = "<group>"; };
-		3AE3A43C21D595310071F2F1 /* BounceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceController.swift; sourceTree = "<group>"; };
+		3AE3A43C21D595310071F2F1 /* ScrollViewBounceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewBounceController.swift; sourceTree = "<group>"; };
 		3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFrameFilter.swift; sourceTree = "<group>"; };
 		3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFrameFilterDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,7 +192,7 @@
 				3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */,
 				3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */,
 				3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */,
-				3AE3A43C21D595310071F2F1 /* BounceController.swift */,
+				3AE3A43C21D595310071F2F1 /* ScrollViewBounceController.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -356,7 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AFEB51821D3D4FD00BAAC5A /* KeyboardFrameFilter.swift in Sources */,
-				3AE3A43D21D595310071F2F1 /* BounceController.swift in Sources */,
+				3AE3A43D21D595310071F2F1 /* ScrollViewBounceController.swift in Sources */,
 				3A2A2C4D21D29CE400FA3D20 /* KeyboardObserver.swift in Sources */,
 				3AFEB51A21D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift in Sources */,
 				3AB822ED21D057B700ED7576 /* ContainerScrollViewController.swift in Sources */,
