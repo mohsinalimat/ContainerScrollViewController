@@ -320,7 +320,6 @@ open class ContainerScrollViewController: UIViewController {
                 scrollViewBottomAnchorConstraint?.constant = bottomInset
                 scrollView.scrollIndicatorInsets.bottom = bottomInset
             }
-
         }
     }
 
