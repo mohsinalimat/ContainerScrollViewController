@@ -200,6 +200,16 @@ open class ContainerScrollViewController: UIViewController {
         let initialAdjustedContentInset = scrollView.adjustedContentInset
         let initialContentOffset = scrollView.contentOffset
 
+        // When the device orientation changes, we'll receive a keyboardWillHide
+        // notification, followed by a keyboardDidShow notification only after the device
+        // orientation animation completes. If we responded to these immediately, this
+        // would result in awkward view resizing animation, in particular when
+        // keyboardAdjustmentBehavior was set to .adjustScrollViewAndEmbeddedView. To work
+        // around this issue, we suspend KeyboardObserver's KeyboardFrameFilter during the
+        // transition, and as a result, we'll respond only to the final size of the
+        // keyboard after the animation completes.
+        keyboardObserver?.suspend()
+
         coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext) in
             var contentOffset = initialContentOffset
 
@@ -219,7 +229,9 @@ open class ContainerScrollViewController: UIViewController {
                 y: contentOffset.y + initialAdjustedContentInset.top - self.scrollView.adjustedContentInset.top)
 
             self.scrollView.contentOffset = self.constrainScrollViewContentOffset(contentOffset)
-        }, completion: nil)
+        }, completion: { (context: UIViewControllerTransitionCoordinatorContext) in
+            self.keyboardObserver?.resume()
+        })
     }
 
     /// Constrains a scroll view content offset so that it lies within the legal range

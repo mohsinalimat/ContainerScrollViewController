@@ -34,6 +34,18 @@ class KeyboardObserver {
         removeObservers()
     }
 
+    func suspend() {
+        keyboardAdjustmentFilter.suspend()
+    }
+
+    func resume() {
+        keyboardAdjustmentFilter.resume()
+    }
+
+    func flush() {
+        keyboardAdjustmentFilter.flush()
+    }
+
     private func addObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(updateForKeyboardVisibility), name: UIResponder.keyboardWillShowNotification, object: nil)

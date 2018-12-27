@@ -65,6 +65,14 @@ class KeyboardFrameFilter {
     /// The timer used to apply the temporal filter.
     private var timer: Timer?
 
+    /// This property is `true` when the temporal filtering is suspended with
+    /// the `suspend` and `resume` methods.
+    private var isSuspended = false
+
+    /// This property is `true` when the timer was active when `suspend` was called, or
+    /// if an attempt was made to start the timer while the filter was suspended.
+    private var shouldRestartTimerWhenResumed = false
+
     init(delegate: KeyboardFrameFilterDelegate) {
         self.delegate = delegate
     }
@@ -73,16 +81,45 @@ class KeyboardFrameFilter {
         cancel()
     }
 
+    /// Cancels the current filter. No delegate calls are made.
     func cancel() {
+        shouldRestartTimerWhenResumed = false
         timer?.invalidate()
     }
 
+    /// Immediately notify the delegate of any pending keyboard frame changes.
     func flush() {
+        assert(!isSuspended, "Flushing is not yet supported for suspended keyboard frame filters")
         timer?.fire()
+    }
+
+    /// Suspends the filter, starting it again when `resume` is called.
+    func suspend() {
+        assert(!isSuspended)
+
+        shouldRestartTimerWhenResumed = timer != nil
+        timer?.invalidate()
+        isSuspended = true
+    }
+
+    /// Resumes filtering that was suspended earlier.
+    func resume() {
+        assert(isSuspended)
+
+        isSuspended = false
+        if shouldRestartTimerWhenResumed {
+            shouldRestartTimerWhenResumed = false
+            startTimer()
+        }
     }
 
     /// Starts the timer that filters changes to the scroll view's keyboard frame.
     private func startTimer() {
+        if isSuspended {
+            shouldRestartTimerWhenResumed = true
+            return
+        }
+
         cancel()
 
         let timer = Timer(timeInterval: delay, repeats: false, block: { [weak self] (timer: Timer) in
