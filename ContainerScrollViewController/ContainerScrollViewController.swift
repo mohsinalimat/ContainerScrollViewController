@@ -104,9 +104,15 @@ open class ContainerScrollViewController: UIViewController {
         if embeddedViewController != nil {
             // An embedded view controller was specified in Interface Builder, in which case
             // prepare(for:sender:) was called before viewDidLoad.
-            embedViewInScrollView() { (embeddedView: UIView) in
-                scrollView.addSubview(embeddedView)
+
+            guard let embeddedView = embeddedViewController?.view else {
+                assertionFailure("The embedded view controller's view is undefined")
+                return
             }
+
+            scrollView.addSubview(embeddedView)
+            addScrollView()
+
             return
         }
 
@@ -127,11 +133,16 @@ open class ContainerScrollViewController: UIViewController {
 
         self.embeddedViewController = embeddedViewController
 
-        embedViewInScrollView() { (embeddedView: UIView) in
-            addChild(embeddedViewController)
-            scrollView.addSubview(embeddedView)
-            embeddedViewController.didMove(toParent: self)
+        guard let embeddedView = embeddedViewController.view else {
+            assertionFailure("The embedded view controller's view is undefined")
+            return
         }
+
+        addChild(embeddedViewController)
+        scrollView.addSubview(embeddedView)
+        embeddedViewController.didMove(toParent: self)
+
+        addScrollView()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
@@ -140,17 +151,20 @@ open class ContainerScrollViewController: UIViewController {
         assert(embeddedViewController != nil, "Either embedViewController must be called in viewDidLoad, or a container view controller relationship must be established in Interface Builder, in which case prepare(for:sender:), if overridden, must call super.prepare(for:sender:)")
     }
 
-    /// Performs common setup required to embed athe embedded view controller's view in
-    /// the container view controller's scroll view.
-    private func embedViewInScrollView(embed: (_ embeddedView: UIView) -> Void) {
-        guard let embeddedView = embeddedViewController?.view else {
-            assertionFailure("The embedded view controller's view is undefined")
-            return
-        }
+    /// Adds the scroll view to the view hierarchy.
+    private func addScrollView() {
+        assert(scrollView.superview == nil)
 
-        addScrollView()
-
-        embed(embeddedView)
+        // Insert our scroll view between the container view and the embedded view.
+        // Instead of this approach, we'd instead prefer to directly specify UIScrollView
+        // as the container view's class in Interface Builder, but this results in the
+        // following exception when the embed segue is performed:
+        //     *** Terminating app due to uncaught exception 'NSInternalInconsistencyException',
+        //     reason: 'There are unexpected subviews in the container view. Perhaps the embed
+        //     segue has already fired once or a subview was added programmatically?'
+        view.addSubview(scrollView)
+        scrollView.frame = view.bounds
+        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         addEmbeddedViewConstraints()
 
@@ -162,19 +176,6 @@ open class ContainerScrollViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
         setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
         setNeedsUpdateOfHomeIndicatorAutoHidden()
-    }
-
-    private func addScrollView() {
-        // Insert our scroll view between the container view and the embedded view.
-        // Instead of this approach, we'd instead prefer to directly specify UIScrollView
-        // as the container view's class in Interface Builder, but this results in the
-        // following exception when the embed segue is performed:
-        //     *** Terminating app due to uncaught exception 'NSInternalInconsistencyException',
-        //     reason: 'There are unexpected subviews in the container view. Perhaps the embed
-        //     segue has already fired once or a subview was added programmatically?'
-        view.addSubview(scrollView)
-        scrollView.frame = view.bounds
-        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
 
     /// Constrains the embedded view to the scroll view's content layout guide.
