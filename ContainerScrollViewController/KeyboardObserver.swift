@@ -154,16 +154,15 @@ class KeyboardObserver {
         // The view's additional safe area bottom inset.
         let additionalSafeAreaBottomInset = containerScrollViewController.additionalSafeAreaInsets.bottom
 
-        let bottomInset = max(0, overlappingKeyboardHeight - (safeAreaBottomInset - additionalSafeAreaBottomInset))
-
-        return bottomInset
+        // The height of area of the keyboard's frame that overlaps the view.
+        return max(0, overlappingKeyboardHeight - (safeAreaBottomInset - additionalSafeAreaBottomInset))
     }
 
     /// Adjust the ContainerScrollViewController given a bottom inset that corresponds
-    /// to the height of the region of keyboard that overlaps the view.
+    /// to the height of the area of keyboard that overlaps the view.
     ///
-    /// - Parameter bottomInset: The height of the region of keyboard that overlaps the
-    /// view.
+    /// - Parameter bottomInset: The height of the area of keyboard's frame that
+    /// overlaps the view.
     private func adjustContainerScrollViewControllerForKeyboard(with bottomInset: CGFloat) {
         guard let containerScrollViewController = containerScrollViewController,
             let embeddedViewHeightConstraint = containerScrollViewController.embeddedViewHeightConstraint else {
