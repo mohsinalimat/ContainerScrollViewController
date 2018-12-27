@@ -68,5 +68,10 @@ extension SignUpEmbeddedViewController: UITextFieldDelegate {
         }
         return true
     }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // Strip leading and trailing whitespace.
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespaces)
+    }
     
 }
