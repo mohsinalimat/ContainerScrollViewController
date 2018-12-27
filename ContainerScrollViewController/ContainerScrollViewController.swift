@@ -33,10 +33,10 @@ open class ContainerScrollViewController: UIViewController {
         /// behavior.
         case adjustAdditionalSafeAreaInsets
         /// Adjust the the scroll view's content size. This approach leaves the view
-        /// controller's safe area insets untouched, but will result in misaligned scroll
-        /// indicators when the left and right safe area insets are nonzero, for example in
-        /// landscape orientation on iPhone X. This appears to be a side effect of setting
-        /// the bottom scroll indicator inset to a nonzero value.
+        /// controller's additional safe area insets untouched, but will result in
+        /// misaligned scroll indicators when the left and right safe area insets are
+        /// nonzero, for example in landscape orientation on iPhone X. This appears to be a
+        /// side effect of setting the bottom scroll indicator inset to a nonzero value.
         case adjustScrollViewContentSize
     }
 
@@ -304,10 +304,10 @@ open class ContainerScrollViewController: UIViewController {
             }
         case .adjustScrollViewContentSize:
             // Adjust the the scroll view's content size. This approach leaves the view
-            // controller's safe area insets untouched, but will result in misaligned scroll
-            // indicators when the left and right safe area insets are nonzero, for example in
-            // landscape orientation on iPhone X. This appears to be a side effect of setting
-            // the bottom scroll indicator inset to a nonzero value.
+            // controller's additional safe area insets untouched, but will result in
+            // misaligned scroll indicators when the left and right safe area insets are
+            // nonzero, for example in landscape orientation on iPhone X. This appears to be a
+            // side effect of setting the bottom scroll indicator inset to a nonzero value.
             if shouldResizeEmbeddedViewForKeyboard {
                 // Add padding to the bottom of the scroll view, but reduce the minimum allowed
                 // height of the embedded view to compensate.
