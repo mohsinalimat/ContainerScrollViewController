@@ -108,11 +108,11 @@ class KeyboardObserver {
     /// Returns the height of portion of the keyboard's frame that overlaps
     /// ContainerScrollViewController's view.
     ///
-    /// This method correctly handles the case where the view doesn't cover the
-    /// entire screen.
+    /// This method correctly handles the case where the view doesn't cover the entire
+    /// screen.
     ///
-    /// - Parameter notification: The keyboard notification that provides the
-    /// keyboard's frame.
+    /// - Parameter notification: The keyboard notification that provides the keyboard's
+    /// frame.
     /// - Returns: The height of portion of the keyboard's frame that overlaps the view.
     private func bottomInsetFromKeyboardIntersectionFrame(from notification: Notification) -> CGFloat? {
         guard let userInfo = notification.userInfo,
