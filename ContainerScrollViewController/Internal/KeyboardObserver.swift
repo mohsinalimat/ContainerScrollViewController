@@ -49,11 +49,12 @@ class KeyboardObserver {
     /// Updates the view controller to compensate for the appearance or disappearance of
     /// the keyboard.
     @objc private func updateForKeyboardVisibility(notification: Notification) {
-        suppressTextFieldTextAnimation()
-
-        guard let keyboardFrame = self.keyboardFrame(from: notification) else {
-            return
+        guard let keyboardFrame = self.keyboardFrame(from: notification),
+            let scrollView = containerScrollViewController?.scrollView else {
+                return
         }
+
+        suppressTextFieldTextAnimation()
 
         keyboardAdjustmentFilter.keyboardFrame = keyboardFrame
 
@@ -65,11 +66,11 @@ class KeyboardObserver {
         // more pleasing animation. If we instead waited until KeyboardAdjustmentFilter's
         // timer fired, we'd see an awkward jump of the scroll view's contents as the
         // embedded view area was resized.
-        if let scrollView = containerScrollViewController?.scrollView,
-            let keyboardAdjustmentBehavior = containerScrollViewController?.keyboardAdjustmentBehavior {
-            if notification.name == UIResponder.keyboardWillHideNotification && keyboardAdjustmentBehavior == .adjustScrollViewAndEmbeddedView && scrollView.keyboardDismissMode != .none && scrollView.isTracking {
-                keyboardAdjustmentFilter.flush()
-            }
+        if notification.name == UIResponder.keyboardWillHideNotification
+            && containerScrollViewController?.keyboardAdjustmentBehavior == .adjustScrollViewAndEmbeddedView
+            && scrollView.keyboardDismissMode != .none
+            && scrollView.isTracking {
+            keyboardAdjustmentFilter.flush()
         }
 
         // Continues in keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)...
