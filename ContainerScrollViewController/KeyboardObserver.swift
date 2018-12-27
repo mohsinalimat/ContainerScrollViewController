@@ -76,6 +76,10 @@ class KeyboardObserver {
         }
     }
 
+    /// Returns the keyboard's frame, given a notification.
+    ///
+    /// - Parameter notification: The `UIResponder` keyboard notification.
+    /// - Returns: The keyboard's frame.
     private func keyboardFrame(from notification: Notification) -> CGRect? {
         guard let userInfo = notification.userInfo,
             let keyboardFrameEndUserInfoValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
