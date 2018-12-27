@@ -22,8 +22,6 @@ class SignUpViewController: ContainerScrollViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        keyboardAdjustmentBehavior = .adjustAdditionalSafeAreaInsets
-
         shouldResizeEmbeddedViewForKeyboard = true
 
         scrollView.keyboardDismissMode = .interactive
