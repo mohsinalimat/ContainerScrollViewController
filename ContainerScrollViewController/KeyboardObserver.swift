@@ -123,12 +123,12 @@ class KeyboardObserver {
         var keyboardWindowEndFrame = keyboardFrameEndUserInfoValue.cgRectValue
 
         // From https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
-        // Note: The rectangle contained in the UIKeyboardFrameBeginUserInfoKey and
+        // "Note: The rectangle contained in the UIKeyboardFrameBeginUserInfoKey and
         // UIKeyboardFrameEndUserInfoKey properties of the userInfo dictionary should be
         // used only for the size information it contains. Do not use the origin of the
         // rectangle (which is always {0.0, 0.0}) in rectangle-intersection operations.
         // Because the keyboard is animated into position, the actual bounding rectangle of
-        // the keyboard changes over time.
+        // the keyboard changes over time."
         keyboardWindowEndFrame = CGRect(x: 0, y: window.bounds.height - keyboardWindowEndFrame.size.height, width: keyboardWindowEndFrame.size.width, height: keyboardWindowEndFrame.size.height)
 
         // The frame of the view in the window's coordinate space.
