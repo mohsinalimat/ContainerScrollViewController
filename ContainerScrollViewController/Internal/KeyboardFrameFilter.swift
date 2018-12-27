@@ -83,6 +83,8 @@ class KeyboardFrameFilter {
 
     /// Starts the timer that filters changes to the scroll view's keyboard frame.
     private func startTimer() {
+        cancel()
+
         let timer = Timer(timeInterval: delay, repeats: false, block: { [weak self] (timer: Timer) in
             guard let self = self else {
                 return
