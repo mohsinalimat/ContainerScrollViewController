@@ -85,9 +85,9 @@ open class ContainerScrollViewController: UIViewController {
 
     private var keyboardObserver: KeyboardObserver?
 
-    /// Prepares for the container view embedding segue. If `prepare(for:sender:)` is
-    /// defined in a subclass of `ContainerScrollViewController`, it must call
-    /// `super.prepare(for:sender:)`.
+    // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
+    // defined in a subclass of `ContainerScrollViewController`, it must call
+    // `super.prepare(for:sender:)`.
     open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
