@@ -169,9 +169,7 @@
 			children = (
 				3AB822D321D0562300ED7576 /* ContainerScrollViewController.h */,
 				3AB822EC21D057B700ED7576 /* ContainerScrollViewController.swift */,
-				3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */,
-				3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */,
-				3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */,
+				3AFEB51B21D534C400BAAC5A /* Internal */,
 				3AB822D421D0562300ED7576 /* Info.plist */,
 			);
 			path = ContainerScrollViewController;
@@ -184,6 +182,16 @@
 				3AB822E021D0562300ED7576 /* Info.plist */,
 			);
 			path = ContainerScrollViewControllerTests;
+			sourceTree = "<group>";
+		};
+		3AFEB51B21D534C400BAAC5A /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */,
+				3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */,
+				3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
