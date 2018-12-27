@@ -104,11 +104,9 @@ open class ContainerScrollViewController: UIViewController {
         if embeddedViewController != nil {
             // An embedded view controller was specified in Interface Builder, in which case
             // prepare(for:sender:) was called before viewDidLoad.
-
             embedView() { (embeddedView: UIView) in
                 scrollView.addSubview(embeddedView)
             }
-
             return
         }
 
