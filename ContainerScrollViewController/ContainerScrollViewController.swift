@@ -45,12 +45,11 @@ open class ContainerScrollViewController: UIViewController {
     /// This property is `true` if viewDidLoad has already been called.
     private var viewDidLoadWasCalled = false
 
-    /// The embedded view's height constraint. We use this to compensate for the change
-    /// we make to the bottom adjusted safe area inset when the keyboard is presented,
-    /// so that the embedded view's height doesn't change, even though it is constrained
-    /// to the height of the safe area, which usually includes the adjusted safe area
-    /// inset.
-    internal var embeddedViewHeightConstraint: NSLayoutConstraint?
+    /// The embedded view's height constraint.
+    var embeddedViewHeightConstraint: NSLayoutConstraint?
+
+    /// The scroll view's bottom anchor constraint.
+    var scrollViewBottomAnchorConstraint: NSLayoutConstraint?
 
     /// An object that responds to notifications posted by UIKit when the keyboard is
     /// presented or dismissed, and which adjusts the `ContainerScrollViewController`
@@ -179,12 +178,15 @@ open class ContainerScrollViewController: UIViewController {
         let embeddedViewHeightConstraint = embeddedView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.safeAreaLayoutGuide.heightAnchor, multiplier: 1)
         self.embeddedViewHeightConstraint = embeddedViewHeightConstraint
 
+        let scrollViewBottomAnchorConstraint = scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: embeddedView.bottomAnchor)
+        self.scrollViewBottomAnchorConstraint = scrollViewBottomAnchorConstraint
+
         embeddedView.translatesAutoresizingMaskIntoConstraints = false
         let constraints: [NSLayoutConstraint] = [
             scrollView.contentLayoutGuide.leftAnchor.constraint(equalTo: embeddedView.leftAnchor),
             scrollView.contentLayoutGuide.rightAnchor.constraint(equalTo: embeddedView.rightAnchor),
             scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: embeddedView.topAnchor),
-            scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: embeddedView.bottomAnchor),
+            scrollViewBottomAnchorConstraint,
             embeddedView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.safeAreaLayoutGuide.widthAnchor, multiplier: 1),
             embeddedViewHeightConstraint,
             ]
