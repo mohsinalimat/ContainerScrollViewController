@@ -14,6 +14,10 @@ class SignUpEmbeddedViewController: UIViewController {
 
     @IBOutlet weak var signInButton: UIButton!
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,4 +42,5 @@ class SignUpEmbeddedViewController: UIViewController {
 
         signInButton.setAttributedTitle(signInButtonTitle, for: .normal)
     }
+
 }

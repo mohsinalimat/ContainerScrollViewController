@@ -15,8 +15,8 @@ class SignUpViewController: ContainerScrollViewController {
         return embeddedViewController as? SignUpEmbeddedViewController
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    override var childForStatusBarStyle: UIViewController? {
+        return signUpEmbeddedViewController
     }
 
     override func viewDidLoad() {
