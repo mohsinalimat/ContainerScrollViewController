@@ -51,7 +51,28 @@ class SignUpEmbeddedViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
 
+        nameTextField.addTarget(self, action: #selector(updateSignUpButtonIsEnabledState), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(updateSignUpButtonIsEnabledState), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(updateSignUpButtonIsEnabledState), for: .editingChanged)
+
         signUpButton.isEnabled = false
+    }
+
+    @objc private func updateSignUpButtonIsEnabledState() {
+        // TODO: This test should be more sophisticated and perform full validation on each
+        // field, depending on its type.
+        signUpButton.isEnabled = !textFieldIsEmpty(nameTextField) && !textFieldIsEmpty(emailTextField) && !textFieldIsEmpty(passwordTextField)
+    }
+
+    private func textFieldIsEmpty(_ textField: UITextField) -> Bool {
+        guard let text = trimmedText(of: textField) else {
+            return true
+        }
+        return text.isEmpty
+    }
+
+    private func trimmedText(of textField: UITextField) -> String? {
+        return textField.text?.trimmingCharacters(in: CharacterSet.whitespaces)
     }
 
 }
@@ -74,7 +95,7 @@ extension SignUpEmbeddedViewController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         // Strip leading and trailing whitespace.
-        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespaces)
+        textField.text = trimmedText(of: textField)
     }
-    
+
 }
