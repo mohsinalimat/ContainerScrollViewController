@@ -79,7 +79,7 @@ class KeyboardObserver {
         // timer fired, we'd see an awkward jump of the scroll view's contents as the
         // embedded view area was resized.
         if notification.name == UIResponder.keyboardWillHideNotification
-            && containerScrollViewController?.keyboardAdjustmentBehavior == .adjustScrollViewAndEmbeddedView
+            && containerScrollViewController?.shouldResizeEmbeddedViewForKeyboard == true
             && scrollView.keyboardDismissMode != .none
             && scrollView.isTracking {
             keyboardAdjustmentFilter.flush()
@@ -189,7 +189,7 @@ extension KeyboardObserver: KeyboardFrameFilterDelegate {
         }
 
         UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
-            self.containerScrollViewController?.adjustView(for: bottomInset)
+            self.containerScrollViewController?.adjustViewForKeyboard(with: bottomInset)
             self.containerScrollViewController?.view.layoutIfNeeded()
         }, completion: nil)
     }
