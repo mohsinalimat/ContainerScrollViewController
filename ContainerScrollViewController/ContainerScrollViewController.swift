@@ -28,8 +28,7 @@ open class ContainerScrollViewController: UIViewController {
     /// the view occupied by the keyboard, if possible. The default value is `false`.
     public var shouldResizeEmbeddedViewForKeyboard = false
 
-    /// The behavior for adjusting the view when the keyboard is presented. The default
-    /// value of this property is `.adjustAdditionalSafeAreaInsets`.
+    /// The behavior for adjusting the view when the keyboard is presented.
     public enum KeyboardAdjustmentBehavior {
         /// Make no view adjustments when the keyboard is presented.
         case none
@@ -44,7 +43,8 @@ open class ContainerScrollViewController: UIViewController {
         case adjustScrollViewContentSize
     }
 
-    /// The behavior for adjusting the view when the keyboard is presented.
+    /// The behavior for adjusting the view when the keyboard is presented. The default
+    /// value of this property is `.adjustAdditionalSafeAreaInsets`.
     public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .adjustAdditionalSafeAreaInsets
 
     /// This property is `true` if viewDidLoad has already been called.
