@@ -194,9 +194,15 @@ class KeyboardObserver {
         case .none:
             return
         case .adjustScrollView:
+            /// Compensate for the presented keyboard by adjusting the scroll view's additional
+            /// safe area insets.
             containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
             embeddedViewHeightConstraint.constant = bottomInset
         case .adjustScrollViewAndEmbeddedView:
+            /// Compensate for the presented keyboard by adjusting the scroll view's additional
+            /// safe area insets and, if the embedded view was smaller than the scroll view's
+            /// safe area before the keyboard was presented, reducing the size of the embedded
+            /// view to fit the new size of the scroll view's safe area.
             containerScrollViewController.additionalSafeAreaInsets.bottom = bottomInset
         }
     }
