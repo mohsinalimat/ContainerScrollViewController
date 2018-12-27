@@ -16,7 +16,7 @@ class ScrollViewBounceController {
 
     weak var scrollView: UIScrollView?
 
-    private var initialAlwaysBounceVertical: Bool = false
+    private var initialAlwaysBounceVertical: Bool?
 
     init(scrollView: UIScrollView) {
         self.scrollView = scrollView
@@ -32,6 +32,10 @@ class ScrollViewBounceController {
                 initialAlwaysBounceVertical = scrollView?.alwaysBounceVertical == true
                 scrollView?.alwaysBounceVertical = true
             } else if bottomInset == 0 && oldValue != 0 {
+                guard let initialAlwaysBounceVertical = initialAlwaysBounceVertical else {
+                    assertionFailure()
+                    return
+                }
                 scrollView?.alwaysBounceVertical = initialAlwaysBounceVertical
             }
         }
