@@ -28,7 +28,6 @@
 		3AE3A43D21D595310071F2F1 /* ScrollViewBounceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE3A43C21D595310071F2F1 /* ScrollViewBounceController.swift */; };
 		3AE3A44121D676930071F2F1 /* ContainerScrollViewEmbedder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE3A44021D676930071F2F1 /* ContainerScrollViewEmbedder.swift */; };
 		3AFEB51821D3D4FD00BAAC5A /* KeyboardFrameFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */; };
-		3AFEB51A21D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +88,6 @@
 		3AE3A43C21D595310071F2F1 /* ScrollViewBounceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewBounceController.swift; sourceTree = "<group>"; };
 		3AE3A44021D676930071F2F1 /* ContainerScrollViewEmbedder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerScrollViewEmbedder.swift; sourceTree = "<group>"; };
 		3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFrameFilter.swift; sourceTree = "<group>"; };
-		3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFrameFilterDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +192,6 @@
 			children = (
 				3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */,
 				3AFEB51721D3D4FD00BAAC5A /* KeyboardFrameFilter.swift */,
-				3AFEB51921D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift */,
 				3AE3A43C21D595310071F2F1 /* ScrollViewBounceController.swift */,
 			);
 			path = Internal;
@@ -362,7 +359,6 @@
 				3AE3A44121D676930071F2F1 /* ContainerScrollViewEmbedder.swift in Sources */,
 				3AE3A43D21D595310071F2F1 /* ScrollViewBounceController.swift in Sources */,
 				3A2A2C4D21D29CE400FA3D20 /* KeyboardObserver.swift in Sources */,
-				3AFEB51A21D3D51200BAAC5A /* KeyboardFrameFilterDelegate.swift in Sources */,
 				3AB822ED21D057B700ED7576 /* ContainerScrollViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

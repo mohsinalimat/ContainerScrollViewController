@@ -37,8 +37,8 @@ class KeyboardFrameFilter {
     /// change to `presentationKeyboardFrame`.
     var delay: TimeInterval = 0.15
 
-    /// The delegate that is called when `presentationKeyboardFrame` changes.
-    private weak var delegate: KeyboardFrameFilterDelegate?
+    /// The keyboard observer that is notified when `presentationKeyboardFrame` changes.
+    private weak var keyboardObserver: KeyboardObserver?
 
     /// The additional keyboard frame that `KeyboardObserver` applies to the scroll view
     /// to account for the keyboard. When this value changes, the delegate's
@@ -58,7 +58,7 @@ class KeyboardFrameFilter {
     /// `keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)` delegate call.
     public private(set) var presentationKeyboardFrame: CGRect? {
         didSet {
-            self.delegate?.keyboardAdjustmentFilter(self, didChangeKeyboardFrame: self.presentationKeyboardFrame)
+            keyboardObserver?.adjustViewForKeyboard(withKeyboardFrame: self.presentationKeyboardFrame)
         }
     }
 
@@ -73,8 +73,8 @@ class KeyboardFrameFilter {
     /// if an attempt was made to start the timer while the filter was suspended.
     private var shouldRestartTimerWhenResumed = false
 
-    init(delegate: KeyboardFrameFilterDelegate) {
-        self.delegate = delegate
+    init(keyboardObserver: KeyboardObserver) {
+        self.keyboardObserver = keyboardObserver
     }
 
     deinit {

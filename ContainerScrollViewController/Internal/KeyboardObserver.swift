@@ -24,7 +24,7 @@ class KeyboardObserver {
         return containerScrollViewEmbedder?.embeddingViewController
     }
 
-    private lazy var keyboardAdjustmentFilter = KeyboardFrameFilter(delegate: self)
+    private lazy var keyboardAdjustmentFilter = KeyboardFrameFilter(keyboardObserver: self)
 
     // The duration of the animation of the change to the container view's bottom inset.
     private let bottomInsetAnimationDuration: TimeInterval = 0.5
@@ -141,6 +141,18 @@ class KeyboardObserver {
         }
     }
 
+    /// Adjusts the containing view for changes to the keyboard's frame.
+    func adjustViewForKeyboard(withKeyboardFrame keyboardFrame: CGRect?) {
+        guard let bottomInset = self.bottomInset(from: keyboardFrame) else {
+            return
+        }
+
+        UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
+            self.containerScrollViewEmbedder?.adjustViewForKeyboard(withBottomInset: bottomInset)
+            self.embeddingViewController?.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+
     /// Returns the height of portion of the keyboard's frame that overlaps the scroll
     /// view.
     ///
@@ -180,21 +192,6 @@ class KeyboardObserver {
 
         // The height of area of the keyboard's frame that overlaps the view.
         return max(0, overlappingKeyboardHeight - (safeAreaBottomInset - additionalSafeAreaBottomInset))
-    }
-
-}
-
-extension KeyboardObserver: KeyboardFrameFilterDelegate {
-
-    func keyboardAdjustmentFilter(_ keyboardAdjustmentFilter: KeyboardFrameFilter, didChangeKeyboardFrame keyboardFrame: CGRect?) {
-        guard let bottomInset = self.bottomInset(from: keyboardFrame) else {
-            return
-        }
-
-        UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
-            self.containerScrollViewEmbedder?.adjustViewForKeyboard(withBottomInset: bottomInset)
-            self.embeddingViewController?.view.layoutIfNeeded()
-        }, completion: nil)
     }
 
 }
