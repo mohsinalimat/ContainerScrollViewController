@@ -143,7 +143,7 @@ class KeyboardObserver {
 
     /// Adjusts the containing view for changes to the keyboard's frame.
     ///
-    /// This method is called by `keyboardFrameFilter`.
+    /// This method is called by `KeyboardFrameFilter`.
     ///
     /// - Parameter keyboardFrame: The new frame of the keyboard.
     func adjustViewForKeyboard(withKeyboardFrame keyboardFrame: CGRect?) {
