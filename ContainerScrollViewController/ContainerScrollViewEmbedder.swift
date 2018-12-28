@@ -27,7 +27,7 @@ public class ContainerScrollViewEmbedder {
     }
 
     /// If `true`, the embedded view should be resized to compensate for the portion of
-    /// the view occupied by the presented keyboard, if possible. The default value is
+    /// the view obscured by the presented keyboard, if possible. The default value is
     /// `false`.
     public var shouldResizeEmbeddedViewForKeyboard = false
 
