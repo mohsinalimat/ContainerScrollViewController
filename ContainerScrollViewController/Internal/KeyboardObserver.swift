@@ -137,8 +137,8 @@ class KeyboardObserver {
         }
     }
 
-    /// Returns the height of portion of the keyboard's frame that overlaps
-    /// ContainerScrollViewController's view.
+    /// Returns the height of portion of the keyboard's frame that overlaps the scroll
+    /// view.
     ///
     /// This method correctly handles the case where the view doesn't cover the entire
     /// screen.
