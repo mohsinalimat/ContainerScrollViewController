@@ -62,9 +62,11 @@ public class ContainerScrollViewEmbedder {
     public enum KeyboardAdjustmentBehavior {
         /// Make no view adjustments when the keyboard is presented.
         case none
+
         /// Adjust the view controller's additional safe area insets. This is the default
         /// behavior.
         case adjustAdditionalSafeAreaInsets
+
         /// Adjust the scroll view's content size.
         ///
         /// This approach leaves the view controller's additional safe area insets
