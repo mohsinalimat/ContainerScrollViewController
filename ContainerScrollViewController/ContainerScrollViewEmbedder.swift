@@ -313,7 +313,7 @@ public class ContainerScrollViewEmbedder {
     ///
     /// - Parameter bottomInset: The height of the area of keyboard's frame that
     /// overlaps the view.
-    internal func adjustViewForKeyboard(with bottomInset: CGFloat) {
+    internal func adjustViewForKeyboard(withBottomInset bottomInset: CGFloat) {
         scrollViewBounceController.bottomInset = bottomInset
 
         switch keyboardAdjustmentBehavior {
