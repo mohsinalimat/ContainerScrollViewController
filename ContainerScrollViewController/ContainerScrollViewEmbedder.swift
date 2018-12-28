@@ -138,11 +138,7 @@ public class ContainerScrollViewEmbedder {
         assert(!viewDidLoadWasCalled, "viewDidLoad may only be called once")
         viewDidLoadWasCalled = true
 
-        #if DEBUG
-        if let view = embeddingViewController?.view {
-            assert(view.subviews.count <= 1, "The scroll view embedding view is expected to have at most one subview embedded by Interface Builder")
-        }
-        #endif
+        assert(embeddingViewController?.view?.subviews.count ?? 0 <= 1, "The embedding view is expected to have at most one subview embedded by Interface Builder")
 
         if embeddedViewController != nil {
             // An embedded view controller was specified in Interface Builder, in which case
