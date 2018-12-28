@@ -26,7 +26,7 @@ class KeyboardObserver {
 
     private lazy var keyboardAdjustmentFilter = KeyboardFrameFilter(delegate: self)
 
-    // The duration of the animation of a change to the container view's bottom inset.
+    // The duration of the animation of the change to the container view's bottom inset.
     private let bottomInsetAnimationDuration: TimeInterval = 0.5
 
     init(containerScrollViewEmbedder: ContainerScrollViewEmbedder) {
