@@ -20,7 +20,7 @@ import UIKit
 /// The view controller hierarchy looks like this:
 /// 1. `containerScrollViewController`
 /// 2. `embeddedViewController`
-open class ContainerScrollViewController: UIViewController, ContainerScrollViewEmbedding {
+open class ContainerScrollViewController: UIViewController {
 
     /// Embeds a view controller within the scroll view.
     ///
@@ -50,7 +50,7 @@ open class ContainerScrollViewController: UIViewController, ContainerScrollViewE
     /// the view occupied by the keyboard, if possible. The default value is `false`.
     public var shouldResizeEmbeddedViewForKeyboard: Bool {
         set {
-            containerScrollViewEmbedder.shouldResizeEmbeddedViewForKeyboard = shouldResizeEmbeddedViewForKeyboard
+            containerScrollViewEmbedder.shouldResizeEmbeddedViewForKeyboard = newValue
         }
         get {
             return containerScrollViewEmbedder.shouldResizeEmbeddedViewForKeyboard
@@ -61,7 +61,7 @@ open class ContainerScrollViewController: UIViewController, ContainerScrollViewE
     /// value of this property is `.adjustAdditionalSafeAreaInsets`.
     public var keyboardAdjustmentBehavior: ContainerScrollViewEmbedder.KeyboardAdjustmentBehavior {
         set {
-            containerScrollViewEmbedder.keyboardAdjustmentBehavior = keyboardAdjustmentBehavior
+            containerScrollViewEmbedder.keyboardAdjustmentBehavior = newValue
         }
         get {
             return containerScrollViewEmbedder.keyboardAdjustmentBehavior
@@ -69,8 +69,10 @@ open class ContainerScrollViewController: UIViewController, ContainerScrollViewE
     }
 
     /// An object that manages embedding a view controller within a scroll view.
-    private lazy var containerScrollViewEmbedder = ContainerScrollViewEmbedder(containerScrollViewEmbedding: self)
+    private lazy var containerScrollViewEmbedder = ContainerScrollViewEmbedder(embeddingViewController: self)
 
+    // If `viewDidLoad` is defined in a subclass of `ContainerScrollViewController`, it
+    // must call `super.viewDidLoad`.
     open override func viewDidLoad() {
         containerScrollViewEmbedder.viewDidLoad()
     }
@@ -87,6 +89,8 @@ open class ContainerScrollViewController: UIViewController, ContainerScrollViewE
         containerScrollViewEmbedder.viewWillTransition(to: size, with: coordinator)
     }
 
+    // If `prepare(for:sender:)` is defined in a subclass of
+    // `ContainerScrollViewController`, it must call `super.prepare(for:sender:)`.
     open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         containerScrollViewEmbedder.prepare(for: segue, sender: sender)
     }

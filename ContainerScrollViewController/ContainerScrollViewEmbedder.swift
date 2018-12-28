@@ -8,8 +8,12 @@
 
 import UIKit
 
-/// An object that manages embedding a view controller within a scroll view.
+/// An object that embeds a view controller within another view controller's scroll
+/// view.
 public class ContainerScrollViewEmbedder {
+
+    /// The view controller within which embeddedViewController is embedded.
+    private(set) weak var embeddingViewController: UIViewController?
 
     /// The view controller whose view is embedded within the container scroll view.
     private(set) var embeddedViewController: UIViewController?
@@ -45,13 +49,6 @@ public class ContainerScrollViewEmbedder {
     /// value of this property is `.adjustAdditionalSafeAreaInsets`.
     public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .adjustAdditionalSafeAreaInsets
 
-    private weak var containerScrollViewEmbedding: ContainerScrollViewEmbedding?
-
-    /// The view controller that hosts the embedded view controller.
-    internal var embeddingViewController: UIViewController? {
-        return containerScrollViewEmbedding as? UIViewController
-    }
-
     /// This property is `true` if `viewDidLoad` has already been called.
     private var viewDidLoadWasCalled = false
 
@@ -72,18 +69,16 @@ public class ContainerScrollViewEmbedder {
     /// the embedded view is short enough to not require scrolling.
     private lazy var scrollViewBounceController = ScrollViewBounceController(scrollView: scrollView)
 
-    init(containerScrollViewEmbedding: ContainerScrollViewEmbedding?) {
-        self.containerScrollViewEmbedding = containerScrollViewEmbedding
+    init(embeddingViewController: UIViewController) {
+        self.embeddingViewController = embeddingViewController
     }
 
-    // Prepares for the container view embedding segue. If `prepare(for:sender:)` is
-    // defined in a subclass of `ContainerScrollViewController`, it must call
-    // `super.prepare(for:sender:)`.
+    // Prepares for the container view embedding segue.
     public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // We're assuming that if a segue is initiated before viewDidLoad is called,
         // it must be a container view embedding segue.
         if !viewDidLoadWasCalled {
-            assert(segue.source === containerScrollViewEmbedding)
+            assert(segue.source === embeddingViewController)
             assert(embeddedViewController == nil)
             embeddedViewController = segue.destination
         }
@@ -107,7 +102,7 @@ public class ContainerScrollViewEmbedder {
         scrollView.contentInsetAdjustmentBehavior = .always
 
         #if DEBUG
-        if let view = containerScrollViewEmbedding?.view {
+        if let view = embeddingViewController?.view {
             assert(view.subviews.count <= 1, "The scroll view embedding view is expected to have at most one subview embedded by Interface Builder")
         }
         #endif
