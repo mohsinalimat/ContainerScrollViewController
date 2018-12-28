@@ -60,7 +60,11 @@ public class ContainerScrollViewEmbedder {
 
     /// The behavior for adjusting the view when the keyboard is presented.
     public enum KeyboardAdjustmentBehavior {
-        /// Make no view adjustments when the keyboard is presented.
+        /// Make no view adjustments when the keyboard is presented. If no additional action
+        /// is taken, the keyboard will overlap the scroll view and its embedded view.
+        ///
+        /// This value can be used to override the container's view default keyboard
+        /// handling behavior.
         case none
 
         /// Adjust the view controller's additional safe area insets. This is the default
