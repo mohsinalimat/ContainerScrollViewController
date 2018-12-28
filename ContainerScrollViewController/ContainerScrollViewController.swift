@@ -13,8 +13,8 @@ import UIKit
 /// reflect the embedded view's Auto Layout constraints.
 ///
 /// This class is implemented in terms of `ContainerScrollViewEmbedder`, which may
-/// be used directly if its scroll view embedding functionality is required in a
-/// class that cannot inherit from `ContainerScrollViewController`.
+/// be used directly if its scroll view embedding functionality is required in an
+/// existing class that cannot inherit from `ContainerScrollViewController`.
 open class ContainerScrollViewController: UIViewController {
 
     /// Embeds a view controller within the scroll view.
