@@ -145,16 +145,24 @@ class KeyboardObserver {
     ///
     /// This method is called by `KeyboardFrameFilter`.
     ///
-    /// - Parameter keyboardFrame: The new frame of the keyboard.
-    func adjustViewForKeyboard(withKeyboardFrame keyboardFrame: CGRect?) {
+    /// - Parameters
+    ///     - keyboardFrame: The new frame of the keyboard.
+    ///     - animated: If `true`, the containing view adjustment is animated.
+    func adjustViewForKeyboard(withKeyboardFrame keyboardFrame: CGRect?, animated: Bool) {
         guard let bottomInset = self.bottomInset(from: keyboardFrame) else {
             return
         }
 
-        UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
+        func animations() {
             self.containerScrollViewEmbedder?.adjustViewForKeyboard(withBottomInset: bottomInset)
             self.embeddingViewController?.view.layoutIfNeeded()
-        }, completion: nil)
+        }
+
+        if animated {
+            UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: animations, completion: nil)
+        } else {
+            animations()
+        }
     }
 
     /// Returns the height of portion of the keyboard's frame that overlaps the scroll

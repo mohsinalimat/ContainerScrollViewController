@@ -58,7 +58,7 @@ class KeyboardFrameFilter {
     /// `keyboardAdjustmentFilter(_:didChangeKeyboardFrame:)` delegate call.
     public private(set) var presentationKeyboardFrame: CGRect? {
         didSet {
-            keyboardObserver?.adjustViewForKeyboard(withKeyboardFrame: self.presentationKeyboardFrame)
+            keyboardObserver?.adjustViewForKeyboard(withKeyboardFrame: self.presentationKeyboardFrame, animated: true)
         }
     }
 
