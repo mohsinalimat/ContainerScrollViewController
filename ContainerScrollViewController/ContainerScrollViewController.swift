@@ -36,7 +36,7 @@ open class ContainerScrollViewController: UIViewController {
         return containerScrollViewEmbedder.embeddedViewController
     }
 
-    /// The scroll view within which another view will be embedded.
+    /// The scroll view within which a view will be embedded.
     public var scrollView: UIScrollView {
         return containerScrollViewEmbedder.scrollView
     }
