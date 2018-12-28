@@ -19,7 +19,19 @@ public class ContainerScrollViewEmbedder {
     private(set) var embeddedViewController: UIViewController?
 
     /// The scroll view that contains the embedded view.
-    public let scrollView = UIScrollView()
+    public let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        // If we don't do this, and instead leave contentInsetAdjustmentBehavior at
+        // .automatic (its default value), then in the case when a container view
+        // controller is presented outside of the context of a navigation controller,
+        // changes to the size of the embedded view will result in the embedded view's safe
+        // area insets changing unpredictably.
+        // We're choosing .always here instead of .never because unlike .never, the .always
+        // behavior adjusts the scroll indicator insets, which is desirable, in particular
+        // on iPhone X in landscape orientation with the keyboard presented.
+        scrollView.contentInsetAdjustmentBehavior = .always
+        return scrollView
+    }()
 
     /// The view embedded in the scroll view.
     public var embeddedView: UIView? {
@@ -72,57 +84,8 @@ public class ContainerScrollViewEmbedder {
 
     init(embeddingViewController: UIViewController) {
         self.embeddingViewController = embeddingViewController
-    }
-
-    // Prepares for the container view embedding segue.
-    public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // We're assuming that if a segue is initiated before viewDidLoad is called,
-        // it must be a container view embedding segue.
-        if !viewDidLoadWasCalled {
-            assert(segue.source === embeddingViewController)
-            assert(embeddedViewController == nil)
-            embeddedViewController = segue.destination
-        }
-    }
-
-    public func viewDidLoad() {
-        assert(!viewDidLoadWasCalled, "viewDidLoad can only be called once")
-        
-        viewDidLoadWasCalled = true
 
         keyboardObserver = KeyboardObserver(containerScrollViewEmbedder: self)
-
-        // If we don't do this, and instead leave contentInsetAdjustmentBehavior at
-        // .automatic (its default value), then in the case when a container view
-        // controller is presented outside of the context of a navigation controller,
-        // changes to the size of the embedded view will result in the embedded view's safe
-        // area insets changing unpredictably.
-        // We're choosing .always here instead of .never because unlike .never, the .always
-        // behavior adjusts the scroll indicator insets, which is desirable, in particular
-        // on iPhone X in landscape orientation with the keyboard presented.
-        scrollView.contentInsetAdjustmentBehavior = .always
-
-        #if DEBUG
-        if let view = embeddingViewController?.view {
-            assert(view.subviews.count <= 1, "The scroll view embedding view is expected to have at most one subview embedded by Interface Builder")
-        }
-        #endif
-
-        if embeddedViewController != nil {
-            // An embedded view controller was specified in Interface Builder, in which case
-            // prepare(for:sender:) was called before viewDidLoad.
-
-            guard let embeddedView = embeddedViewController?.view else {
-                assertionFailure("The embedded view controller's view is undefined")
-                return
-            }
-            scrollView.addSubview(embeddedView)
-            addScrollView()
-            return
-        }
-
-        // At this point, it is expected that embedViewController will be called in
-        // the ContainerScrollViewController subclass's viewDidLoad method.
     }
 
     /// Embeds a view controller within the scroll view. If a container view controller
@@ -149,6 +112,53 @@ public class ContainerScrollViewEmbedder {
         embeddedViewController.didMove(toParent: embeddingViewController)
 
         addScrollView()
+    }
+
+    /// Embeds the container view embed segue's destination view controller in the
+    /// scroll view.
+    ///
+    /// This method must be called by `embeddingViewController.viewDidLoad` if an embed
+    /// segue is specified in Interface Builder.
+    public func viewDidLoad() {
+        assert(!viewDidLoadWasCalled, "viewDidLoad may only be called once")
+        viewDidLoadWasCalled = true
+
+        #if DEBUG
+        if let view = embeddingViewController?.view {
+            assert(view.subviews.count <= 1, "The scroll view embedding view is expected to have at most one subview embedded by Interface Builder")
+        }
+        #endif
+
+        if embeddedViewController != nil {
+            // An embedded view controller was specified in Interface Builder, in which case
+            // prepare(for:sender:) was called before viewDidLoad.
+
+            guard let embeddedView = embeddedViewController?.view else {
+                assertionFailure("The embedded view controller's view is undefined")
+                return
+            }
+            scrollView.addSubview(embeddedView)
+            addScrollView()
+            return
+        }
+
+        // At this point, it is expected that embedViewController will be called in
+        // the ContainerScrollViewController subclass's viewDidLoad method.
+    }
+
+    /// Prepares for the container view embedding segue.
+    ///
+    /// This method must be called by `embeddingViewController.prepare(for:sender:)` if
+    /// an embed segue is specified in Interface Builder.
+    public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // We're assuming that if a segue is initiated before viewDidLoad is called,
+        // it must be a container view embedding segue.
+        if !viewDidLoadWasCalled {
+            assert(segue.source === embeddingViewController)
+            assert(embeddedViewController == nil)
+            // This view controller will be embedded in the scroll view later, in viewDidLoad.
+            embeddedViewController = segue.destination
+        }
     }
 
     /// Adds the scroll view to the view hierarchy.
