@@ -12,7 +12,7 @@ import UIKit
 /// view.
 ///
 /// Instead of using `ContainerScrollViewEmbedder` directly, it may be more
-/// convenient to inherit from `ContainerScrollViewController`.
+/// convenient to subclass `ContainerScrollViewController`.
 ///
 /// The resulting view hierarchy looks like this:
 ///
