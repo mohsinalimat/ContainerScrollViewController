@@ -8,9 +8,9 @@
 
 import UIKit
 
-/// An object that applies a temporal filter to keyboard's frame (later used to
-/// control the containing view controller's bottom inset), filtering out rapid
-/// sequences of adjustments to avoid animation artifacts.
+/// An object that applies a temporal filter to sequences of changes to the
+/// keyboard's frame (later used to control the containing view controller's bottom
+/// inset), filtering out rapid sequences of changes to avoid animation artifacts.
 ///
 /// When a text field becomes the first responder, UIKit presents the keyboard. If
 /// the user taps on another text field, changing the first responder, UIKit may
