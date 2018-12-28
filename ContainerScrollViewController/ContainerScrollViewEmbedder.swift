@@ -14,16 +14,7 @@ import UIKit
 /// Instead of using `ContainerScrollViewEmbedder` directly, it may be more
 /// convenient to subclass `ContainerScrollViewController`.
 ///
-/// The resulting view hierarchy looks like this:
-///
-///     view (embeddingViewController.view)
-///       scrollView
-///         embeddedView (embeddedViewController.view)
-///
-/// The view controller hierarchy looks like this:
-///
-///     containerScrollViewController
-///         embeddedViewController
+/// See the comments for `ContainerScrollViewController` for additional documentation.
 public class ContainerScrollViewEmbedder {
 
     /// The view controller within which `embeddedViewController` is embedded.
