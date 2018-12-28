@@ -109,10 +109,8 @@ open class ContainerScrollViewController: UIViewController {
                 assertionFailure("The embedded view controller's view is undefined")
                 return
             }
-
             scrollView.addSubview(embeddedView)
             addScrollView()
-
             return
         }
 
