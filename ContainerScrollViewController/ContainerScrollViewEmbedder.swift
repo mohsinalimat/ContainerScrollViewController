@@ -118,8 +118,8 @@ public class ContainerScrollViewEmbedder {
     /// Embeds the container view embed segue's destination view controller in the
     /// scroll view.
     ///
-    /// This method must be called by `embeddingViewController.viewDidLoad` if an embed
-    /// segue is specified in Interface Builder.
+    /// This method must be called by the embedding view controller's implementation of
+    /// `viewDidLoad` if an embed segue is specified in Interface Builder.
     public func viewDidLoad() {
         assert(!viewDidLoadWasCalled, "viewDidLoad may only be called once")
         viewDidLoadWasCalled = true
@@ -149,8 +149,8 @@ public class ContainerScrollViewEmbedder {
 
     /// Prepares for the container view embedding segue.
     ///
-    /// This method must be called by `embeddingViewController.prepare(for:sender:)` if
-    /// an embed segue is specified in Interface Builder.
+    /// This method must be called by the embedding view controller's implementation of
+    /// `prepare(for:sender:)` if an embed segue is specified in Interface Builder.
     public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // We're assuming that if a segue is initiated before viewDidLoad is called,
         // it must be a container view embedding segue.
@@ -160,6 +160,52 @@ public class ContainerScrollViewEmbedder {
             // This view controller will be embedded in the scroll view later, in viewDidLoad.
             embeddedViewController = segue.destination
         }
+    }
+
+    /// Responds to changes in the size of the view, for example in response to device
+    /// orientation changes, by adjusting the scroll view's content offset to ensure
+    /// that it falls within a legal range.
+    ///
+    /// If the embedding view controller responds to size changes (for example,
+    /// resulting from changes in device orientation), then this method must be called
+    /// by the embedding view controller's implementation of
+    /// `viewWillTransition(to:with:)`.
+    public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let initialAdjustedContentInset = scrollView.adjustedContentInset
+        let initialContentOffset = scrollView.contentOffset
+
+        // When the device orientation changes, we'll receive a keyboardWillHide
+        // notification, followed by a keyboardDidShow notification only after the device
+        // orientation animation completes. If we responded to these immediately, this
+        // would result in awkward view resizing animation, in particular when
+        // keyboardAdjustmentBehavior was set to .adjustScrollViewAndEmbeddedView. To work
+        // around this issue, we suspend KeyboardObserver's KeyboardFrameFilter during the
+        // transition, and as a result, we'll respond only to the final size of the
+        // keyboard after the animation completes.
+        keyboardObserver?.suspend()
+
+        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext) in
+            var contentOffset = initialContentOffset
+
+            // At this point, if the keyboard is presented, it would be nice to keep the first
+            // responder text field visible on the screen during the transition. However, it
+            // appears that there's no way to know what the new size of the keyboard will be,
+            // and by extension, the new size of the visible portion of the scroll view, which
+            // would be necessary to accurately maintain the text field's visibility.
+            // A survey of iOS 12's apps (e.g. creating a new event in Calendar, or editing a
+            // document in Pages) reveals that Apple doesn't attempt to handle this case
+            // elegantly either.
+
+            // Pin the top left corner of the view. This matches the general behavior of
+            // Apple's iOS apps.
+            contentOffset = CGPoint(
+                x: contentOffset.x + initialAdjustedContentInset.left - self.scrollView.adjustedContentInset.left,
+                y: contentOffset.y + initialAdjustedContentInset.top - self.scrollView.adjustedContentInset.top)
+
+            self.scrollView.contentOffset = self.constrainScrollViewContentOffset(contentOffset)
+        }, completion: { (context: UIViewControllerTransitionCoordinatorContext) in
+            self.keyboardObserver?.resume()
+        })
     }
 
     /// Adds the scroll view to the view hierarchy.
@@ -219,47 +265,6 @@ public class ContainerScrollViewEmbedder {
             embeddedViewMinimumHeightConstraint,
             ]
         scrollView.addConstraints(constraints)
-    }
-
-    // Responds to changes in the size of the view, for example in response to device
-    // orientation changes, by adjusting the scroll view's content offset to ensure
-    // that it falls within a legal range.
-    public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let initialAdjustedContentInset = scrollView.adjustedContentInset
-        let initialContentOffset = scrollView.contentOffset
-
-        // When the device orientation changes, we'll receive a keyboardWillHide
-        // notification, followed by a keyboardDidShow notification only after the device
-        // orientation animation completes. If we responded to these immediately, this
-        // would result in awkward view resizing animation, in particular when
-        // keyboardAdjustmentBehavior was set to .adjustScrollViewAndEmbeddedView. To work
-        // around this issue, we suspend KeyboardObserver's KeyboardFrameFilter during the
-        // transition, and as a result, we'll respond only to the final size of the
-        // keyboard after the animation completes.
-        keyboardObserver?.suspend()
-
-        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext) in
-            var contentOffset = initialContentOffset
-
-            // At this point, if the keyboard is presented, it would be nice to keep the first
-            // responder text field visible on the screen during the transition. However, it
-            // appears that there's no way to know what the new size of the keyboard will be,
-            // and by extension, the new size of the visible portion of the scroll view, which
-            // would be necessary to accurately maintain the text field's visibility.
-            // A survey of iOS 12's apps (e.g. creating a new event in Calendar, or editing a
-            // document in Pages) reveals that Apple doesn't attempt to handle this case
-            // elegantly either.
-
-            // Pin the top left corner of the view. This matches the general behavior of
-            // Apple's iOS apps.
-            contentOffset = CGPoint(
-                x: contentOffset.x + initialAdjustedContentInset.left - self.scrollView.adjustedContentInset.left,
-                y: contentOffset.y + initialAdjustedContentInset.top - self.scrollView.adjustedContentInset.top)
-
-            self.scrollView.contentOffset = self.constrainScrollViewContentOffset(contentOffset)
-        }, completion: { (context: UIViewControllerTransitionCoordinatorContext) in
-            self.keyboardObserver?.resume()
-        })
     }
 
     /// Constrains a scroll view content offset so that it lies within the legal range
