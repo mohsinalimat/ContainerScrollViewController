@@ -308,6 +308,9 @@ public class ContainerScrollViewEmbedder {
     /// Adjusts the ContainerScrollViewController to compensate for the portion of the
     /// keyboard that overlaps the view.
     ///
+    /// This method is called by `KeyboardObserver` when the keyboard is presented,
+    /// dismissed, or changes size.
+    ///
     /// - Parameter bottomInset: The height of the area of keyboard's frame that
     /// overlaps the view.
     internal func adjustViewForKeyboard(with bottomInset: CGFloat) {
