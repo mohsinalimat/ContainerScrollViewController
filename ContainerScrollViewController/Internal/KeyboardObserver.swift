@@ -11,22 +11,26 @@ import UIKit
 /// An object that responds to changes in the keyboard's visibility.
 ///
 /// When the keyboard is presented or dismissed, or when the size of the keyboard
-/// changes, `KeyboardObserver` compensates by adjusting the
-/// `ContainerScrollViewController` `additionalSafeAreaInsets` and
-/// `embeddedViewHeightConstraint` properties.
+/// changes, `KeyboardObserver` compensates by adjusting the containing view
+/// controller's `additionalSafeAreaInsets` and `embeddedViewHeightConstraint`
+/// properties.
 class KeyboardObserver {
 
     // See https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
 
-    private weak var containerScrollViewController: ContainerScrollViewController?
+    private weak var containerScrollViewEmbedder: ContainerScrollViewEmbedder?
+
+    private var containerScrollViewController: UIViewController? {
+        return containerScrollViewEmbedder?.embeddingViewController
+    }
 
     private lazy var keyboardAdjustmentFilter = KeyboardFrameFilter(delegate: self)
 
     // The duration of the animation of a change to the view's bottom inset.
     private let bottomInsetAnimationDuration: TimeInterval = 0.5
 
-    init(containerScrollViewController: ContainerScrollViewController) {
-        self.containerScrollViewController = containerScrollViewController
+    init(containerScrollViewEmbedder: ContainerScrollViewEmbedder) {
+        self.containerScrollViewEmbedder = containerScrollViewEmbedder
         addObservers()
     }
 
@@ -62,7 +66,7 @@ class KeyboardObserver {
     /// the keyboard.
     @objc private func updateForKeyboardVisibility(notification: Notification) {
         guard let keyboardFrame = self.keyboardFrame(from: notification),
-            let scrollView = containerScrollViewController?.scrollView else {
+            let scrollView = containerScrollViewEmbedder?.scrollView else {
                 return
         }
 
@@ -79,7 +83,7 @@ class KeyboardObserver {
         // timer fired, we'd see an awkward jump of the scroll view's contents as the
         // embedded view area was resized.
         if notification.name == UIResponder.keyboardWillHideNotification
-            && containerScrollViewController?.shouldResizeEmbeddedViewForKeyboard == true
+            && containerScrollViewEmbedder?.shouldResizeEmbeddedViewForKeyboard == true
             && scrollView.keyboardDismissMode != .none
             && scrollView.isTracking {
             keyboardAdjustmentFilter.flush()
@@ -97,12 +101,8 @@ class KeyboardObserver {
     /// We suspect that UIKit posts `UIResponder` keyboard notifications after updating
     /// text fields within animation blocks.
     private func suppressTextFieldTextAnimation() {
-        guard let containerScrollViewController = containerScrollViewController else {
-            return
-        }
-
         UIView.performWithoutAnimation {
-            containerScrollViewController.embeddedView?.layoutIfNeeded()
+            containerScrollViewEmbedder?.embeddedView?.layoutIfNeeded()
         }
     }
 
@@ -189,7 +189,7 @@ extension KeyboardObserver: KeyboardFrameFilterDelegate {
         }
 
         UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
-            self.containerScrollViewController?.adjustViewForKeyboard(with: bottomInset)
+            self.containerScrollViewEmbedder?.adjustViewForKeyboard(with: bottomInset)
             self.containerScrollViewController?.view.layoutIfNeeded()
         }, completion: nil)
     }
