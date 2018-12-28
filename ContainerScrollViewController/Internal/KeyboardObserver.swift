@@ -38,14 +38,17 @@ class KeyboardObserver {
         removeObservers()
     }
 
+    /// Suspends filtering of changes to the keyboard's frame.
     func suspend() {
         keyboardAdjustmentFilter.suspend()
     }
 
+    /// Resumes filtering of changes to the keyboard's frame.
     func resume() {
         keyboardAdjustmentFilter.resume()
     }
 
+    /// Immediately responds to pending keyboard frame changes.
     func flush() {
         keyboardAdjustmentFilter.flush()
     }
