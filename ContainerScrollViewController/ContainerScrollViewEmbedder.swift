@@ -12,7 +12,7 @@ import UIKit
 /// view.
 public class ContainerScrollViewEmbedder {
 
-    /// The view controller within which `embeddedViewController` is embedded.`
+    /// The view controller within which `embeddedViewController` is embedded.
     private(set) weak var embeddingViewController: UIViewController?
 
     /// The view controller whose view is embedded within the container scroll view.
