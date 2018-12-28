@@ -66,7 +66,7 @@ class KeyboardObserver {
     }
 
     /// Updates the view controller to compensate for the appearance or disappearance of
-    /// the keyboard.
+    /// the keyboard or changes to the keyboard's size.
     @objc private func updateForKeyboardVisibility(notification: Notification) {
         guard let keyboardFrame = self.keyboardFrame(from: notification),
             let scrollView = containerScrollViewEmbedder?.scrollView else {
