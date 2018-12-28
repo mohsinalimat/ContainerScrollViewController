@@ -83,7 +83,7 @@ public class ContainerScrollViewEmbedder {
     /// the embedded view is short enough to not require scrolling.
     private lazy var scrollViewBounceController = ScrollViewBounceController(scrollView: scrollView)
 
-    init(embeddingViewController: UIViewController) {
+    public init(embeddingViewController: UIViewController) {
         self.embeddingViewController = embeddingViewController
 
         keyboardObserver = KeyboardObserver(containerScrollViewEmbedder: self)
