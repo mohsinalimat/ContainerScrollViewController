@@ -10,6 +10,17 @@ import UIKit
 
 /// An object that embeds a view controller within another view controller's scroll
 /// view.
+///
+/// The view hierarchy looks like this:
+///
+///     view (containerScrollViewController.view)
+///       scrollView
+///         embeddedView (embeddedViewController.view)
+///
+/// The view controller hierarchy looks like this:
+///
+///     containerScrollViewController
+///         embeddedViewController
 public class ContainerScrollViewEmbedder {
 
     /// The view controller within which `embeddedViewController` is embedded.

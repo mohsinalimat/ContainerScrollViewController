@@ -12,16 +12,9 @@ import UIKit
 /// controller's view is embedded. The scroll view's content size is adjusted to
 /// reflect the embedded view's Auto Layout constraints.
 ///
-/// The view hierarchy looks like this:
-///
-///     view (containerScrollViewController.view)
-///       scrollView
-///         embeddedView (embeddedViewController.view)
-///
-/// The view controller hierarchy looks like this:
-///
-///     containerScrollViewController
-///         embeddedViewController
+/// This class is implemented in terms of `ContainerScrollViewEmbedder`, which may
+/// be used directly if the scroll view embedding functionality is needed in a class
+/// that cannot inherit from `ContainerScrollViewController`.
 open class ContainerScrollViewController: UIViewController {
 
     /// Embeds a view controller within the scroll view.
