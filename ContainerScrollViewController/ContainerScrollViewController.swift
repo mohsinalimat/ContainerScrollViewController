@@ -9,8 +9,8 @@
 import UIKit
 
 /// A view controller that manages a scroll view, within which another view
-/// controller is embedded. The scroll view's content size is adjusted to reflect
-/// the embedded view's Auto Layout constraints.
+/// controller's view is embedded. The scroll view's content size is adjusted to
+/// reflect the embedded view's Auto Layout constraints.
 open class ContainerScrollViewController: UIViewController {
 
     /// The scroll view within which another view will be embedded.
