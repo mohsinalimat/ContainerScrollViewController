@@ -21,8 +21,8 @@ open class ContainerScrollViewController: UIViewController {
     ///
     /// A container view controller relationship may be established using Interface
     /// Builder, in which case the embedded view will be added automatically.
-    /// Optionally, this method may be called in `viewDidLoad` to manually embed a view
-    /// controller's view in the scroll view.
+    /// Optionally, `embedViewController` method may be called in `viewDidLoad` to
+    /// manually embed a view controller's view in the scroll view.
     ///
     /// This method may only be called once.
     ///
