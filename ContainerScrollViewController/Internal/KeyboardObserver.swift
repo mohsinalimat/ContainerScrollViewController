@@ -116,7 +116,7 @@ class KeyboardObserver {
                 return nil
         }
 
-        let keyboardWindowEndFrame = keyboardFrameEndUserInfoValue.cgRectValue
+        let keyboardFrame = keyboardFrameEndUserInfoValue.cgRectValue
 
         // From https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
         // "Note: The rectangle contained in the UIKeyboardFrameBeginUserInfoKey and
@@ -128,9 +128,9 @@ class KeyboardObserver {
 
         switch notification.name {
         case UIResponder.keyboardWillHideNotification:
-            return CGRect(x: 0, y: window.bounds.height, width: keyboardWindowEndFrame.size.width, height: 0)
+            return CGRect(x: 0, y: window.bounds.height, width: keyboardFrame.size.width, height: 0)
         case UIResponder.keyboardWillShowNotification:
-            return CGRect(x: 0, y: window.bounds.height - keyboardWindowEndFrame.size.height, width: keyboardWindowEndFrame.size.width, height: keyboardWindowEndFrame.size.height)
+            return CGRect(x: 0, y: window.bounds.height - keyboardFrame.size.height, width: keyboardFrame.size.width, height: keyboardFrame.size.height)
         default:
             assertionFailure("Unexpected notification type")
             return nil
