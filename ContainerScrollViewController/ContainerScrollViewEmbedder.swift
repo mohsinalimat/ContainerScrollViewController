@@ -18,13 +18,13 @@ public class ContainerScrollViewEmbedder {
     /// The view controller whose view is embedded within the container scroll view.
     private(set) var embeddedViewController: UIViewController?
 
+    /// The scroll view that contains the embedded view.
+    public let scrollView = UIScrollView()
+
     /// The view embedded in the scroll view.
     public var embeddedView: UIView? {
         return embeddedViewController?.view
     }
-
-    /// The scroll view that contains the embedded view.
-    public let scrollView = UIScrollView()
 
     /// If `true`, the embedded view should be resized to compensate for the portion of
     /// the view occupied by the keyboard, if possible. The default value is `false`.
