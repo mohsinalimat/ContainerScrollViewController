@@ -15,7 +15,8 @@ public class ContainerScrollViewEmbedder {
     /// The view controller within which `embeddedViewController` is embedded.
     private(set) weak var embeddingViewController: UIViewController?
 
-    /// The view controller whose view is embedded within the container scroll view.
+    /// The view controller whose view is embedded within the container scroll view
+    /// hosted by `embeddingViewController`.
     private(set) var embeddedViewController: UIViewController?
 
     /// The scroll view that contains the embedded view.
