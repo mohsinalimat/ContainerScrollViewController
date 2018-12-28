@@ -19,7 +19,7 @@ class KeyboardObserver {
 
     private weak var containerScrollViewEmbedder: ContainerScrollViewEmbedder?
 
-    private var containerScrollViewController: UIViewController? {
+    private var embeddingViewController: UIViewController? {
         return containerScrollViewEmbedder?.embeddingViewController
     }
 
@@ -112,7 +112,7 @@ class KeyboardObserver {
     private func keyboardFrame(from notification: Notification) -> CGRect? {
         guard let userInfo = notification.userInfo,
             let keyboardFrameEndUserInfoValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-            let window = containerScrollViewController?.view.window else {
+            let window = embeddingViewController?.view.window else {
                 return nil
         }
 
@@ -148,8 +148,8 @@ class KeyboardObserver {
     /// - Returns: The height of portion of the keyboard's frame that overlaps the view.
     private func bottomInset(from keyboardFrame: CGRect?) -> CGFloat? {
         guard let keyboardFrame = keyboardFrame,
-            let containerScrollViewController = containerScrollViewController,
-            let view = containerScrollViewController.view,
+            let embeddingViewController = embeddingViewController,
+            let view = embeddingViewController.view,
             let window = view.window else {
             return nil
         }
@@ -169,10 +169,10 @@ class KeyboardObserver {
         let overlappingKeyboardHeight = keyboardViewIntersectionFrameInView.height
 
         // The view's safe area bottom inset.
-        let safeAreaBottomInset = containerScrollViewController.view.safeAreaInsets.bottom
+        let safeAreaBottomInset = embeddingViewController.view.safeAreaInsets.bottom
 
         // The view's additional safe area bottom inset.
-        let additionalSafeAreaBottomInset = containerScrollViewController.additionalSafeAreaInsets.bottom
+        let additionalSafeAreaBottomInset = embeddingViewController.additionalSafeAreaInsets.bottom
 
         // The height of area of the keyboard's frame that overlaps the view.
         return max(0, overlappingKeyboardHeight - (safeAreaBottomInset - additionalSafeAreaBottomInset))
@@ -189,7 +189,7 @@ extension KeyboardObserver: KeyboardFrameFilterDelegate {
 
         UIView.animate(withDuration: bottomInsetAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
             self.containerScrollViewEmbedder?.adjustViewForKeyboard(withBottomInset: bottomInset)
-            self.containerScrollViewController?.view.layoutIfNeeded()
+            self.embeddingViewController?.view.layoutIfNeeded()
         }, completion: nil)
     }
 
