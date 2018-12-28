@@ -28,20 +28,6 @@ import UIKit
 ///         embeddedViewController
 open class ContainerScrollViewController: UIViewController {
 
-    /// Embeds a view controller within the scroll view.
-    ///
-    /// A container view controller relationship may be established using Interface
-    /// Builder, in which case the embedded view will be added automatically.
-    /// Optionally, `embedViewController` may be called in `viewDidLoad` to manually
-    /// embed a view controller's view in the scroll view.
-    ///
-    /// This method may only be called once.
-    ///
-    /// - Parameter embeddedViewController: The view controller to embed in the scroll view.
-    public func embedViewController(_ embeddedViewController: UIViewController) {
-        containerScrollViewEmbedder.embedViewController(embeddedViewController)
-    }
-
     /// The view controller whose view is embedded within the container scroll view.
     public var embeddedViewController: UIViewController? {
         return containerScrollViewEmbedder.embeddedViewController
@@ -99,6 +85,20 @@ open class ContainerScrollViewController: UIViewController {
     // `ContainerScrollViewController`, it must call `super.prepare(for:sender:)`.
     open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         containerScrollViewEmbedder.prepare(for: segue, sender: sender)
+    }
+
+    /// Embeds a view controller within the scroll view.
+    ///
+    /// A container view controller relationship may be established using Interface
+    /// Builder, in which case the embedded view will be added automatically.
+    /// Optionally, `embedViewController` may be called in `viewDidLoad` to manually
+    /// embed a view controller's view in the scroll view.
+    ///
+    /// This method may only be called once.
+    ///
+    /// - Parameter embeddedViewController: The view controller to embed in the scroll view.
+    public func embedViewController(_ embeddedViewController: UIViewController) {
+        containerScrollViewEmbedder.embedViewController(embeddedViewController)
     }
 
 }
