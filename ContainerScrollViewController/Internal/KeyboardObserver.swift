@@ -11,8 +11,8 @@ import UIKit
 /// An object that responds to changes in the keyboard's visibility.
 ///
 /// When the keyboard is presented or dismissed, or when the size of the keyboard
-/// changes, `KeyboardObserver` compensates by calling the containing view
-/// controller's `adjustViewForKeyboard(withBottomInset:)` method.
+/// changes, `KeyboardObserver` compensates by calling
+/// `ContainerScrollViewEmbedder.adjustViewForKeyboard(withBottomInset:)` method.
 class KeyboardObserver {
 
     // See https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3
