@@ -91,11 +91,11 @@ The behavior for adjusting the view when the keyboard is presented. Possible val
 
 <div style="margin-left: 4em; text-indent: -2em;">
 
-`.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view. This value can be used to override the container's view default keyboard handling behavior.
+`.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view. Use this value to override ContainerScrollViewController's default keyboard handling behavior.
 
-`.adjustAdditionalSafeAreaInsets` - Adjust the view controller's additional safe area insets. This is the default value.
+`.adjustAdditionalSafeAreaInsets` - Adjust the view controller's bottom additional safe area inset. This is the default value.
 
-`.adjustScrollViewContentSize` - Adjust the scroll view's content size. This approach leaves the view controller's additional safe area insets untouched, but will result in misaligned scroll indicators when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. This appears to be a side effect of setting the bottom scroll indicator inset to a nonzero value.
+`.adjustScrollViewContentSize` - Adjust the scroll view's content size. This approach leaves the view controller's bottom additional safe area inset untouched, which may be desirable if you are using it for other purposes. However, it will result in misaligned scroll indicators when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. At least as of iOS 12, this appears to be a side effect of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
 
 </div>
 
@@ -122,9 +122,7 @@ To specify a background color that extends to the edges of the screen:
 
 ## How It Works
 
-## Design Considerations
-
-<< Use of adjusted safe area insets vs. other approaches. >>
+<< Keyboard resize filtering >>
 
 ## Special Cases Handled
 
