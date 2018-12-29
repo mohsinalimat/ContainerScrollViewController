@@ -64,11 +64,12 @@ public class ContainerScrollViewEmbedder {
 
         /// Adjust the scroll view's content size.
         ///
-        /// This approach leaves the view controller's additional safe area insets
-        /// untouched, but will result in misaligned scroll indicators when the left and
-        /// right safe area insets are nonzero, for example in landscape orientation on
-        /// iPhone X. This appears to be a side effect of setting the bottom scroll
-        /// indicator inset to a nonzero value.
+        /// This approach leaves the view controller's bottom additional safe area inset
+        /// untouched, which may be desirable if you are using it for other purposes.
+        /// However, when the keyboard is presented, the scroll indicator will be misaligned
+        /// when the left and right safe area insets are nonzero, for example in landscape
+        /// orientation on iPhone X. At least as of iOS 12, this appears to be a side effect
+        /// of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
         case adjustScrollViewContentSize
     }
 
