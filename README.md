@@ -32,7 +32,7 @@ It's also possible to use either of these approaches without subclassing, and in
 
 ### Storyboards
 
-To create a container scroll view controller and its embedded view controller in a storyboard, follow these steps:
+To create a container scroll view controller and its embedded view controller in a storyboard:
 
 1. Subclass `ContainerScrollViewController`.
 
@@ -53,7 +53,7 @@ Interface Builder created along with the container view, follow these additional
 
 ### Code
 
-To integrate `ContainerScrollViewController` programmatically, do this:
+To integrate `ContainerScrollViewController` programmatically:
 
 1. Subclass `ContainerScrollViewController`.
 
@@ -107,7 +107,7 @@ The behavior for adjusting the view when the keyboard is presented. Possible val
 
 The embedded view is positioned within the container view's safe area, and consequently, the embedded view's safe area insets are zero, and if the embedded view's background color is set, it won't extend underneath the navigation bar or status bar.
 
-To specify a background color that extends to the edges of the screen, do this:
+To specify a background color that extends to the edges of the screen:
 
 1. Set the background color of the container view to the desired color.
 
