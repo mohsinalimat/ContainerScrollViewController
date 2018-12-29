@@ -100,7 +100,7 @@ A boolean value that determines whether or not the scroll view will automaticall
 
 ### visibilityScrollMargin
 
-A floating point value representing a veritcal margin applied to text fields when the scroll view is automatically scrolled to make the first responder text field visible. The default value is 0, which matches the UIKit default behavior.
+A floating point value representing a vertical margin applied to text fields when the scroll view is automatically scrolled to make the first responder text field visible. The default value is 0, which matches the UIKit default behavior.
 
 ### keyboardAdjustmentBehavior
 
