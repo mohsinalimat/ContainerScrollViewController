@@ -17,7 +17,7 @@ separately, within an embedded view controller of arbitrary size.
 
   s.ios.deployment_target = '11.0'
 
-  s.source_files = 'ContainerScrollViewController/*.swift'
+  s.source_files = 'ContainerScrollViewController/**/*.swift'
 
   s.frameworks = 'UIKit'
 
