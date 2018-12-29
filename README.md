@@ -82,7 +82,7 @@ It's possible to make the embedded view controller larger than the height of the
 
 The following properties of `ContainerScrollViewController` can be modified to control its behavior:
 
-### `shouldResizeEmbeddedViewForKeyboard`
+### shouldResizeEmbeddedViewForKeyboard
 
 A boolean value that determines whether or not the embedded view is resized when the keyboard is presented.
 
@@ -90,7 +90,7 @@ A boolean value that determines whether or not the embedded view is resized when
 
 * `false` - When the keyboard is presented, the embedded view's size remains unchanged. This is the default value.
 
-### `shouldScrollFirstResponderTextFieldToVisibleForKeyboard`
+### shouldScrollFirstResponderTextFieldToVisibleForKeyboard
 
 A boolean value that determines whether or not the scroll view will automatically scroll to make the first responder text field visible in response to keyboard changes.
 
@@ -98,11 +98,11 @@ A boolean value that determines whether or not the scroll view will automaticall
 
 * `false` - No special action is taken in response to keyboard changes. Even if this is set to `false`, UIKit may scroll the text field to visible, although this may not work correctly in all cases. Use this value to override ContainerScrollViewController's default first responder text field visibility scrolling behavior.
 
-### `scrollToVisibleMargin`
+### scrollToVisibleMargin
 
 A floating point value representing a veritcal margin applied to text fields when the scroll view is automatically scrolled to make the first responder text field visible. The default value is 0, which matches the UIKit default behavior.
 
-### `keyboardAdjustmentBehavior`
+### keyboardAdjustmentBehavior
 
 An enum representing the method used to adjust the view when the keyboard is presented. Possible values are:
 
