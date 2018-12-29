@@ -90,7 +90,7 @@ public class ContainerScrollViewEmbedder {
     /// UIKit behavior. This value is also applied to
     /// `scrollFirstResponderTextFieldToVisible`, `scrollViewToVisible`, and
     /// `scrollRectToVisible` unless overridden with the optional `margin` parameter.
-    public var scrollToVisibleMargin: CGFloat = 0
+    public var visibilityScrollMargin: CGFloat = 0
 
     /// This property is `true` if `viewDidLoad` has already been called.
     private var viewDidLoadWasCalled = false
@@ -430,7 +430,7 @@ public class ContainerScrollViewEmbedder {
     ///   - margin: An optional margin to apply to `rect`. If left unspecified,
     ///   `scrollToVisibleMargin` is used.
     public func scrollRectToVisible(_ rect: CGRect, animated: Bool, margin: CGFloat? = nil) {
-        var textFieldRect = rect.insetBy(dx: 0, dy: -(margin ?? scrollToVisibleMargin))
+        var textFieldRect = rect.insetBy(dx: 0, dy: -(margin ?? visibilityScrollMargin))
         if keyboardAdjustmentBehavior == .adjustScrollViewContentSize {
             textFieldRect.size.height += scrollViewBottomAnchorConstraint?.constant ?? 0
         }

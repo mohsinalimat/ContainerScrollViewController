@@ -79,12 +79,12 @@ open class ContainerScrollViewController: UIViewController {
     /// The margin applied to text fields when the scroll view is automatically scrolled
     /// to make the first responder text field visible. The default value is 0, which
     /// matches the UIKit default behavior.
-    public var scrollToVisibleMargin: CGFloat {
+    public var visibilityScrollMargin: CGFloat {
         set {
-            containerScrollViewEmbedder.scrollToVisibleMargin = newValue
+            containerScrollViewEmbedder.visibilityScrollMargin = newValue
         }
         get {
-            return containerScrollViewEmbedder.scrollToVisibleMargin
+            return containerScrollViewEmbedder.visibilityScrollMargin
         }
     }
 
