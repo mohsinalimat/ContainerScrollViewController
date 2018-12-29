@@ -142,3 +142,5 @@ See extreme example described in BottomInsetFilter comments. >>
 moves between text fields. >>
 
 << Pins the upper left corner of the embedded view during device rotations, while preventing out of range content offsets. >>
+
+<< Works around a UI issue when the keyboard is presented and the device orientation changes, in which case, as of iOS 12, UIKit doesn't correctly scroll the text field to make it visible. >>
