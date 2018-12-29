@@ -40,7 +40,7 @@ To create an container scroll view controller and an embedded view controller in
 
 3. In the outline view, delete the new view controller's view.
 
-4. Drag a container view into the view controller.
+4. Create a new container view and drag it into the view controller.
 
 5. Set the container view's background color to anything other than transparent, which is its default value. Otherwise, it will appear black.
 
