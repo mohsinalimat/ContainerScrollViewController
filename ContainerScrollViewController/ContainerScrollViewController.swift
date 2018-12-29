@@ -136,6 +136,9 @@ open class ContainerScrollViewController: UIViewController {
 
     /// Scrolls the view to make a rect visible.
     ///
+    /// Unlike `UIScrollView.scrollRectToVisible`, this method works correctly even if
+    /// `keyboardAdjustmentBehavior` is set to `.adjustScrollViewContentSize`.
+    ///
     /// - Parameters:
     ///   - rect: The rect to make visible.
     ///   - animated: If `true`, the scrolling is animated.

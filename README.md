@@ -105,6 +105,10 @@ The behavior for adjusting the view when the keyboard is presented. Possible val
     Unfortunately, using this behavior, when the keyboard is presented, the scroll indicator will appear misaligned when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. At least as of iOS 12, this appears to be a side effect of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
 
     << Screenshot >>
+    
+## Methods
+
+<< ScrollXToVisible methods >>
 
 ## Caveats
 
