@@ -73,8 +73,6 @@ To make the embedded view controller larger than the height of the screen, chang
 
 << Screenshot >>
 
-## Example
-
 ## Options
 
 ## Caveats
