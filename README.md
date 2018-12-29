@@ -23,7 +23,7 @@ ContainerScrollViewController makes handling this scenario easier by using Inter
 
 << Interface Builder embedding screenshot >>
 
-ContainerScrollViewController also handles several tricky edge cases involving the keyboard and device rotations. 
+ContainerScrollViewController also takes care of several tricky edge cases involving the keyboard and device rotations. 
 
 ## Installation
 
