@@ -82,31 +82,24 @@ To make the embedded view controller larger than the height of the screen, chang
 
 The following properties of `ContainerScrollViewController` can be modified to control its behavior:
 
-**`shouldResizeEmbeddedViewForKeyboard`**
+<dl>
+<dt>shouldResizeEmbeddedViewForKeyboard</dt>
+<dd>
+If <code>true</code>, when the keyboard is presented, the embedded view shrinks to fit the portion of the scroll view not overlapped by the keyboard, to the extent that this is permitted by the embedded view's Auto Layout constraints.
 
-<div style="margin-left: 2em; margin-bottom: 1em;">
-If <code>true</code>, when the keyboard is presented, the embedded view will shrink to fit the portion of the scroll view not overlapped by the keyboard, to the extent that this is permitted by the embedded view's Auto Layout constraints.
-</div>
+If <code>false</code>, when the keyboard is presented, the embedded view's size remains unchanged. This is the default value.
+</dd>
+</dl>
 
-<div style="margin-left: 2em; margin-bottom: 1em;">
-If <code>false</code>, when the keyboard is presented, the embedded view's size will remain unchanged. This is the default value.
-</div>
+#### `keyboardAdjustmentBehavior`
 
-**`keyboardAdjustmentBehavior`**
-
-<p style="margin-left: 2em;">
 The behavior for adjusting the view when the keyboard is presented. Possible values are:
-</p>
-
-<div style="margin-left: 4em; text-indent: -2em;">
 
 `.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view. Use this value to override ContainerScrollViewController's default keyboard handling behavior.
 
 `.adjustAdditionalSafeAreaInsets` - Adjust the view controller's bottom additional safe area inset. This is the default value.
 
 `.adjustScrollViewContentSize` - Adjust the scroll view's content size. This approach leaves the view controller's bottom additional safe area inset untouched, which may be desirable if you are using it for other purposes. However, it will result in misaligned scroll indicators when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. At least as of iOS 12, this appears to be a side effect of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
-
-</div>
 
 ## Caveats
 
