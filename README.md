@@ -32,7 +32,7 @@ It's also possible to use either of these approaches without subclassing, and in
 
 ### Storyboards
 
-To create a container scroll view controller and an embedded view controller in a storyboard, follow these steps:
+To create a container scroll view controller and its embedded view controller in a storyboard, follow these steps:
 
 1. Subclass `ContainerScrollViewController`.
 
