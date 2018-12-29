@@ -10,11 +10,11 @@ For example, consider the following sign up screen, which fits on an iPhone XS, 
 
 It's possible to handle this case in Interface Builder by manually nesting the view inside a scroll view, as described in [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html), but this approach can be awkward. According to [How to configure a UIScrollView with Auto Layout in Interface Builder](https://medium.com/@pradeep_chauhan/how-to-configure-a-uiscrollview-with-auto-layout-in-interface-builder-218dcb4022d7), 17 steps are required.
 
-ContainerScrollViewController makes handling this case easier by leveraging Interface Builder's container view feature to embed a view controller in a scroll view. The embedded view controllers's contents can then be manipulated separately in Interface Builder.
+ContainerScrollViewController makes handling this scenario easier by using Interface Builder's container view feature to embed a view controller in a scroll view. The embedded view controllers's contents can then be manipulated separately in Interface Builder.
 
 << Interface Builder embedding screenshot >>
 
-ContainerScrollViewController also handles the case when the virtual keyboard overlaps the scroll view. This can be hard to implement well.
+ContainerScrollViewController also handles the case when the virtual keyboard overlaps the scroll view.
 
 ## Installation
 
@@ -28,7 +28,7 @@ pod 'ContainerScrollViewController'
 
 Subclasses of `ContainerScrollViewController` may be configured using storyboards or in code.
 
-It's also possible to use either of these approaches without subclassing, but instead using an arbitrary view controller in conjunction with the `ContainerScrollViewEmbedder` class, which is described later.     
+It's also possible to use either of these approaches without subclassing, and instead using an arbitrary view controller in conjunction with the helper class `ContainerScrollViewEmbedder`. This is described in [Usage Without Subclassing](#usage-without-subclassing), below.     
 
 ### Storyboards
 
