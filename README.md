@@ -110,6 +110,8 @@ To specify a background color that extends to the edges of the screen:
 
 << Mention calling self.parent?.view.setNeedsLayout (+ layoutIfNeeded for animation) whenever the embedded view's auto layout changes. >>
 
+<< Example code >>
+
 ## Usage Without Subclassing
 
 << ContainerScrollViewEmbedder supports the same properties as ContainerScrollViewController. >>
