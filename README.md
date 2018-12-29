@@ -2,7 +2,7 @@
 
 ## Purpose
 
-A common UIKit Auto Layout task involves creating a static view controller whose contents happen to be too large to fit on older, smaller devices, or in landscape orientation, or when the keyboard is presented.
+A common UIKit Auto Layout task involves creating a view controller with a static layout that happens to be too large to fit older, smaller devices, or the screen in landscape orientation, or the area of the screen above the keyboard.
 
 For example, consider the following sign up screen, which fits on an iPhone XS, but not on an iPhone SE when the keyboard is presented:
 
