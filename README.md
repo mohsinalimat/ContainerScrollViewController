@@ -72,7 +72,7 @@ The easiest way to do this while avoiding Auto Layout constraint errors is to cr
 
 << Screenshot >>
 
-### Large View Controllers
+### Oversized Embedded View Controllers
 
 It's possible to make the embedded view controller larger than the height of the screen, even for large devices. To do this, change the embedded view controller's simulated size to Freeform and adjust the view's size.
 
