@@ -76,7 +76,11 @@ The following properties of `ContainerScrollViewController` can be modified to c
 **`shouldResizeEmbeddedViewForKeyboard`**
 
 <p style="margin-left: 2em;">
-If <code>true</code>, the embedded view will be resized to compensate for the portion of the view occupied by the keyboard, if possible. The default value is <code>false</code>.
+If <code>true</code>, when the keyboard is presented, the embedded view will shrink to fit the portion of the scroll view not overlapped by the keyboard, to the extent that this is permitted by the embedded view's Auto Layout constraints.
+</p>
+
+<p style="margin-left: 2em;">
+If <code>false</code>, when the keyboard is presented, the embedded view's size will remain unchanged. This is the default value.
 </p>
 
 **`keyboardAdjustmentBehavior`**
@@ -89,7 +93,7 @@ The behavior for adjusting the view when the keyboard is presented. Possible val
 
 `.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view. This value can be used to override the container's view default keyboard handling behavior.
 
-`.adjustAdditionalSafeAreaInsets` - Adjust the view controller's additional safe area insets. This is the default behavior.
+`.adjustAdditionalSafeAreaInsets` - Adjust the view controller's additional safe area insets. This is the default value.
 
 `.adjustScrollViewContentSize` - Adjust the scroll view's content size. This approach leaves the view controller's additional safe area insets untouched, but will result in misaligned scroll indicators when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. This appears to be a side effect of setting the bottom scroll indicator inset to a nonzero value.
 
@@ -97,7 +101,7 @@ The behavior for adjusting the view when the keyboard is presented. Possible val
 
 ## Caveats
 
-### Background Color
+### Changing the Background Color
 
 The embedded view is positioned within the container view's safe area, and consequently, the embedded view's safe area insets are zero, and if the embedded view's background color is set, it won't extend underneath the navigation bar or status bar.
 
@@ -106,7 +110,7 @@ To specify a background color that extends to the edges of the screen:
 1. Set the background color of the container view to the desired color.
 2. Set the embedded view's background color to transparent.
 
-### Embedded View Size Changes
+### Resizing the Embedded View
 
 << Mention calling self.parent?.view.setNeedsLayout (+ layoutIfNeeded for animation) whenever the embedded view's auto layout changes. >>
 
