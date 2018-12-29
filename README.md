@@ -82,13 +82,13 @@ To make the embedded view controller larger than the height of the screen, chang
 
 The following properties of `ContainerScrollViewController` can be modified to control its behavior:
 
-#### shouldResizeEmbeddedViewForKeyboard
+### shouldResizeEmbeddedViewForKeyboard
 
 * `true` - When the keyboard is presented, the embedded view shrinks to fit the portion of the scroll view not overlapped by the keyboard, to the extent that this is permitted by the embedded view's Auto Layout constraints.
 
 * `false` - When the keyboard is presented, the embedded view's size remains unchanged. This is the default value.
 
-#### keyboardAdjustmentBehavior
+### keyboardAdjustmentBehavior
 
 The behavior for adjusting the view when the keyboard is presented. Possible values are:
 
