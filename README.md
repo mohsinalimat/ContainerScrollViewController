@@ -103,12 +103,17 @@ The behavior for adjusting the view when the keyboard is presented. Possible val
 
 ## Caveats
 
+### Background Color
+
 The embedded view is positioned within the container view's safe area, and consequently, the embedded view's safe area insets are zero, and if the embedded view's background color is set, it won't extend underneath the navigation bar or status bar.
 
-To specify a background color that extends to the edges of the screen:
+To specify a background color that extends to the edges of the screen, do this:
+
 1. Set the background color of the container view to the desired color.
-2. Set the embedded view's background color to transparent or to
-the same color as the container view's background.
+
+2. Set the embedded view's background color to transparent.
+
+### Embedded View Size Changes
 
 << Mention calling self.parent?.view.setNeedsLayout (+ layoutIfNeeded for animation) whenever the embedded view's auto layout changes. >>
 
