@@ -23,7 +23,7 @@ ContainerScrollViewController makes handling this scenario easier by using Inter
 
 << Interface Builder embedding screenshot >>
 
-ContainerScrollViewController also handles the case when the keyboard overlaps the scroll view.
+ContainerScrollViewController also handles several tricky edge cases involving the keyboard and device rotations. 
 
 ## Installation
 
