@@ -59,7 +59,9 @@ To integrate `ContainerScrollViewController` programmatically, follow these step
 
 ### Auto Layout Considerations
 
-**IMPORTANT** - For ContainerScrollViewController to determine the height of the scroll view's content, the embedded view must contain an unbroken chain of constraints and views stretching from the content view’s top edge to its bottom edge. This is also true for the embedded view's width. If this is not the case, the embedded view will not scroll correctly. 
+**IMPORTANT** - For ContainerScrollViewController to determine the height of the scroll view's content, the embedded view must contain an unbroken chain of constraints and views stretching from the content view’s top edge to its bottom edge. This is also true for the embedded view's width. 
+
+If this is not the case, the embedded view will not scroll correctly. 
 
 The easiest way to do this while avoiding Auto Layout constraint errors is to create a bottom alignment constraint with a priority of 249.
 
