@@ -84,13 +84,13 @@ The following properties of `ContainerScrollViewController` can be modified to c
 
 **`shouldResizeEmbeddedViewForKeyboard`**
 
-<p style="margin-left: 2em;">
+<div style="margin-left: 2em; margin-bottom: 1em;">
 If <code>true</code>, when the keyboard is presented, the embedded view will shrink to fit the portion of the scroll view not overlapped by the keyboard, to the extent that this is permitted by the embedded view's Auto Layout constraints.
-</p>
+</div>
 
-<p style="margin-left: 2em;">
+<div style="margin-left: 2em; margin-bottom: 1em;">
 If <code>false</code>, when the keyboard is presented, the embedded view's size will remain unchanged. This is the default value.
-</p>
+</div>
 
 **`keyboardAdjustmentBehavior`**
 
