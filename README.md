@@ -36,7 +36,7 @@ To create an container scroll view controller and an embedded view controller in
 
 1. Subclass `ContainerScrollViewController`.
 
-2. In Interface Builder, create a new view controller and set its class your  `ContainerScrollViewController` subclass.
+2. In Interface Builder, create a new view controller and set its class to your  `ContainerScrollViewController` subclass.
 
 3. In the outline view, delete the new view controller's view.
 
