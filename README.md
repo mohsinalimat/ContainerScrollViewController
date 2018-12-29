@@ -1,5 +1,6 @@
 # ContainerScrollViewController
 
+* [Purpose](#purpose)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Properties](#properties)
