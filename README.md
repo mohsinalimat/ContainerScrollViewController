@@ -34,20 +34,22 @@ It's also possible to use either of these approaches without subclassing, but in
 
 To create an container scroll view controller and an embedded view controller in a storyboard, follow these steps:
 
-1. In Interface Builder, create a new view controller and set its class to a subclass of `ContainerScrollViewController`.
+1. Subclass `ContainerScrollViewController`.
 
-2. In the outline view, delete the new view controller's view.
+2. In Interface Builder, create a new view controller and set its class your  `ContainerScrollViewController` subclass.
 
-3. Drag a container view into the view controller.
+3. In the outline view, delete the new view controller's view.
 
-4. Set the container view's background color to anything other than transparent, which is its default value. Otherwise, it will appear black.
+4. Drag a container view into the view controller.
+
+5. Set the container view's background color to anything other than transparent, which is its default value. Otherwise, it will appear black.
 
 If you have an existing view controller that you'd like to embed in the container view controller instead of the embedded view controller that
 Interface Builder created along with the container view, follow these additional steps:
 
-5. Delete the view controller that is the destination of the container view's embed segue.
+6. Delete the view controller that is the destination of the container view's embed segue.
 
-6. Connect the container view controller  to another view controller with a new embed segue.
+7. Connect the container view controller  to another view controller with a new embed segue.
 
 ### Code
 
