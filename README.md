@@ -94,11 +94,15 @@ A boolean value that determines whether or not the embedded view is resized when
 
 The behavior for adjusting the view when the keyboard is presented. Possible values are:
 
-* `.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view. Use this value to override ContainerScrollViewController's default keyboard handling behavior.
+* `.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view.
+
+    Use this value to override ContainerScrollViewController's default keyboard handling behavior.
 
 * `.adjustAdditionalSafeAreaInsets` - Adjust the view controller's bottom additional safe area inset. This is the default value.
 
-* `.adjustScrollViewContentSize` - Adjust the scroll view's content size. This approach leaves the view controller's bottom additional safe area inset untouched, which may be desirable if you are using it for other purposes. However, when the keyboard is presented, the scroll indicator will be misaligned when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. At least as of iOS 12, this appears to be a side effect of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
+* `.adjustScrollViewContentSize` - Adjust the scroll view's content size. This approach leaves the view controller's bottom additional safe area inset untouched, which may be desirable if you are using it for other purposes.
+
+    Unfortunately, using this behavior, when the keyboard is presented, the scroll indicator will appear misaligned when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. At least as of iOS 12, this appears to be a side effect of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
 
     << Screenshot >>
 
