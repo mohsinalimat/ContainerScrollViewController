@@ -158,3 +158,6 @@ moves between text fields. >>
 << Pins the upper left corner of the embedded view during device rotations, while preventing out of range content offsets. >>
 
 << Works around an issue when the keyboard is presented and the device orientation changes, in which case, as of iOS 12, UIKit doesn't correctly scroll the text field to make it visible. >>
+
+<< Correctly handles the keyboard partially occluding a `ContainerScrollView` that doesn't completely cover the screen. >>
+
