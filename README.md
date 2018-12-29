@@ -51,9 +51,15 @@ Interface Builder created along with the container view, follow these additional
 
 ### Code
 
-### Auto Layout Constraints
+To integrate `ContainerScrollViewController` programmatically, follow these steps:
 
-For ContainerScrollViewController to determine the height of the scroll view's content, the embedded view must contain an unbroken chain of constraints and views stretching from the content view’s top edge to its bottom edge. This is also true for the embedded view's width.
+1. Subclass `ContainerScrollViewController`.
+
+2. In `viewDidLoad`, call `embedViewController`, passing it the view controller you'd like to embed in the container view controller's scroll view.
+
+### Auto Layout Considerations
+
+**IMPORTANT** - For ContainerScrollViewController to determine the height of the scroll view's content, the embedded view must contain an unbroken chain of constraints and views stretching from the content view’s top edge to its bottom edge. This is also true for the embedded view's width. If this is not the case, the embedded view will not scroll correctly. 
 
 The easiest way to do this while avoiding Auto Layout constraint errors is to create a bottom alignment constraint with a priority of 249.
 
@@ -67,7 +73,7 @@ To make the embedded view controller larger than the height of the screen, chang
 
 ## Example
 
-## Properties
+## Options
 
 ## Caveats
 
