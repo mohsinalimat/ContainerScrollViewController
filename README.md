@@ -100,11 +100,11 @@ A boolean value that determines whether or not the scroll view will automaticall
 
 ### scrollToVisibleMargin
 
-The margin applied to text fields when the scroll view is automatically scrolled to make the first responder text field visible. The default value is 0, which matches the UIKit default behavior.
+A floating point value representing a veritcal margin applied to text fields when the scroll view is automatically scrolled to make the first responder text field visible. The default value is 0, which matches the UIKit default behavior.
 
 ### keyboardAdjustmentBehavior
 
-The behavior for adjusting the view when the keyboard is presented. Possible values are:
+An enum representing the method used to adjust the view when the keyboard is presented. Possible values are:
 
 * `.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view. Use this value to override ContainerScrollViewController's default keyboard handling behavior.
 
