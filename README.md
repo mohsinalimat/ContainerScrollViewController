@@ -14,7 +14,7 @@ ContainerScrollViewController makes handling this scenario easier by using Inter
 
 << Interface Builder embedding screenshot >>
 
-ContainerScrollViewController also handles the case when the virtual keyboard overlaps the scroll view.
+ContainerScrollViewController also handles the case when theç keyboard overlaps the scroll view.
 
 ## Installation
 
