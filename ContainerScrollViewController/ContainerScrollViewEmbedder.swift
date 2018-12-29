@@ -77,6 +77,13 @@ public class ContainerScrollViewEmbedder {
     /// value of this property is `.adjustAdditionalSafeAreaInsets`.
     public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .adjustAdditionalSafeAreaInsets
 
+    /// The margin applied when the scroll view is automatically scrolled to make the
+    /// first responder text field visible. The default value is 0, which matches the
+    /// UIKit behavior. This value is also applied to
+    /// `scrollFirstResponderTextFieldToVisible`, `scrollViewToVisible`, and
+    /// `scrollRectToVisible` unless overridden with the optional `margin` parameter.
+    public var scrollToVisibleMargin: CGFloat = 0
+
     /// This property is `true` if `viewDidLoad` has already been called.
     private var viewDidLoadWasCalled = false
 
@@ -326,6 +333,20 @@ public class ContainerScrollViewEmbedder {
     internal func adjustViewForKeyboard(withBottomInset bottomInset: CGFloat) {
         scrollViewBounceController.bottomInset = bottomInset
 
+        applyKeyboardAdjustmentBehavior(withBottomInset: bottomInset)
+
+        // If we don't do this, then if the keyboard is presented and we rotate the device
+        // from portrait to landscape, UIKit will attempt to scroll the view to make the
+        // text field visible automatically. At least as of iOS 12, the UIKit default
+        // behavior won't take into consideration the new dimensions of the keyboard, and
+        // may scroll the view too far.
+        // Note: We're specifying false for animated here, but the scrolling may animate
+        // anyway because KeyboardObserver.adjustViewForKeyboard wraps the call in an
+        // animation block.
+        scrollFirstResponderTextFieldToVisible(animated: false)
+    }
+
+    private func applyKeyboardAdjustmentBehavior(withBottomInset bottomInset: CGFloat) {
         switch keyboardAdjustmentBehavior {
         case .none:
             return
@@ -362,6 +383,43 @@ public class ContainerScrollViewEmbedder {
                 scrollView.scrollIndicatorInsets.bottom = bottomInset
             }
         }
+    }
+
+    /// Scrolls the view to make the first responder text field visible.
+    ///
+    /// - Parameters:
+    ///   - animated: If `true`, the scrolling is animated.
+    ///   - margin: An optional margin to apply to the text field. If left unspecified,
+    ///   `scrollToVisibleMargin` is used.
+    public func scrollFirstResponderTextFieldToVisible(animated: Bool, margin: CGFloat? = nil) {
+        guard let textField = UIResponder.rf_current as? UITextField else {
+            return
+        }
+        scrollViewToVisible(textField, animated: animated, margin: margin)
+    }
+
+    /// Scrolls the view to make the specified view visible.
+    ///
+    /// - Parameters:
+    ///   - view: The view to make visible.
+    ///   - animated: If `true`, the scrolling is animated.
+    ///   - margin: An optional margin to apply to the view. If left unspecified,
+    ///   `scrollToVisibleMargin` is used.
+    public func scrollViewToVisible(_ view: UIView, animated: Bool, margin: CGFloat? = nil) {
+        scrollRectToVisible(scrollView.convert(view.bounds, from: view), animated: animated, margin: margin)
+    }
+
+    /// Scrolls the view to make a rect visible.
+    ///
+    /// - Parameters:
+    ///   - rect: The rect to make visible.
+    ///   - animated: If `true`, the scrolling is animated.
+    ///   - margin: An optional margin to apply to `rect`. If left unspecified,
+    ///   `scrollToVisibleMargin` is used.
+    public func scrollRectToVisible(_ rect: CGRect, animated: Bool, margin: CGFloat? = nil) {
+        let textFieldRect = rect.insetBy(dx: 0, dy: -(margin ?? scrollToVisibleMargin))
+
+        scrollView.scrollRectToVisible(textFieldRect, animated: animated)
     }
 
 }

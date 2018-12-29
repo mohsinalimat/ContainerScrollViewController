@@ -60,6 +60,18 @@ open class ContainerScrollViewController: UIViewController {
         }
     }
 
+    /// The margin applied to text fields when the scroll view is automatically scrolled
+    /// to make the first responder text field visible. The default value is 0, which
+    /// matches the UIKit default behavior.
+    public var scrollToVisibleMargin: CGFloat {
+        set {
+            containerScrollViewEmbedder.scrollToVisibleMargin = newValue
+        }
+        get {
+            return containerScrollViewEmbedder.scrollToVisibleMargin
+        }
+    }
+
     /// An object that manages embedding a view controller within a scroll view.
     private lazy var containerScrollViewEmbedder = ContainerScrollViewEmbedder(embeddingViewController: self)
 
@@ -99,6 +111,38 @@ open class ContainerScrollViewController: UIViewController {
     /// - Parameter embeddedViewController: The view controller to embed in the scroll view.
     public func embedViewController(_ embeddedViewController: UIViewController) {
         containerScrollViewEmbedder.embedViewController(embeddedViewController)
+    }
+
+    /// Scrolls the view to make the first responder text field visible.
+    ///
+    /// - Parameters:
+    ///   - animated: If `true`, the scrolling is animated.
+    ///   - margin: An optional margin to apply to the text field. If left unspecified,
+    ///   `scrollToVisibleMargin` is used.
+    public func scrollFirstResponderTextFieldToVisible(animated: Bool, margin: CGFloat? = nil) {
+        containerScrollViewEmbedder.scrollFirstResponderTextFieldToVisible(animated: animated, margin: margin)
+    }
+
+    /// Scrolls the view to make the specified view visible.
+    ///
+    /// - Parameters:
+    ///   - view: The view to make visible.
+    ///   - animated: If `true`, the scrolling is animated.
+    ///   - margin: An optional margin to apply to the view. If left unspecified,
+    ///   `scrollToVisibleMargin` is used.
+    public func scrollViewToVisible(_ view: UIView, animated: Bool, margin: CGFloat? = nil) {
+        containerScrollViewEmbedder.scrollViewToVisible(view, animated: animated, margin: margin)
+    }
+
+    /// Scrolls the view to make a rect visible.
+    ///
+    /// - Parameters:
+    ///   - rect: The rect to make visible.
+    ///   - animated: If `true`, the scrolling is animated.
+    ///   - margin: An optional margin to apply to `rect`. If left unspecified,
+    ///   `scrollToVisibleMargin` is used.
+    public func scrollRectToVisible(_ rect: CGRect, animated: Bool, margin: CGFloat? = nil) {
+        containerScrollViewEmbedder.scrollRectToVisible(rect, animated: animated, margin: margin)
     }
 
 }
