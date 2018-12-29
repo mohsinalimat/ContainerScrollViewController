@@ -96,10 +96,10 @@ the same color as the container view's background.
 
 ## Special Cases Handled
 
-* Correct adjustment of the scroll view's additional safe area insets when the keyboard is presented, in the case when the container view doesn't cover the entire screen.
+<< Correct adjustment of the scroll view's additional safe area insets when the keyboard is presented, in the case when the container view doesn't cover the entire screen. >>
 
-* Filters out rapid sequences of changes to the height of the keyboard.
-See extreme example described in BottomInsetFilter comments.
+<< Filters out rapid sequences of changes to the height of the keyboard.
+See extreme example described in BottomInsetFilter comments. >>
 
-* Suppresses unwanted UITextField text position animation as the focus
-moves between text fields.
+<< Suppresses unwanted UITextField text position animation as the focus
+moves between text fields. >>
