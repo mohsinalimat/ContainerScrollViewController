@@ -51,7 +51,7 @@ Interface Builder created along with the container view, follow these additional
 
 ### Code
 
-To integrate `ContainerScrollViewController` programmatically, follow these steps:
+To integrate `ContainerScrollViewController` programmatically, do this:
 
 1. Subclass `ContainerScrollViewController`.
 
