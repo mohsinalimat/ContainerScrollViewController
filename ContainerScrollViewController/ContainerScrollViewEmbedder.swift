@@ -49,6 +49,14 @@ public class ContainerScrollViewEmbedder {
     /// value is `false`.
     public var shouldResizeEmbeddedViewForKeyboard = false
 
+    /// If `true`, the first responder text field will be scrolled to visible when
+    /// the keyboard is presented, or when the keyboard's size is adjusted, for example
+    /// as a result of a device orientation change. The default value is `true`.
+    ///
+    /// Even if this is set to `false`, UIKit may scroll the text field to visible,
+    /// although this may not work correctly in all cases.
+    public var shouldScrollFirstResponderTextFieldToVisibleForKeyboard = true
+
     /// The behavior for adjusting the view when the keyboard is presented.
     public enum KeyboardAdjustmentBehavior {
         /// Make no view adjustments when the keyboard is presented. If no additional action
@@ -335,15 +343,17 @@ public class ContainerScrollViewEmbedder {
 
         applyKeyboardAdjustmentBehavior(withBottomInset: bottomInset)
 
-        // If we don't do this, then if the keyboard is presented and we rotate the device
-        // from portrait to landscape, UIKit will attempt to scroll the view to make the
-        // text field visible automatically. At least as of iOS 12, the UIKit default
-        // behavior won't take into consideration the new dimensions of the keyboard, and
-        // may scroll the view too far.
-        // Note: We're specifying false for animated here, but the scrolling may animate
-        // anyway because KeyboardObserver.adjustViewForKeyboard wraps the call in an
-        // animation block.
-        scrollFirstResponderTextFieldToVisible(animated: false)
+        if shouldScrollFirstResponderTextFieldToVisibleForKeyboard {
+            // If we don't do this, then if the keyboard is presented and we rotate the device
+            // from portrait to landscape, UIKit will attempt to scroll the view to make the
+            // text field visible automatically. At least as of iOS 12, the UIKit default
+            // behavior won't take into consideration the new dimensions of the keyboard, and
+            // may scroll the view too far.
+            // Note: We're specifying false for animated here, but the scrolling may animate
+            // anyway because KeyboardObserver.adjustViewForKeyboard wraps the call in an
+            // animation block.
+            scrollFirstResponderTextFieldToVisible(animated: false)
+        }
     }
 
     private func applyKeyboardAdjustmentBehavior(withBottomInset bottomInset: CGFloat) {

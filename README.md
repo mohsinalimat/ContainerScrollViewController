@@ -90,22 +90,32 @@ A boolean value that determines whether or not the embedded view is resized when
 
 * `false` - When the keyboard is presented, the embedded view's size remains unchanged. This is the default value.
 
+### shouldScrollFirstResponderTextFieldToVisibleForKeyboard
+
+A boolean value that determines if the scroll view will automatically scroll to make the first responder text field visible in response to keyboard changes.
+
+* `true` - When the keyboard is presented or changes size, for example in response to a device orientation change, the scroll view scrolls to make the first responder text field visible. This is the default value.
+
+* `false` - No special action is taken in response to keyboard changes. Even if this is set to `false`, UIKit may scroll the text field to visible, although this may not work correctly in all cases. Use this value to override ContainerScrollViewController's default first responder text field visibility scrolling behavior.
+
+### scrollToVisibleMargin
+
+The margin applied to text fields when the scroll view is automatically scrolled to make the first responder text field visible. The default value is 0, which matches the UIKit default behavior.
+
 ### keyboardAdjustmentBehavior
 
 The behavior for adjusting the view when the keyboard is presented. Possible values are:
 
-* `.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view.
-
-    Use this value to override ContainerScrollViewController's default keyboard handling behavior.
+* `.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view. Use this value to override ContainerScrollViewController's default keyboard handling behavior.
 
 * `.adjustAdditionalSafeAreaInsets` - Adjust the view controller's bottom additional safe area inset. This is the default value.
 
 * `.adjustScrollViewContentSize` - Adjust the scroll view's content size. This approach leaves the view controller's bottom additional safe area inset untouched, which may be desirable if you are using it for other purposes.
 
-    Unfortunately, using this behavior, when the keyboard is presented, the scroll indicator will appear misaligned when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. At least as of iOS 12, this appears to be a side effect of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
+    Unfortunately, using the `.adjustScrollViewContentSize` behavior, when the keyboard is presented, at least as of iOS 12, the scroll indicator will appear misaligned when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. This appears to be a side effect of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
 
     << Screenshot >>
-    
+
 ## Methods
 
 << ScrollXToVisible methods >>

@@ -38,14 +38,30 @@ open class ContainerScrollViewController: UIViewController {
         return containerScrollViewEmbedder.scrollView
     }
 
-    /// If `true`, the embedded view will be resized to compensate for the portion of
-    /// the view occupied by the keyboard, if possible. The default value is `false`.
+    /// If `true`, the embedded view should be resized to compensate for the portion of
+    /// the scroll view obscured by the presented keyboard, if possible. The default
+    /// value is `false`.
     public var shouldResizeEmbeddedViewForKeyboard: Bool {
         set {
             containerScrollViewEmbedder.shouldResizeEmbeddedViewForKeyboard = newValue
         }
         get {
             return containerScrollViewEmbedder.shouldResizeEmbeddedViewForKeyboard
+        }
+    }
+
+    /// If `true`, the first responder text field will be scrolled to visible when
+    /// the keyboard is presented, or when the keyboard's size is adjusted, for example
+    /// as a result of a device orientation change. The default value is `true`.
+    ///
+    /// Even if this is set to `false`, UIKit may scroll the text field to visible,
+    /// although this may not work correctly in all cases.
+    public var shouldScrollFirstResponderTextFieldToVisibleForKeyboard: Bool {
+        set {
+            containerScrollViewEmbedder.shouldScrollFirstResponderTextFieldToVisibleForKeyboard = newValue
+        }
+        get {
+            return containerScrollViewEmbedder.shouldScrollFirstResponderTextFieldToVisibleForKeyboard
         }
     }
 
