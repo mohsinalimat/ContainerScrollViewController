@@ -92,7 +92,7 @@ A boolean value that determines whether or not the embedded view is resized when
 
 ### shouldScrollFirstResponderTextFieldToVisibleForKeyboard
 
-A boolean value that determines if the scroll view will automatically scroll to make the first responder text field visible in response to keyboard changes.
+A boolean value that determines whether or not the scroll view will automatically scroll to make the first responder text field visible in response to keyboard changes.
 
 * `true` - When the keyboard is presented or changes size, for example in response to a device orientation change, the scroll view scrolls to make the first responder text field visible. This is the default value.
 
