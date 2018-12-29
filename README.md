@@ -133,7 +133,7 @@ To specify a background color that extends to the edges of the screen:
 
 ### Resizing the Embedded View
 
-<< Mention calling self.parent?.view.setNeedsLayout (+ layoutIfNeeded for animation) whenever the embedded view's auto layout changes. >>
+<< Mention calling self.parent?.view.setNeedsLayout (+ layoutIfNeeded for animation) (or scrollView.setNeedsLayout) whenever the embedded view's auto layout changes. >>
 
 << Example code >>
 
