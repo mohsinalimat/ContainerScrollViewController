@@ -418,7 +418,6 @@ public class ContainerScrollViewEmbedder {
     ///   `scrollToVisibleMargin` is used.
     public func scrollRectToVisible(_ rect: CGRect, animated: Bool, margin: CGFloat? = nil) {
         let textFieldRect = rect.insetBy(dx: 0, dy: -(margin ?? scrollToVisibleMargin))
-
         scrollView.scrollRectToVisible(textFieldRect, animated: animated)
     }
 
