@@ -67,7 +67,7 @@
 		3A2279E021D14C1500D1CD38 /* PillTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillTextField.swift; sourceTree = "<group>"; };
 		3A2279E421D14F9400D1CD38 /* RoundedCornersImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersImage.swift; sourceTree = "<group>"; };
 		3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
-		3A7C47F921D091B100E464FD /* ContainerScrollViewController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ContainerScrollViewController.podspec; sourceTree = "<group>"; };
+		3A7C47F921D091B100E464FD /* ContainerScrollViewController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ContainerScrollViewController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3A7C47FE21D09DC200E464FD /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7C480021D09DC200E464FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A7C480221D09DC200E464FD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
