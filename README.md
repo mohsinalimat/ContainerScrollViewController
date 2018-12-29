@@ -84,6 +84,8 @@ The following properties of `ContainerScrollViewController` can be modified to c
 
 ### shouldResizeEmbeddedViewForKeyboard
 
+A boolean value that determines whether or not the embedded view is resized when the keyboard is presented.
+
 * `true` - When the keyboard is presented, the embedded view shrinks to fit the portion of the scroll view not overlapped by the keyboard, to the extent that this is permitted by the embedded view's Auto Layout constraints.
 
 * `false` - When the keyboard is presented, the embedded view's size remains unchanged. This is the default value.
