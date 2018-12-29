@@ -46,14 +46,14 @@ To create a container scroll view controller and its embedded view controller in
 1. Subclass `ContainerScrollViewController`.
 2. In Interface Builder, create a new view controller and set its class to your  `ContainerScrollViewController` subclass.
 3. In the outline view, delete the new view controller's view.
-4. Create a new container view and drag it into the view controller.
-5. Set the container view's background color to anything other than transparent, which is the default value. Otherwise, it will appear black.
+4. Create a new container view and drag it into the view controller, replacing the view you just deleted.
+5. Set the container view's background color to anything other than transparent, which is the default value for Interface Builder's container views. Otherwise, it will appear black.
 
 If you have an existing view controller that you'd like to embed in the container view controller instead of the embedded view controller that
 Interface Builder created along with the container view, follow these additional steps:
 
-6. Delete the view controller that is the destination of the container view's embed segue.
-7. Create a new embed segue, connecting the container view controller to your existing view controller.
+6. Delete the view controller that Interface Builder created as the destination of the container view's embed segue.
+7. Create a new embed segue from the container scroll view controller to your existing view controller.
 
 ### Code
 
