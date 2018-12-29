@@ -75,7 +75,31 @@ To make the embedded view controller larger than the height of the screen, chang
 
 << Screenshot >>
 
-## Options
+## Properties
+
+The following properties of `ContainerScrollViewController` can be modified to control its behavior:
+
+**`shouldResizeEmbeddedViewForKeyboard`**
+
+<p style="margin-left: 2em;">
+If <code>true</code>, the embedded view will be resized to compensate for the portion of the view occupied by the keyboard, if possible. The default value is <code>false</code>.
+</p>
+
+**`keyboardAdjustmentBehavior`**
+
+<p style="margin-left: 2em;">
+The behavior for adjusting the view when the keyboard is presented. Possible values are:
+</p>
+
+<div style="margin-left: 4em; text-indent: -2em;">
+
+`.none` - Make no view adjustments when the keyboard is presented. If no additional action is taken, the keyboard will overlap the scroll view and its embedded view. This value can be used to override the container's view default keyboard handling behavior.
+
+`.adjustAdditionalSafeAreaInsets` - Adjust the view controller's additional safe area insets. This is the default behavior.
+
+`.adjustScrollViewContentSize` - Adjust the scroll view's content size. This approach leaves the view controller's additional safe area insets untouched, but will result in misaligned scroll indicators when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. This appears to be a side effect of setting the bottom scroll indicator inset to a nonzero value.
+
+</div>
 
 ## Caveats
 
@@ -89,6 +113,8 @@ the same color as the container view's background.
 << Mention calling self.parent?.view.setNeedsLayout (+ layoutIfNeeded for animation) whenever the embedded view's auto layout changes. >>
 
 ## Usage Without Subclassing
+
+<< ContainerScrollViewEmbedder supports the same properties as ContainerScrollViewController. >>
 
 ## How It Works
 
