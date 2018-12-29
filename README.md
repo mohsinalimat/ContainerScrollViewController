@@ -140,3 +140,5 @@ See extreme example described in BottomInsetFilter comments. >>
 
 << Suppresses unwanted UITextField text position animation as the focus
 moves between text fields. >>
+
+<< Pins the upper left corner of the embedded view during device rotations, while preventing out of range content offsets. >>
