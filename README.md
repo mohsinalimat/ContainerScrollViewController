@@ -57,7 +57,7 @@ To integrate `ContainerScrollViewController` programmatically, do this:
 
 1. Subclass `ContainerScrollViewController`.
 
-2. In `viewDidLoad`, call `embedViewController`, passing it the view controller you'd like to embed in the container view controller's scroll view.
+2. In `viewDidLoad`, call `embedViewController` with the view controller you'd like to embed in the container view controller's scroll view.
 
 ### Auto Layout Considerations
 
