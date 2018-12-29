@@ -68,7 +68,7 @@ To integrate `ContainerScrollViewController` programmatically:
 
 If this is not the case, the embedded view will not scroll correctly. 
 
-The easiest way to do this while avoiding Auto Layout constraint errors is to create a bottom alignment constraint with a low priority (below 250).
+The easiest way to do this while avoiding Auto Layout constraint errors is to create a bottom alignment constraint with a low priority (less than 250).
 
 << Screenshot >>
 
