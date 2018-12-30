@@ -230,8 +230,8 @@
 		3AB822C621D0562300ED7576 = {
 			isa = PBXGroup;
 			children = (
-				3AB822EB21D0575200ED7576 /* LICENSE */,
 				3AB822EA21D0575200ED7576 /* README.md */,
+				3AB822EB21D0575200ED7576 /* LICENSE */,
 				3A7C47F921D091B100E464FD /* ContainerScrollViewController.podspec */,
 				3AB822D221D0562300ED7576 /* ContainerScrollViewController */,
 				3AB822DD21D0562300ED7576 /* ContainerScrollViewControllerTests */,
