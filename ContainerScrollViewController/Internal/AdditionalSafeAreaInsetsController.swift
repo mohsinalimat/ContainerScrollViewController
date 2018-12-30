@@ -40,12 +40,12 @@ class AdditionalSafeAreaInsetsController {
                 adjustedBottomInset = max(adjustedBottomInset, initialAdditionalSafeAreaInsets.bottom)
             } else if bottomInset == 0 && oldValue != 0 {
                 // The keyboard was dismissed.
-                guard let initialAdditionalSafeAreaInset = initialAdditionalSafeAreaInsets else {
+                guard let initialAdditionalSafeAreaInsets = initialAdditionalSafeAreaInsets else {
                     assertionFailure()
                     return
                 }
-                adjustedBottomInset = initialAdditionalSafeAreaInset.bottom
-                initialAdditionalSafeAreaInsets = nil
+                adjustedBottomInset = initialAdditionalSafeAreaInsets.bottom
+                self.initialAdditionalSafeAreaInsets = nil
             } else if bottomInset != oldValue {
                 // The keyboard changed size.
                 guard let initialAdditionalSafeAreaInset = initialAdditionalSafeAreaInsets else {
