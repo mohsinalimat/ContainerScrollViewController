@@ -154,7 +154,7 @@ In situations where subclassing `ContainerScrollViewController` is not an option
 ```swift
 import ContainerScrollViewController
 
-class MyViewController: UIViewController {
+class MyEmbeddingViewController: UIViewController {
 
     lazy var containerScrollViewEmbedder = ContainerScrollViewEmbedder(embeddingViewController: self)
 
@@ -185,7 +185,7 @@ The `ContainerScrollViewEmbedder` class supports all of the same properties as `
 ```swift
 import ContainerScrollViewController
 
-class MyViewController: UIViewController {
+class MyEmbeddingViewController: UIViewController {
 
     lazy var containerScrollViewEmbedder = ContainerScrollViewEmbedder(embeddingViewController: self)
 
