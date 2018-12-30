@@ -40,6 +40,7 @@ class EmbedderSignUpViewController: UIViewController {
         containerScrollViewEmbedder.prepare(for: segue, sender: sender)
     }
 
+    // Note: Only required in apps that support device orientation changes.
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
