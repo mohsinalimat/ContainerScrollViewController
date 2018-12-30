@@ -60,7 +60,7 @@ class SignUpEmbeddedViewController: UIViewController {
 
     @objc private func updateSignUpButtonIsEnabledState() {
         // TODO: This test should be more sophisticated and perform full validation on each
-        // field, depending on its type.
+        // field separately according to its type.
         signUpButton.isEnabled = !textFieldIsEmpty(nameTextField) && !textFieldIsEmpty(emailTextField) && !textFieldIsEmpty(passwordTextField)
     }
 
