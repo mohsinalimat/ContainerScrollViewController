@@ -72,8 +72,9 @@ public class ContainerScrollViewEmbedder {
     /// This property is `true` if `viewDidLoad` has already been called.
     private var viewDidLoadWasCalled = false
 
-    /// The embedded view's height constraint.
-    private var embeddedViewMinimumHeightConstraint: NSLayoutConstraint?
+    /// The embedded view's height constraint. This is modified by
+    /// `AdditionalSafeAreaInsetsController`.
+    internal private(set) var embeddedViewMinimumHeightConstraint: NSLayoutConstraint?
 
     /// An object that responds to notifications posted by UIKit when the keyboard is
     /// presented or dismissed, and which adjusts the `ContainerScrollViewController`
@@ -84,7 +85,12 @@ public class ContainerScrollViewEmbedder {
     /// reflect the state of the presented keyboard. This ensures that when
     /// `keyboardDismissMode` is set to `.interactive` it will work as expected, even if
     /// the embedded view is short enough to not require scrolling.
-    private lazy var scrollViewBounceController = ScrollViewBounceController(scrollView: scrollView)
+    private lazy var scrollViewBounceController = ScrollViewBounceController(containerScrollViewEmbedder: self)
+
+    /// An object that adjusts the container view's `additionalSafeAreaInsets.bottom`
+    /// property to compensate for the portion of the keyboard that overlaps the scroll
+    /// view.
+    private lazy var additionalSafeAreaInsetsController = AdditionalSafeAreaInsetsController(containerScrollViewEmbedder: self)
 
     public init(embeddingViewController: UIViewController) {
         self.embeddingViewController = embeddingViewController
@@ -329,11 +335,11 @@ public class ContainerScrollViewEmbedder {
             //
             // Additionally, the approach of resizing the scroll view's content size appears to
             // interact poorly with the scroll view's scrollRectToVisible method.
-            adjustAdditionalSafeAreaInsets(withBottomInset: bottomInset)
+            additionalSafeAreaInsetsController.bottomInset = bottomInset
         }
 
-        // If the keyboard isn't dismissed, scroll the first responder text field
-        // so it's visible on the screen.
+        // Unless the keyboard is being dismissed, scroll the first responder text field so
+        // it remains visible on the screen.
         if bottomInset != 0 && shouldScrollFirstResponderTextFieldToVisibleForKeyboard {
             // If we don't do this, then if the keyboard is presented and we rotate the device
             // from portrait to landscape, UIKit will attempt to scroll the view to make the
@@ -345,25 +351,6 @@ public class ContainerScrollViewEmbedder {
             // anyway because KeyboardObserver.adjustViewForKeyboard wraps the call in an
             // animation block.
             scrollFirstResponderTextFieldToVisible(animated: false)
-        }
-    }
-
-    /// Adjusts the container view's `additionalSafeAreaInsets` property to compensate
-    /// for the portion of the keyboard that overlaps the scroll view.
-    ///
-    /// - Parameter bottomInset: The height of the area of keyboard's frame that
-    ///     overlaps the view.
-    private func adjustAdditionalSafeAreaInsets(withBottomInset bottomInset: CGFloat) {
-        if shouldResizeEmbeddedViewForKeyboard {
-            // Adjust the additional safe area insets, possibly reducing the size
-            // of the embedded view.
-            embeddingViewController?.additionalSafeAreaInsets.bottom = bottomInset
-        } else {
-            // Adjust the additional safe area insets, but also increase the minimum height of
-            // the embedded view to compensate. The size of the embedded view will
-            // remain unchanged.
-            embeddingViewController?.additionalSafeAreaInsets.bottom = bottomInset
-            embeddedViewMinimumHeightConstraint?.constant = bottomInset
         }
     }
 

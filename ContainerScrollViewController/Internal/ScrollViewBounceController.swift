@@ -14,30 +14,33 @@ import UIKit
 /// the embedded view is short enough that scrolling wouldn't normally be permitted.
 class ScrollViewBounceController {
 
-    weak var scrollView: UIScrollView?
+    private weak var containerScrollViewEmbedder: ContainerScrollViewEmbedder?
 
     private var initialAlwaysBounceVertical: Bool?
 
-    init(scrollView: UIScrollView) {
-        self.scrollView = scrollView
+    init(containerScrollViewEmbedder: ContainerScrollViewEmbedder) {
+        self.containerScrollViewEmbedder = containerScrollViewEmbedder
     }
 
     var bottomInset: CGFloat = 0 {
         didSet {
-            guard let scrollView = scrollView,
+            guard let scrollView = containerScrollViewEmbedder?.scrollView,
                 scrollView.keyboardDismissMode != .none else {
                 return
             }
 
             if bottomInset != 0 && oldValue == 0 {
+                // The keyboard was presented.
                 initialAlwaysBounceVertical = scrollView.alwaysBounceVertical
                 scrollView.alwaysBounceVertical = true
             } else if bottomInset == 0 && oldValue != 0 {
+                // The keyboard was dismissed.
                 guard let initialAlwaysBounceVertical = initialAlwaysBounceVertical else {
                     assertionFailure()
                     return
                 }
                 scrollView.alwaysBounceVertical = initialAlwaysBounceVertical
+                self.initialAlwaysBounceVertical = nil
             }
         }
     }
