@@ -31,6 +31,10 @@ class CodeSignUpViewController: ContainerScrollViewController {
         scrollView.keyboardDismissMode = .interactive
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     /// Creates the Sign Up embedded view controller. This example app is intended to
     /// demonstrate how to use ContainerScrollViewController with code only, but we're
     /// cheating and loading the embedded view controller out of our Storyboard file. In
@@ -42,10 +46,6 @@ class CodeSignUpViewController: ContainerScrollViewController {
             fatalError("Unable to load signUpEmbeddedViewController")
         }
         return signUpEmbeddedViewController
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 
 }
