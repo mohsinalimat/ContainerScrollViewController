@@ -1,7 +1,7 @@
 # ContainerScrollViewController
 
 [![Travis](https://img.shields.io/travis/milpitas/ContainerScrollViewController.svg)](https://travis-ci.org/milpitas/ContainerScrollViewController)
-[![Platform](https://img.shields.io/badge/platforms-iOS-lightgray.svg)](http://developer.apple.com/ios)
+[![Platform](https://img.shields.io/badge/platform-iOS-lightgray.svg)](http://developer.apple.com/ios)
 [![Swift 4.2](https://img.shields.io/badge/swift-4.2-red.svg?style=flat)](https://developer.apple.com/swift)
 [![License](https://img.shields.io/github/license/milpitas/ContainerScrollViewController.svg)](https://tldrlegal.com/license/mit-license)
 [![Twitter](https://img.shields.io/badge/twitter-@drewolbrich-blue.svg)](http://twitter.com/drewolbrich)
