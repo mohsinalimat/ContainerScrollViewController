@@ -22,14 +22,25 @@ class CodeSignUpViewController: ContainerScrollViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let bundle = Bundle(for: CodeSignUpViewController.self)
-        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
-        let signUpEmbeddedViewController = storyboard.instantiateViewController(withIdentifier: "signUpEmbeddedViewController")
+        let signUpEmbeddedViewController = createSignUpEmbeddedViewController()
         embedViewController(signUpEmbeddedViewController)
 
         shouldResizeEmbeddedViewForKeyboard = true
 
         scrollView.keyboardDismissMode = .interactive
+    }
+
+    /// Creates the Sign Up embedded view controller. This example app is supposed
+    /// demonstrate how to use ContainerScrollViewController with code only, but we're
+    /// cheating and loading the embedded view controller out of our Storyboard file. In
+    /// a real app, this view controller could be created in code.
+    func createSignUpEmbeddedViewController() -> SignUpEmbeddedViewController {
+        let bundle = Bundle(for: CodeSignUpViewController.self)
+        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
+        guard let signUpEmbeddedViewController = storyboard.instantiateViewController(withIdentifier: "signUpEmbeddedViewController") as? SignUpEmbeddedViewController else {
+            fatalError("Unable to load signUpEmbeddedViewController")
+        }
+        return signUpEmbeddedViewController
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
