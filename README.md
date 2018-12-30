@@ -229,6 +229,12 @@ class MyEmbeddingViewController: UIViewController {
 
 ## How It Works
 
+<< View hierarchy >>
+
+<< View controller hierarchy >>
+
+<< Container view mechanism >>
+
 << Keyboard resize filtering >>
 
 ## Special Cases Handled
