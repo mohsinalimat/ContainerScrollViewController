@@ -11,8 +11,9 @@ import UIKit
 /// An object that embeds a view controller within another view controller's scroll
 /// view.
 ///
-/// Instead of using `ContainerScrollViewEmbedder` directly, it may be more
-/// convenient to subclass `ContainerScrollViewController`.
+/// Instead of using `ContainerScrollViewEmbedder` directly, it is usually more
+/// convenient to subclass `ContainerScrollViewController`, which is implemented in
+/// terms of `ContainerScrollViewEmbedder`.
 ///
 /// See the comments for `ContainerScrollViewController` for additional documentation.
 public class ContainerScrollViewEmbedder {
