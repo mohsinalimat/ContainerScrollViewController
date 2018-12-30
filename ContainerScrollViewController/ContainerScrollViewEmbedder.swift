@@ -54,17 +54,17 @@ public class ContainerScrollViewEmbedder {
     /// is adjusted when the keyboard is presented. The default value is `true`.
     public var shouldAdjustContainerViewForKeyboard = true
 
-    /// If `true`, the first responder text field will be scrolled to visible when
-    /// the keyboard is presented, or when the keyboard's size is adjusted, for example
-    /// as a result of a device orientation change. The default value is `true`.
+    /// If `true`, the first responder will be scrolled to visible when the keyboard is
+    /// presented, or when the keyboard's size is adjusted, for example as a result of a
+    /// device orientation change. The default value is `true`.
     ///
-    /// Even if this is set to `false`, UIKit may scroll the text field to visible,
+    /// Even if this is set to `false`, UIKit may scroll the first responder to visible,
     /// although this may not work correctly in all cases.
-    public var shouldScrollFirstResponderTextFieldToVisibleForKeyboard = true
+    public var shouldScrollFirstResponderToVisibleForKeyboard = true
 
     /// The margin applied when the scroll view is automatically scrolled to make the
-    /// first responder text field visible. The default value is 0, which matches the
-    /// UIKit behavior. This value is also applied to
+    /// first responder view visible. The default value is 0, which matches the UIKit
+    /// behavior. This value is also applied to
     /// `scrollFirstResponderTextFieldToVisible`, `scrollViewToVisible`, and
     /// `scrollRectToVisible` unless overridden with the optional `margin` parameter.
     public var visibilityScrollMargin: CGFloat = 0
@@ -152,13 +152,13 @@ public class ContainerScrollViewEmbedder {
             var contentOffset = initialContentOffset
 
             // At this point, if the keyboard is presented, it would be nice to keep the first
-            // responder text field visible on the screen during the transition. However, it
-            // appears that there's no way to know what the new size of the keyboard will be,
-            // and by extension, the new size of the visible portion of the scroll view, which
-            // would be necessary to accurately maintain the text field's visibility.
-            // A survey of iOS 12's apps (e.g. creating a new event in Calendar, or editing a
-            // document in Pages) reveals that Apple doesn't attempt to handle this case
-            // elegantly either.
+            // responder visible on the screen during the transition. However, it appears that
+            // there's no way to know what the new size of the keyboard will be, and by
+            // extension, the new size of the visible portion of the scroll view, which would
+            // be necessary to accurately maintain the first responder's visibility. A survey
+            // of iOS 12's apps (e.g. creating a new event in Calendar, or editing a document
+            // in Pages) reveals that Apple doesn't attempt to handle this case elegantly
+            // either.
 
             // Pin the top left corner of the view. This matches the general behavior of
             // Apple's iOS apps.
@@ -338,12 +338,12 @@ public class ContainerScrollViewEmbedder {
             additionalSafeAreaInsetsController.bottomInset = bottomInset
         }
 
-        // Unless the keyboard is being dismissed, scroll the first responder text field so
-        // it remains visible on the screen.
-        if bottomInset != 0 && shouldScrollFirstResponderTextFieldToVisibleForKeyboard {
+        // Unless the keyboard is being dismissed, scroll the first responder so it remains
+        // visible on the screen.
+        if bottomInset != 0 && shouldScrollFirstResponderToVisibleForKeyboard {
             // If we don't do this, then if the keyboard is presented and we rotate the device
             // from portrait to landscape, UIKit will attempt to scroll the view to make the
-            // text field visible automatically. At least as of iOS 12, the UIKit default
+            // first responder visible automatically. At least as of iOS 12, the UIKit default
             // behavior won't take into consideration the new dimensions of the keyboard, and
             // may scroll the view too far.
             //
@@ -382,8 +382,8 @@ public class ContainerScrollViewEmbedder {
     ///
     /// - Parameters:
     ///   - animated: If `true`, the scrolling is animated.
-    ///   - margin: An optional margin to apply to the text field. If left unspecified,
-    ///   `scrollToVisibleMargin` is used.
+    ///   - margin: An optional margin to apply to the first responder. If left
+    ///   unspecified, `scrollToVisibleMargin` is used.
     public func scrollFirstResponderToVisible(animated: Bool, margin: CGFloat? = nil) {
         guard let view = UIResponder.rf_current as? UIView else {
             return

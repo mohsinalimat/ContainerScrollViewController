@@ -121,17 +121,17 @@ A boolean value that determines whether or not the container view controller's `
 
 * `false` - When the keyboard is presented, the container view controller's `additionalSafeAreaInsets` property remains unchanged. Use this value to implement your own keyboard presentation compensation behavior.
 
-### shouldScrollFirstResponderTextFieldToVisibleForKeyboard
+### shouldScrollFirstResponderToVisibleForKeyboard
 
-A boolean value that determines whether or not the scroll view will automatically scroll to make the first responder text field visible in response to keyboard changes.
+A boolean value that determines whether or not the scroll view will automatically scroll to make the first responder visible in response to keyboard changes.
 
-* `true` - When the keyboard is presented or changes size, for example in response to a device orientation change, the scroll view scrolls to make the first responder text field visible. This is the default value.
+* `true` - When the keyboard is presented or changes size, for example in response to a device orientation change, the scroll view scrolls to make the first responder visible. This is the default value.
 
-* `false` - No special action is taken in response to keyboard changes. Even if this is set to `false`, UIKit may scroll the text field to visible, although this may not work correctly in all cases. Use this value to override ContainerScrollViewController's default first responder text field visibility scrolling behavior.
+* `false` - No special action is taken in response to keyboard changes. Even if this is set to `false`, UIKit may scroll the first responder to visible, although this may not work correctly in all cases. Use this value to override ContainerScrollViewController's default first responder visibility scrolling behavior.
 
 ### visibilityScrollMargin
 
-A floating point value representing a vertical margin applied to text fields when the scroll view is automatically scrolled to make the first responder text field visible. The default value is 0, which matches the UIKit default behavior.
+A floating point value representing a vertical margin applied to the first responder view frame when the scroll view is automatically scrolled to make the first responder visible. The default value is 0, which matches the UIKit default behavior.
 
 ### embeddedViewController
 
@@ -278,7 +278,7 @@ moves between text fields. >>
 
 << Pins the upper left corner of the embedded view during device rotations, while preventing out of range content offsets. >>
 
-<< Works around an issue when the keyboard is presented and the device orientation changes, in which case, as of iOS 12, UIKit doesn't correctly scroll the text field to make it visible. >>
+<< Works around an issue when the keyboard is presented and the device orientation changes, in which case, as of iOS 12, UIKit doesn't correctly scroll the first responder text field to make it visible. >>
 
 << Correctly handles the keyboard partially occluding a `ContainerScrollView` that doesn't completely cover the screen. >>
 

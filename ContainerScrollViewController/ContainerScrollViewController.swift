@@ -61,24 +61,26 @@ open class ContainerScrollViewController: UIViewController {
         }
     }
 
-    /// If `true`, the first responder text field will be scrolled to visible when
-    /// the keyboard is presented, or when the keyboard's size is adjusted, for example
-    /// as a result of a device orientation change. The default value is `true`.
+    /// If `true`, the first responder will be scrolled to visible when the keyboard is
+    /// presented, or when the keyboard's size is adjusted, for example as a result of a
+    /// device orientation change. The default value is `true`.
     ///
-    /// Even if this is set to `false`, UIKit may scroll the text field to visible,
+    /// Even if this is set to `false`, UIKit may scroll the first responder to visible,
     /// although this may not work correctly in all cases.
-    public var shouldScrollFirstResponderTextFieldToVisibleForKeyboard: Bool {
+    public var shouldScrollFirstResponderToVisibleForKeyboard: Bool {
         set {
-            containerScrollViewEmbedder.shouldScrollFirstResponderTextFieldToVisibleForKeyboard = newValue
+            containerScrollViewEmbedder.shouldScrollFirstResponderToVisibleForKeyboard = newValue
         }
         get {
-            return containerScrollViewEmbedder.shouldScrollFirstResponderTextFieldToVisibleForKeyboard
+            return containerScrollViewEmbedder.shouldScrollFirstResponderToVisibleForKeyboard
         }
     }
 
-    /// The margin applied to text fields when the scroll view is automatically scrolled
-    /// to make the first responder text field visible. The default value is 0, which
-    /// matches the UIKit default behavior.
+    /// The margin applied when the scroll view is automatically scrolled to make the
+    /// first responder view visible. The default value is 0, which matches the UIKit
+    /// behavior. This value is also applied to
+    /// `scrollFirstResponderTextFieldToVisible`, `scrollViewToVisible`, and
+    /// `scrollRectToVisible` unless overridden with the optional `margin` parameter.
     public var visibilityScrollMargin: CGFloat {
         set {
             containerScrollViewEmbedder.visibilityScrollMargin = newValue
@@ -159,8 +161,8 @@ open class ContainerScrollViewController: UIViewController {
     ///
     /// - Parameters:
     ///   - animated: If `true`, the scrolling is animated.
-    ///   - margin: An optional margin to apply to the text field. If left unspecified,
-    ///   `scrollToVisibleMargin` is used.
+    ///   - margin: An optional margin to apply to the first responder view. If left
+    ///   unspecified, `scrollToVisibleMargin` is used.
     public func scrollFirstResponderToVisible(animated: Bool, margin: CGFloat? = nil) {
         containerScrollViewEmbedder.scrollFirstResponderToVisible(animated: animated, margin: margin)
     }
