@@ -19,7 +19,7 @@
 
 A common UIKit Auto Layout task involves creating a view controller with a static layout that is too large to fit older, smaller devices, or devices in landscape orientation, or the area of the screen above the keyboard.
 
-For example, consider the following sign up screen, which fits on an iPhone XS, but not on an iPhone SE when the keyboard is presented:
+For example, consider this sign up screen, which fits on an iPhone XS, but not on an iPhone SE when the keyboard is presented:
 
 << iPhone XS and SE screenshots, with and without the keyboard >>
 
@@ -86,7 +86,7 @@ It's possible to make the embedded view controller larger than the height of the
 
 ## Properties
 
-The following properties of `ContainerScrollViewController` can be modified to control its behavior:
+Modify these `ContainerScrollViewController` properties to change its behavior:
 
 ### shouldResizeEmbeddedViewForKeyboard
 
