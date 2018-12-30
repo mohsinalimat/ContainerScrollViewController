@@ -9,8 +9,18 @@
 import UIKit
 import ContainerScrollViewController
 
+/// A class that demonstrates configuring a container scroll view controller in
+/// Interface Builder using storyboards, but using the `ContainerScrollViewEmbedder`
+/// helper class instead of subclassing `ContainerScrollViewController`.
 class EmbedderSignUpViewController: UIViewController {
 
+    /// Convenience property for accessing the embedded view controller.
+    var signUpEmbeddedViewController: SignUpEmbeddedViewController? {
+        return containerScrollViewEmbedder.embeddedViewController as? SignUpEmbeddedViewController
+    }
+
+    /// Helper class that handles the view controller embedding instead of
+    /// `ContainerScrollViewController`.
     lazy var containerScrollViewEmbedder = ContainerScrollViewEmbedder(embeddingViewController: self)
 
     override func viewDidLoad() {
@@ -18,8 +28,11 @@ class EmbedderSignUpViewController: UIViewController {
 
         containerScrollViewEmbedder.viewDidLoad()
 
+        // Allow the embedded view to shrink vertically when the keyboard is presented.
         containerScrollViewEmbedder.shouldResizeEmbeddedViewForKeyboard = true
 
+        // Allow the user to dismiss the keyboard by dragging from the scroll view to the
+        // bottom of the screen.
         containerScrollViewEmbedder.scrollView.keyboardDismissMode = .interactive
     }
 
