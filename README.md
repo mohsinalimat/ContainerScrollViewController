@@ -109,7 +109,7 @@ It's possible to make the embedded view controller larger than the height of the
 
 A boolean value that determines whether or not the embedded view is resized when the keyboard is presented.
 
-* `true` - When the keyboard is presented, the embedded view shrinks to fit the portion of the scroll view not overlapped by the keyboard, to the extent that this is permitted by the embedded view's Auto Layout constraints.
+* `true` - When the keyboard is presented, the embedded view shrinks to fit the portion of the scroll view not overlapped by the keyboard, to the extent that this is permitted by the embedded view's Auto Layout constraints. With an appropriate use of constraints, this may allow for more effective use of the reduced screen real estate. 
 
 * `false` - When the keyboard is presented, the embedded view's size remains unchanged. This is the default value.
 
@@ -117,7 +117,7 @@ A boolean value that determines whether or not the embedded view is resized when
 
 A boolean value that determines whether or not the container view controller's `additionalSafeAreaInsets` property is adjusted when the keyboard is presented.
 
-* `true` - When the keyboard is presented, the container view controller's `additionalSafeAreaInsets.bottom` property is adjusted to compensate for the portion of the scroll view that is overlapped by the keyboard. This is the default value.
+* `true` - When the keyboard is presented, the container view controller's `additionalSafeAreaInsets.bottom` property is adjusted to compensate for the portion of the scroll view that is overlapped by the keyboard, ensuring that all of the embedded view's content is accessible via scrolling. This is the default value.
 
 * `false` - When the keyboard is presented, the container view controller's `additionalSafeAreaInsets` property remains unchanged. Use this value to implement your own keyboard presentation compensation behavior.
 
