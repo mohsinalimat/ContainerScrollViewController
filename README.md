@@ -141,9 +141,9 @@ The optional `margin` parameter specifies an extra margin around the view which 
 
 ### scrollFirstResponderToVisible(animated:margin:)
 
-Adjusts the scroll view to make the first responder text field visible. If no first responder is defined, this method has no effect.
+Adjusts the scroll view to make the first responder visible. If no first responder is defined, this method has no effect.
 
-The optional `margin` parameter specifies an extra margin around the text field which is also made visible. If the `margin` parameter is unspecified or `nil`, the value of `visibilityScrollMargin` will be used instead.
+The optional `margin` parameter specifies an extra margin around the first responder which is also made visible. If the `margin` parameter is unspecified or `nil`, the value of `visibilityScrollMargin` will be used instead.
 
 ## Caveats
 
