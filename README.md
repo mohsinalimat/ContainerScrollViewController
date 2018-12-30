@@ -178,7 +178,7 @@ class MyEmbeddingViewController: UIViewController {
 }
 ```
 
-The `ContainerScrollViewEmbedder` class supports all of the same properties as `ContainerScrollViewController`.  
+The `ContainerScrollViewEmbedder` class supports all of the same [properties](#properties) as `ContainerScrollViewController`.  
 
 `ContainerScrollViewEmbedder` can also be used to embed a view controller programmatically, in which case the `viewDidLoad` and `prepare(for:sender:)` methods shown above should be omitted. Instead, provide a definition of `viewDidLoad` that calls `embedViewController` to embed the desired view controller:
 
