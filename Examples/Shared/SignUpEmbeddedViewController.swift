@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ContainerScrollViewController
 
 class SignUpEmbeddedViewController: UIViewController {
 
@@ -18,6 +19,11 @@ class SignUpEmbeddedViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: PillButton!
     @IBOutlet weak var signInButton: UIButton!
+
+    // Note: This doesn't handle the case when ContainerScrollViewEmbedder is used.
+    private var containerScrollViewController: ContainerScrollViewController? {
+        return parent as? ContainerScrollViewController
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,18 +86,25 @@ extension SignUpEmbeddedViewController: UITextFieldDelegate {
         switch textField {
         case nameTextField:
             emailTextField.becomeFirstResponder()
+            scrollFirstResponderToVisible()
         case emailTextField:
             passwordTextField.becomeFirstResponder()
+            scrollFirstResponderToVisible()
         case passwordTextField:
             passwordTextField.resignFirstResponder()
+            scrollFirstResponderToVisible()
         default:
             assertionFailure("Unrecognized text field")
         }
         return true
     }
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    private func textFieldDidEndEditing(_ textField: UITextField) {
         textField.text = trimmedText(of: textField)
+    }
+
+    private func scrollFirstResponderToVisible() {
+        containerScrollViewController?.scrollFirstResponderTextFieldToVisible(animated: true)
     }
 
 }
