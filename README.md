@@ -188,13 +188,12 @@ If you make changes to your embedded view that modify its size, you must call th
 For example, in your embedded view controller implementation, after updating the embedded view's `NSLayoutConstraint.constant` properties, animate the change like this:
 
 ```swift
-let scrollView = (parent as? ContainerScrollViewController)?.scrollView
-
 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, 
         options: [], animations: {
     // If we don't do this, and instead update only self.view, then the content size 
     // of the container scroll view won't change to reflect the new size of the 
     // embedded view.
+    let scrollView = (self.parent as? ContainerScrollViewController)?.scrollView
     scrollView?.setNeedsLayout()
     scrollView?.layoutIfNeeded()
 }, completion: nil)
