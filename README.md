@@ -118,7 +118,7 @@ An enum representing the method used to adjust the view when the keyboard is pre
 
 * `.adjustScrollViewContentSize` - Adjust the scroll view's content size. This approach leaves the view controller's bottom additional safe area inset untouched, which may be desirable if you are using it for other purposes.
 
-    Unfortunately, using the `.adjustScrollViewContentSize` behavior, when the keyboard is presented, at least as of iOS 12, the scroll indicator will appear misaligned when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. This appears to be a side effect of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
+    Unfortunately, with the `.adjustScrollViewContentSize` behavior, when the keyboard is presented, at least as of iOS 12, the scroll indicator will appear misaligned when the left and right safe area insets are nonzero, for example in landscape orientation on iPhone X. This appears to be a side effect of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
 
     << Screenshot >>
 
