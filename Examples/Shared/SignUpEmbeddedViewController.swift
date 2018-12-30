@@ -104,7 +104,7 @@ extension SignUpEmbeddedViewController: UITextFieldDelegate {
     }
 
     private func scrollFirstResponderToVisible() {
-        containerScrollViewController?.scrollFirstResponderTextFieldToVisible(animated: true)
+        containerScrollViewController?.scrollFirstResponderToVisible(animated: true)
     }
 
 }

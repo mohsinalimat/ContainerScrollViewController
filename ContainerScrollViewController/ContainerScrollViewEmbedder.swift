@@ -350,7 +350,7 @@ public class ContainerScrollViewEmbedder {
             // Note: We're specifying false for animated here, but the scrolling may animate
             // anyway because KeyboardObserver.adjustViewForKeyboard wraps the call in an
             // animation block.
-            scrollFirstResponderTextFieldToVisible(animated: false)
+            scrollFirstResponderToVisible(animated: false)
         }
     }
 
@@ -377,18 +377,18 @@ public class ContainerScrollViewEmbedder {
         scrollRectToVisible(scrollView.convert(view.bounds, from: view), animated: animated, margin: margin)
     }
 
-    /// Adjusts the scroll view to make the first responder text field visible. If no
-    /// first responder is defined, this method has no effect.
+    /// Adjusts the scroll view to make the first responder visible. If no first
+    /// responder is defined, this method has no effect.
     ///
     /// - Parameters:
     ///   - animated: If `true`, the scrolling is animated.
     ///   - margin: An optional margin to apply to the text field. If left unspecified,
     ///   `scrollToVisibleMargin` is used.
-    public func scrollFirstResponderTextFieldToVisible(animated: Bool, margin: CGFloat? = nil) {
-        guard let textField = UIResponder.rf_current as? UITextField else {
+    public func scrollFirstResponderToVisible(animated: Bool, margin: CGFloat? = nil) {
+        guard let view = UIResponder.rf_current as? UIView else {
             return
         }
-        scrollViewToVisible(textField, animated: animated, margin: margin)
+        scrollViewToVisible(view, animated: animated, margin: margin)
     }
 
 }
