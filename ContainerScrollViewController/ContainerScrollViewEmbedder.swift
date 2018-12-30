@@ -330,8 +330,8 @@ public class ContainerScrollViewEmbedder {
             // We're using this approach instead of resizing the scroll view's content size,
             // because doing so requires adjusting its scrollIndicatorInsets property to
             // compensate, and on iPhone X in landscape orientation, this has the unfortunate
-            // side effect of awkwardly shifting the scroll indicator inset away from the edge
-            // of the screen.
+            // side effect of awkwardly shifting the scroll indicator away from the edge of the
+            // screen.
             //
             // Additionally, the approach of resizing the scroll view's content size appears to
             // interact poorly with the scroll view's scrollRectToVisible method.
