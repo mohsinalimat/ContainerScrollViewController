@@ -127,7 +127,23 @@ var myEmbeddedViewController: MyEmbeddedViewController? {
 
 ## Methods
 
-<< ScrollXToVisible methods >>
+### scrollFirstResponderTextFieldToVisible(animated:margin:)
+
+Adjusts the scroll view to make the first responder text field visible. If no first responder is defined, this method has no effect.
+
+The optional `margin` parameter specifies an extra margin around the text field which is also made visible. If the `margin` parameter is unspecified or `nil`, the value of `visibilityScrollMargin` will be used instead.
+
+### scrollViewToVisible(animated:margin:)
+
+Adjusts the scroll view to make the specified view visible.
+
+The optional `margin` parameter specifies an extra margin around the view which is also made visible. If the `margin` parameter is unspecified or `nil`, the value of `visibilityScrollMargin` will be used instead.
+
+### scrollRectToVisible(animated:margin:)
+
+Adjusts the scroll view to make the rect visible.
+
+The optional `margin` parameter specifies an extra margin around the rect which is also made visible. If the `margin` parameter is unspecified or `nil`, the value of `visibilityScrollMargin` will be used instead.
 
 ## Caveats
 
