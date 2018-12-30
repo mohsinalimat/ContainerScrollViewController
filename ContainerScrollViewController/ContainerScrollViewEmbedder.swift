@@ -354,7 +354,7 @@ public class ContainerScrollViewEmbedder {
         }
     }
 
-    /// Scrolls the view to make a rect visible.
+    /// Adjusts the scroll view to make a rect visible.
     ///
     /// - Parameters:
     ///   - rect: The rect to make visible.
@@ -366,7 +366,7 @@ public class ContainerScrollViewEmbedder {
         scrollView.scrollRectToVisible(textFieldRect, animated: animated)
     }
 
-    /// Scrolls the view to make the specified view visible.
+    /// Adjusts the scroll view to make the specified view visible.
     ///
     /// - Parameters:
     ///   - view: The view to make visible.
@@ -377,7 +377,7 @@ public class ContainerScrollViewEmbedder {
         scrollRectToVisible(scrollView.convert(view.bounds, from: view), animated: animated, margin: margin)
     }
 
-    /// Scrolls the view to make the first responder text field visible.
+    /// Adjusts the scroll view to make the first responder text field visible.
     ///
     /// - Parameters:
     ///   - animated: If `true`, the scrolling is animated.
