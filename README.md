@@ -132,10 +132,14 @@ An enum representing the method used to adjust the view when the keyboard is pre
 
 The embedded view is positioned within the container view's safe area, and consequently, the embedded view's safe area insets are zero, and if the embedded view's background color is set, it won't extend underneath the navigation bar or status bar.
 
+<< Screenshot >>
+
 To specify a background color that extends to the edges of the screen:
 
 1. Set the background color of the container view to the desired color.
 2. Set the embedded view's background color to transparent.
+
+<< Screenshot >>
 
 ### Resizing the Embedded View
 
