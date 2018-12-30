@@ -377,7 +377,8 @@ public class ContainerScrollViewEmbedder {
         scrollRectToVisible(scrollView.convert(view.bounds, from: view), animated: animated, margin: margin)
     }
 
-    /// Adjusts the scroll view to make the first responder text field visible.
+    /// Adjusts the scroll view to make the first responder text field visible. If no
+    /// first responder is defined, this method has no effect.
     ///
     /// - Parameters:
     ///   - animated: If `true`, the scrolling is animated.
