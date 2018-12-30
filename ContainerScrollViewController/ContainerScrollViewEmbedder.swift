@@ -119,32 +119,6 @@ public class ContainerScrollViewEmbedder {
         keyboardObserver = KeyboardObserver(containerScrollViewEmbedder: self)
     }
 
-    /// Embeds a view controller within the scroll view. If a container view controller
-    /// relationship is not established in Interface Builder, this method may be called
-    /// in `viewDidLoad` to manually embed a view controller's view in the scroll view.
-    ///
-    /// This method may only be called once.
-    ///
-    /// - Parameter embeddedViewController: The view controller to embed in the scroll view.
-    public func embedViewController(_ embeddedViewController: UIViewController) {
-        assert(self.embeddedViewController == nil, "Only one view controller may be embedded")
-
-        self.embeddedViewController = embeddedViewController
-
-        guard let embeddedView = embeddedViewController.view else {
-            assertionFailure("The embedded view controller's view is undefined")
-            return
-        }
-
-        assert(embeddingViewController != nil, "The embedding view controller is undefined")
-
-        embeddingViewController?.addChild(embeddedViewController)
-        scrollView.addSubview(embeddedView)
-        embeddedViewController.didMove(toParent: embeddingViewController)
-
-        addScrollView()
-    }
-
     /// Embeds the container view embed segue's destination view controller in the
     /// scroll view.
     ///
@@ -171,21 +145,6 @@ public class ContainerScrollViewEmbedder {
 
         // At this point, it is expected that embedViewController will be called in
         // the ContainerScrollViewController subclass's viewDidLoad method.
-    }
-
-    /// Prepares for the container view embedding segue.
-    ///
-    /// This method must be called by the embedding view controller's implementation of
-    /// `prepare(for:sender:)` if an embed segue is specified in Interface Builder.
-    public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // We're assuming that if a segue is initiated before viewDidLoad is called,
-        // it must be a container view embedding segue.
-        if !viewDidLoadWasCalled {
-            assert(segue.source === embeddingViewController)
-            assert(embeddedViewController == nil)
-            // This view controller will be embedded in the scroll view later, in viewDidLoad.
-            embeddedViewController = segue.destination
-        }
     }
 
     /// Responds to changes in the size of the view, for example in response to device
@@ -232,6 +191,47 @@ public class ContainerScrollViewEmbedder {
         }, completion: { (context: UIViewControllerTransitionCoordinatorContext) in
             self.keyboardObserver?.resume()
         })
+    }
+
+    /// Prepares for the container view embedding segue.
+    ///
+    /// This method must be called by the embedding view controller's implementation of
+    /// `prepare(for:sender:)` if an embed segue is specified in Interface Builder.
+    public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // We're assuming that if a segue is initiated before viewDidLoad is called,
+        // it must be a container view embedding segue.
+        if !viewDidLoadWasCalled {
+            assert(segue.source === embeddingViewController)
+            assert(embeddedViewController == nil)
+            // This view controller will be embedded in the scroll view later, in viewDidLoad.
+            embeddedViewController = segue.destination
+        }
+    }
+
+    /// Embeds a view controller within the scroll view. If a container view controller
+    /// relationship is not established in Interface Builder, this method may be called
+    /// in `viewDidLoad` to manually embed a view controller's view in the scroll view.
+    ///
+    /// This method may only be called once.
+    ///
+    /// - Parameter embeddedViewController: The view controller to embed in the scroll view.
+    public func embedViewController(_ embeddedViewController: UIViewController) {
+        assert(self.embeddedViewController == nil, "Only one view controller may be embedded")
+
+        self.embeddedViewController = embeddedViewController
+
+        guard let embeddedView = embeddedViewController.view else {
+            assertionFailure("The embedded view controller's view is undefined")
+            return
+        }
+
+        assert(embeddingViewController != nil, "The embedding view controller is undefined")
+
+        embeddingViewController?.addChild(embeddedViewController)
+        scrollView.addSubview(embeddedView)
+        embeddedViewController.didMove(toParent: embeddingViewController)
+
+        addScrollView()
     }
 
     /// Adds the scroll view to the view hierarchy.
@@ -331,8 +331,8 @@ public class ContainerScrollViewEmbedder {
         return scrollView.bounds.inset(by: scrollView.adjustedContentInset).size
     }
 
-    /// Adjusts the ContainerScrollViewController to compensate for the portion of the
-    /// keyboard that overlaps the view.
+    /// Adjusts the view to compensate for the portion of the keyboard that overlaps the
+    /// scroll view.
     ///
     /// This method is called by `KeyboardObserver` when the keyboard is presented,
     /// dismissed, or changes size.
@@ -342,7 +342,7 @@ public class ContainerScrollViewEmbedder {
     internal func adjustViewForKeyboard(withBottomInset bottomInset: CGFloat) {
         scrollViewBounceController.bottomInset = bottomInset
 
-        applyKeyboardAdjustmentBehavior(withBottomInset: bottomInset)
+        applyKeyboardAdjustmentBehavior(keyboardAdjustmentBehavior, withBottomInset: bottomInset)
 
         // If the keyboard isn't dismissed, scroll the first responder text field
         // so it's visible on the screen.
@@ -359,7 +359,14 @@ public class ContainerScrollViewEmbedder {
         }
     }
 
-    private func applyKeyboardAdjustmentBehavior(withBottomInset bottomInset: CGFloat) {
+    /// Adjusts the view to compensate for the portion of the keyboard that overlaps the
+    /// scroll view, given a keyboard adjustment behavior.
+    ///
+    /// - Parameters:
+    ///     - keyboardAdjustmentBehavior: The keyboard adjustment behavior to apply.
+    ///     - bottomInset: The height of the area of keyboard's frame that
+    ///     overlaps the view.
+    private func applyKeyboardAdjustmentBehavior(_ keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior, withBottomInset bottomInset: CGFloat) {
         switch keyboardAdjustmentBehavior {
         case .none:
             return
