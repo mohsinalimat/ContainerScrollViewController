@@ -50,6 +50,10 @@ public class ContainerScrollViewEmbedder {
     /// value is `false`.
     public var shouldResizeEmbeddedViewForKeyboard = false
 
+    /// If `true`, the container view controller's `additionalSafeAreaInsets` property
+    /// is adjusted when the keyboard is presented. The default value is `true`.
+    public var shouldAdjustContainerViewForKeyboard = true
+
     /// If `true`, the first responder text field will be scrolled to visible when
     /// the keyboard is presented, or when the keyboard's size is adjusted, for example
     /// as a result of a device orientation change. The default value is `true`.
@@ -57,34 +61,6 @@ public class ContainerScrollViewEmbedder {
     /// Even if this is set to `false`, UIKit may scroll the text field to visible,
     /// although this may not work correctly in all cases.
     public var shouldScrollFirstResponderTextFieldToVisibleForKeyboard = true
-
-    /// The behavior for adjusting the view when the keyboard is presented.
-    public enum KeyboardAdjustmentBehavior {
-        /// Make no view adjustments when the keyboard is presented. If no additional action
-        /// is taken, the keyboard will overlap the scroll view and its embedded view.
-        ///
-        /// This value can be used to override the container's view default keyboard
-        /// handling behavior.
-        case none
-
-        /// Adjust the view controller's additional safe area insets. This is the default
-        /// behavior.
-        case adjustAdditionalSafeAreaInsets
-
-        /// Adjust the scroll view's content size.
-        ///
-        /// This approach leaves the view controller's bottom additional safe area inset
-        /// untouched, which may be desirable if you are using it for other purposes.
-        /// However, when the keyboard is presented, the scroll indicator will be misaligned
-        /// when the left and right safe area insets are nonzero, for example in landscape
-        /// orientation on iPhone X. At least as of iOS 12, this appears to be a side effect
-        /// of setting `UIScrollView.scrollIndicatorInsets.bottom` to a nonzero value.
-        case adjustScrollViewContentSize
-    }
-
-    /// The behavior for adjusting the view when the keyboard is presented. The default
-    /// value of this property is `.adjustAdditionalSafeAreaInsets`.
-    public var keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior = .adjustAdditionalSafeAreaInsets
 
     /// The margin applied when the scroll view is automatically scrolled to make the
     /// first responder text field visible. The default value is 0, which matches the
@@ -98,9 +74,6 @@ public class ContainerScrollViewEmbedder {
 
     /// The embedded view's height constraint.
     private var embeddedViewMinimumHeightConstraint: NSLayoutConstraint?
-
-    /// The scroll view's bottom anchor constraint.
-    private var scrollViewBottomAnchorConstraint: NSLayoutConstraint?
 
     /// An object that responds to notifications posted by UIKit when the keyboard is
     /// presented or dismissed, and which adjusts the `ContainerScrollViewController`
@@ -283,15 +256,12 @@ public class ContainerScrollViewEmbedder {
         let embeddedViewMinimumHeightConstraint = embeddedView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.safeAreaLayoutGuide.heightAnchor, multiplier: 1)
         self.embeddedViewMinimumHeightConstraint = embeddedViewMinimumHeightConstraint
 
-        let scrollViewBottomAnchorConstraint = scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: embeddedView.bottomAnchor)
-        self.scrollViewBottomAnchorConstraint = scrollViewBottomAnchorConstraint
-
         embeddedView.translatesAutoresizingMaskIntoConstraints = false
         let constraints: [NSLayoutConstraint] = [
             scrollView.contentLayoutGuide.leftAnchor.constraint(equalTo: embeddedView.leftAnchor),
             scrollView.contentLayoutGuide.rightAnchor.constraint(equalTo: embeddedView.rightAnchor),
             scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: embeddedView.topAnchor),
-            scrollViewBottomAnchorConstraint,
+            scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: embeddedView.bottomAnchor),
             embeddedView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.safeAreaLayoutGuide.widthAnchor, multiplier: 1),
             embeddedViewMinimumHeightConstraint,
             ]
@@ -347,7 +317,9 @@ public class ContainerScrollViewEmbedder {
     internal func adjustViewForKeyboard(withBottomInset bottomInset: CGFloat) {
         scrollViewBounceController.bottomInset = bottomInset
 
-        applyKeyboardAdjustmentBehavior(keyboardAdjustmentBehavior, withBottomInset: bottomInset)
+        if shouldAdjustContainerViewForKeyboard {
+            adjustContainerViewAdditionalSafeAreInsets(withBottomInset: bottomInset)
+        }
 
         // If the keyboard isn't dismissed, scroll the first responder text field
         // so it's visible on the screen.
@@ -364,49 +336,22 @@ public class ContainerScrollViewEmbedder {
         }
     }
 
-    /// Adjusts the view to compensate for the portion of the keyboard that overlaps the
-    /// scroll view, given a keyboard adjustment behavior.
+    /// Adjusts the container view's `additionalSafeAreaInsets` property to compensate
+    /// for the portion of the keyboard that overlaps the scroll view.
     ///
-    /// - Parameters:
-    ///     - keyboardAdjustmentBehavior: The keyboard adjustment behavior to apply.
-    ///     - bottomInset: The height of the area of keyboard's frame that
+    /// - Parameter bottomInset: The height of the area of keyboard's frame that
     ///     overlaps the view.
-    private func applyKeyboardAdjustmentBehavior(_ keyboardAdjustmentBehavior: KeyboardAdjustmentBehavior, withBottomInset bottomInset: CGFloat) {
-        switch keyboardAdjustmentBehavior {
-        case .none:
-            return
-        case .adjustAdditionalSafeAreaInsets:
-            // Adjust the view controller's additional safe area insets. This is the default
-            // behavior.
-            if shouldResizeEmbeddedViewForKeyboard {
-                // Adjust the additional safe area insets, possibly reducing the size
-                // of the embedded view.
-                embeddingViewController?.additionalSafeAreaInsets.bottom = bottomInset
-            } else {
-                // Adjust the additional safe area insets, but also increase the minimum height of
-                // the embedded view to compensate. The size of the embedded view will
-                // remain unchanged.
-                embeddingViewController?.additionalSafeAreaInsets.bottom = bottomInset
-                embeddedViewMinimumHeightConstraint?.constant = bottomInset
-            }
-        case .adjustScrollViewContentSize:
-            // Adjust the scroll view's content size. This approach leaves the view
-            // controller's additional safe area insets untouched, but will result in
-            // misaligned scroll indicators when the left and right safe area insets are
-            // nonzero, for example in landscape orientation on iPhone X. This appears to be a
-            // side effect of setting the bottom scroll indicator inset to a nonzero value.
-            if shouldResizeEmbeddedViewForKeyboard {
-                // Add padding to the bottom of the scroll view, but reduce the minimum allowed
-                // height of the embedded view to compensate.
-                scrollViewBottomAnchorConstraint?.constant = bottomInset
-                embeddedViewMinimumHeightConstraint?.constant = -bottomInset
-                scrollView.scrollIndicatorInsets.bottom = bottomInset
-            } else {
-                // Add padding to the bottom of the scroll view. The size of the embedded view will
-                // remain unchanged.
-                scrollViewBottomAnchorConstraint?.constant = bottomInset
-                scrollView.scrollIndicatorInsets.bottom = bottomInset
-            }
+    private func adjustContainerViewAdditionalSafeAreInsets(withBottomInset bottomInset: CGFloat) {
+        if shouldResizeEmbeddedViewForKeyboard {
+            // Adjust the additional safe area insets, possibly reducing the size
+            // of the embedded view.
+            embeddingViewController?.additionalSafeAreaInsets.bottom = bottomInset
+        } else {
+            // Adjust the additional safe area insets, but also increase the minimum height of
+            // the embedded view to compensate. The size of the embedded view will
+            // remain unchanged.
+            embeddingViewController?.additionalSafeAreaInsets.bottom = bottomInset
+            embeddedViewMinimumHeightConstraint?.constant = bottomInset
         }
     }
 

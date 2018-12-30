@@ -50,6 +50,17 @@ open class ContainerScrollViewController: UIViewController {
         }
     }
 
+    /// If `true`, the container view controller's `additionalSafeAreaInsets` property
+    /// is adjusted when the keyboard is presented. The default value is `true`.
+    public var shouldAdjustContainerViewForKeyboard: Bool {
+        set {
+            containerScrollViewEmbedder.shouldAdjustContainerViewForKeyboard = newValue
+        }
+        get {
+            return containerScrollViewEmbedder.shouldAdjustContainerViewForKeyboard
+        }
+    }
+
     /// If `true`, the first responder text field will be scrolled to visible when
     /// the keyboard is presented, or when the keyboard's size is adjusted, for example
     /// as a result of a device orientation change. The default value is `true`.
@@ -62,17 +73,6 @@ open class ContainerScrollViewController: UIViewController {
         }
         get {
             return containerScrollViewEmbedder.shouldScrollFirstResponderTextFieldToVisibleForKeyboard
-        }
-    }
-
-    /// The behavior for adjusting the view when the keyboard is presented. The default
-    /// value of this property is `.adjustAdditionalSafeAreaInsets`.
-    public var keyboardAdjustmentBehavior: ContainerScrollViewEmbedder.KeyboardAdjustmentBehavior {
-        set {
-            containerScrollViewEmbedder.keyboardAdjustmentBehavior = newValue
-        }
-        get {
-            return containerScrollViewEmbedder.keyboardAdjustmentBehavior
         }
     }
 
