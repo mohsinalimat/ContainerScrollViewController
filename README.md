@@ -226,3 +226,5 @@ moves between text fields. >>
 << Works around an issue when the keyboard is presented and the device orientation changes, in which case, as of iOS 12, UIKit doesn't correctly scroll the text field to make it visible. >>
 
 << Correctly handles the keyboard partially occluding a `ContainerScrollView` that doesn't completely cover the screen. >>
+
+<< Enables `UIScrollView.alwaysBounceVertical` when the keyboard is presented if `UIScrollView.keyboardDismissMode` is set to anything other than `.none`, so the keyboard can be dismissed even if the view is too short to normally allow scrolling. >>
