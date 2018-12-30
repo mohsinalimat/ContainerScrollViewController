@@ -343,7 +343,9 @@ public class ContainerScrollViewEmbedder {
 
         applyKeyboardAdjustmentBehavior(withBottomInset: bottomInset)
 
-        if shouldScrollFirstResponderTextFieldToVisibleForKeyboard {
+        // If the keyboard isn't dismissed, scroll the first responder text field
+        // so it's visible on the screen.
+        if bottomInset != 0 && shouldScrollFirstResponderTextFieldToVisibleForKeyboard {
             // If we don't do this, then if the keyboard is presented and we rotate the device
             // from portrait to landscape, UIKit will attempt to scroll the view to make the
             // text field visible automatically. At least as of iOS 12, the UIKit default
