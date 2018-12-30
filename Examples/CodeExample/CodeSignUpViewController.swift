@@ -36,7 +36,7 @@ class CodeSignUpViewController: ContainerScrollViewController {
     /// a real app, this view controller could be created in code.
     func createSignUpEmbeddedViewController() -> SignUpEmbeddedViewController {
         let bundle = Bundle(for: CodeSignUpViewController.self)
-        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
+        let storyboard = UIStoryboard(name: "Shared", bundle: bundle)
         guard let signUpEmbeddedViewController = storyboard.instantiateViewController(withIdentifier: "signUpEmbeddedViewController") as? SignUpEmbeddedViewController else {
             fatalError("Unable to load signUpEmbeddedViewController")
         }

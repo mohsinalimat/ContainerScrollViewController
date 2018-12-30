@@ -20,14 +20,14 @@
 		3A23593A21D858F80020CA65 /* PillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279DE21D14BFE00D1CD38 /* PillButton.swift */; };
 		3A23593B21D858F80020CA65 /* PillTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279E021D14C1500D1CD38 /* PillTextField.swift */; };
 		3A23593C21D858F80020CA65 /* RoundedCornersImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279E421D14F9400D1CD38 /* RoundedCornersImage.swift */; };
-		3A23593D21D858FC0020CA65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480421D09DC200E464FD /* Main.storyboard */; };
+		3A23593D21D858FC0020CA65 /* Shared.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480421D09DC200E464FD /* Shared.storyboard */; };
 		3A23593E21D858FF0020CA65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */; };
 		3A23593F21D859020020CA65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480721D09DC300E464FD /* Assets.xcassets */; };
 		3A23594121D85A4C0020CA65 /* CodeSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A23594021D85A4C0020CA65 /* CodeSignUpViewController.swift */; };
 		3A2A2C4D21D29CE400FA3D20 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */; };
 		3A7C480121D09DC200E464FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480021D09DC200E464FD /* AppDelegate.swift */; };
 		3A7C480321D09DC200E464FD /* StoryboardSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480221D09DC200E464FD /* StoryboardSignUpViewController.swift */; };
-		3A7C480621D09DC200E464FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480421D09DC200E464FD /* Main.storyboard */; };
+		3A7C480621D09DC200E464FD /* Shared.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480421D09DC200E464FD /* Shared.storyboard */; };
 		3A7C480821D09DC300E464FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480721D09DC300E464FD /* Assets.xcassets */; };
 		3A7C480B21D09DC300E464FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */; };
 		3A7C481121D09EAE00E464FD /* SignUpEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C481021D09EAE00E464FD /* SignUpEmbeddedViewController.swift */; };
@@ -87,7 +87,7 @@
 		3A7C47FE21D09DC200E464FD /* StoryboardExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7C480021D09DC200E464FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A7C480221D09DC200E464FD /* StoryboardSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardSignUpViewController.swift; sourceTree = "<group>"; };
-		3A7C480521D09DC200E464FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3A7C480521D09DC200E464FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Shared.storyboard; sourceTree = "<group>"; };
 		3A7C480721D09DC300E464FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A7C480A21D09DC300E464FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A7C480C21D09DC300E464FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 				3A2279DE21D14BFE00D1CD38 /* PillButton.swift */,
 				3A2279E021D14C1500D1CD38 /* PillTextField.swift */,
 				3A2279E421D14F9400D1CD38 /* RoundedCornersImage.swift */,
-				3A7C480421D09DC200E464FD /* Main.storyboard */,
+				3A7C480421D09DC200E464FD /* Shared.storyboard */,
 				3A7C480721D09DC300E464FD /* Assets.xcassets */,
 				3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */,
 			);
@@ -386,7 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A23593D21D858FC0020CA65 /* Main.storyboard in Resources */,
+				3A23593D21D858FC0020CA65 /* Shared.storyboard in Resources */,
 				3A23593F21D859020020CA65 /* Assets.xcassets in Resources */,
 				3A23593E21D858FF0020CA65 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -398,7 +398,7 @@
 			files = (
 				3A7C480B21D09DC300E464FD /* LaunchScreen.storyboard in Resources */,
 				3A7C480821D09DC300E464FD /* Assets.xcassets in Resources */,
-				3A7C480621D09DC200E464FD /* Main.storyboard in Resources */,
+				3A7C480621D09DC200E464FD /* Shared.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,12 +485,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3A7C480421D09DC200E464FD /* Main.storyboard */ = {
+		3A7C480421D09DC200E464FD /* Shared.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3A7C480521D09DC200E464FD /* Base */,
 			);
-			name = Main.storyboard;
+			name = Shared.storyboard;
 			sourceTree = "<group>";
 		};
 		3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */ = {
