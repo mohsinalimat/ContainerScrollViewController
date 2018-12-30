@@ -202,7 +202,7 @@ public class ContainerScrollViewEmbedder {
         // it must be a container view embedding segue.
         if !viewDidLoadWasCalled {
             assert(segue.source === embeddingViewController)
-            assert(embeddedViewController == nil)
+            assert(embeddedViewController == nil, "Only one embed segue is supported")
             // This view controller will be embedded in the scroll view later, in viewDidLoad.
             embeddedViewController = segue.destination
         }
