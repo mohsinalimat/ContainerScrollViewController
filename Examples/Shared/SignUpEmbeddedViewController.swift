@@ -67,6 +67,7 @@ class SignUpEmbeddedViewController: UIViewController {
         return text.isEmpty
     }
 
+    /// Strips leading and trailing whitespace.
     private func trimmedText(of textField: UITextField) -> String? {
         return textField.text?.trimmingCharacters(in: CharacterSet.whitespaces)
     }
@@ -90,7 +91,6 @@ extension SignUpEmbeddedViewController: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        // Strip leading and trailing whitespace.
         textField.text = trimmedText(of: textField)
     }
 
