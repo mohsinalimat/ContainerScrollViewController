@@ -1,6 +1,6 @@
 //
-//  SignUpViewController.swift
-//  Example
+//  StoryboardSignUpViewController.swift
+//  StoryboardExample
 //
 //  Created by Drew Olbrich on 12/23/18.
 //  Copyright © 2018 Drew Olbrich. All rights reserved.
@@ -9,14 +9,10 @@
 import UIKit
 import ContainerScrollViewController
 
-class SignUpViewController: ContainerScrollViewController {
+class StoryboardSignUpViewController: ContainerScrollViewController {
 
     private var signUpEmbeddedViewController: SignUpEmbeddedViewController? {
         return embeddedViewController as? SignUpEmbeddedViewController
-    }
-
-    override var childForStatusBarStyle: UIViewController? {
-        return signUpEmbeddedViewController
     }
 
     override func viewDidLoad() {
@@ -25,6 +21,10 @@ class SignUpViewController: ContainerScrollViewController {
         shouldResizeEmbeddedViewForKeyboard = true
 
         scrollView.keyboardDismissMode = .interactive
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
 }

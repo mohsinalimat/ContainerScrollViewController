@@ -14,9 +14,19 @@
 		3A2279E121D14C1500D1CD38 /* PillTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279E021D14C1500D1CD38 /* PillTextField.swift */; };
 		3A2279E521D14F9400D1CD38 /* RoundedCornersImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279E421D14F9400D1CD38 /* RoundedCornersImage.swift */; };
 		3A23591D21D7F24F0020CA65 /* UIResponder+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A23591C21D7F24F0020CA65 /* UIResponder+Current.swift */; };
+		3A23592821D858390020CA65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A23592721D858390020CA65 /* AppDelegate.swift */; };
+		3A23593821D858F80020CA65 /* SignUpEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C481021D09EAE00E464FD /* SignUpEmbeddedViewController.swift */; };
+		3A23593921D858F80020CA65 /* SignUpBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279DC21D13C9C00D1CD38 /* SignUpBackgroundView.swift */; };
+		3A23593A21D858F80020CA65 /* PillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279DE21D14BFE00D1CD38 /* PillButton.swift */; };
+		3A23593B21D858F80020CA65 /* PillTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279E021D14C1500D1CD38 /* PillTextField.swift */; };
+		3A23593C21D858F80020CA65 /* RoundedCornersImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279E421D14F9400D1CD38 /* RoundedCornersImage.swift */; };
+		3A23593D21D858FC0020CA65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480421D09DC200E464FD /* Main.storyboard */; };
+		3A23593E21D858FF0020CA65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */; };
+		3A23593F21D859020020CA65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480721D09DC300E464FD /* Assets.xcassets */; };
+		3A23594121D85A4C0020CA65 /* CodeSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A23594021D85A4C0020CA65 /* CodeSignUpViewController.swift */; };
 		3A2A2C4D21D29CE400FA3D20 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */; };
 		3A7C480121D09DC200E464FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480021D09DC200E464FD /* AppDelegate.swift */; };
-		3A7C480321D09DC200E464FD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480221D09DC200E464FD /* SignUpViewController.swift */; };
+		3A7C480321D09DC200E464FD /* StoryboardSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480221D09DC200E464FD /* StoryboardSignUpViewController.swift */; };
 		3A7C480621D09DC200E464FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480421D09DC200E464FD /* Main.storyboard */; };
 		3A7C480821D09DC300E464FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480721D09DC300E464FD /* Assets.xcassets */; };
 		3A7C480B21D09DC300E464FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */; };
@@ -68,11 +78,15 @@
 		3A2279E021D14C1500D1CD38 /* PillTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillTextField.swift; sourceTree = "<group>"; };
 		3A2279E421D14F9400D1CD38 /* RoundedCornersImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersImage.swift; sourceTree = "<group>"; };
 		3A23591C21D7F24F0020CA65 /* UIResponder+Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Current.swift"; sourceTree = "<group>"; };
+		3A23592521D858390020CA65 /* CodeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A23592721D858390020CA65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3A23593321D858390020CA65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A23594021D85A4C0020CA65 /* CodeSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSignUpViewController.swift; sourceTree = "<group>"; };
 		3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		3A7C47F921D091B100E464FD /* ContainerScrollViewController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = ContainerScrollViewController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		3A7C47FE21D09DC200E464FD /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A7C47FE21D09DC200E464FD /* StoryboardExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7C480021D09DC200E464FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A7C480221D09DC200E464FD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3A7C480221D09DC200E464FD /* StoryboardSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardSignUpViewController.swift; sourceTree = "<group>"; };
 		3A7C480521D09DC200E464FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A7C480721D09DC300E464FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A7C480A21D09DC300E464FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -93,6 +107,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3A23592221D858390020CA65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A7C47FB21D09DC200E464FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,11 +140,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A7C47FF21D09DC200E464FD /* Example */ = {
+		3A23591E21D856E20020CA65 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				3A7C480021D09DC200E464FD /* AppDelegate.swift */,
-				3A7C480221D09DC200E464FD /* SignUpViewController.swift */,
 				3A7C481021D09EAE00E464FD /* SignUpEmbeddedViewController.swift */,
 				3A2279DC21D13C9C00D1CD38 /* SignUpBackgroundView.swift */,
 				3A2279DE21D14BFE00D1CD38 /* PillButton.swift */,
@@ -132,9 +151,38 @@
 				3A7C480421D09DC200E464FD /* Main.storyboard */,
 				3A7C480721D09DC300E464FD /* Assets.xcassets */,
 				3A7C480921D09DC300E464FD /* LaunchScreen.storyboard */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		3A23591F21D857130020CA65 /* StoryboardExample */ = {
+			isa = PBXGroup;
+			children = (
+				3A7C480021D09DC200E464FD /* AppDelegate.swift */,
+				3A7C480221D09DC200E464FD /* StoryboardSignUpViewController.swift */,
 				3A7C480C21D09DC300E464FD /* Info.plist */,
 			);
-			path = Example;
+			path = StoryboardExample;
+			sourceTree = "<group>";
+		};
+		3A23592621D858390020CA65 /* CodeExample */ = {
+			isa = PBXGroup;
+			children = (
+				3A23592721D858390020CA65 /* AppDelegate.swift */,
+				3A23594021D85A4C0020CA65 /* CodeSignUpViewController.swift */,
+				3A23593321D858390020CA65 /* Info.plist */,
+			);
+			path = CodeExample;
+			sourceTree = "<group>";
+		};
+		3A7C47FF21D09DC200E464FD /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				3A23591F21D857130020CA65 /* StoryboardExample */,
+				3A23592621D858390020CA65 /* CodeExample */,
+				3A23591E21D856E20020CA65 /* Shared */,
+			);
+			path = Examples;
 			sourceTree = "<group>";
 		};
 		3A7C481221D0A06200E464FD /* Frameworks */ = {
@@ -152,7 +200,7 @@
 				3A7C47F921D091B100E464FD /* ContainerScrollViewController.podspec */,
 				3AB822D221D0562300ED7576 /* ContainerScrollViewController */,
 				3AB822DD21D0562300ED7576 /* ContainerScrollViewControllerTests */,
-				3A7C47FF21D09DC200E464FD /* Example */,
+				3A7C47FF21D09DC200E464FD /* Examples */,
 				3AB822D121D0562300ED7576 /* Products */,
 				3A7C481221D0A06200E464FD /* Frameworks */,
 			);
@@ -163,7 +211,8 @@
 			children = (
 				3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */,
 				3AB822D921D0562300ED7576 /* ContainerScrollViewControllerTests.xctest */,
-				3A7C47FE21D09DC200E464FD /* Example.app */,
+				3A7C47FE21D09DC200E464FD /* StoryboardExample.app */,
+				3A23592521D858390020CA65 /* CodeExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,9 +263,26 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3A7C47FD21D09DC200E464FD /* Example */ = {
+		3A23592421D858390020CA65 /* CodeExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A7C480D21D09DC300E464FD /* Build configuration list for PBXNativeTarget "Example" */;
+			buildConfigurationList = 3A23593421D858390020CA65 /* Build configuration list for PBXNativeTarget "CodeExample" */;
+			buildPhases = (
+				3A23592121D858390020CA65 /* Sources */,
+				3A23592221D858390020CA65 /* Frameworks */,
+				3A23592321D858390020CA65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CodeExample;
+			productName = CodeExample;
+			productReference = 3A23592521D858390020CA65 /* CodeExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3A7C47FD21D09DC200E464FD /* StoryboardExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A7C480D21D09DC300E464FD /* Build configuration list for PBXNativeTarget "StoryboardExample" */;
 			buildPhases = (
 				3A7C47FA21D09DC200E464FD /* Sources */,
 				3A7C47FB21D09DC200E464FD /* Frameworks */,
@@ -228,9 +294,9 @@
 			dependencies = (
 				3A2279D521D1356500D1CD38 /* PBXTargetDependency */,
 			);
-			name = Example;
+			name = StoryboardExample;
 			productName = Example;
-			productReference = 3A7C47FE21D09DC200E464FD /* Example.app */;
+			productReference = 3A7C47FE21D09DC200E464FD /* StoryboardExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3AB822CF21D0562300ED7576 /* ContainerScrollViewController */ = {
@@ -279,6 +345,9 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Drew Olbrich";
 				TargetAttributes = {
+					3A23592421D858390020CA65 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					3A7C47FD21D09DC200E464FD = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -306,12 +375,23 @@
 			targets = (
 				3AB822CF21D0562300ED7576 /* ContainerScrollViewController */,
 				3AB822D821D0562300ED7576 /* ContainerScrollViewControllerTests */,
-				3A7C47FD21D09DC200E464FD /* Example */,
+				3A7C47FD21D09DC200E464FD /* StoryboardExample */,
+				3A23592421D858390020CA65 /* CodeExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3A23592321D858390020CA65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A23593D21D858FC0020CA65 /* Main.storyboard in Resources */,
+				3A23593F21D859020020CA65 /* Assets.xcassets in Resources */,
+				3A23593E21D858FF0020CA65 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A7C47FC21D09DC200E464FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -340,13 +420,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3A23592121D858390020CA65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A23593A21D858F80020CA65 /* PillButton.swift in Sources */,
+				3A23594121D85A4C0020CA65 /* CodeSignUpViewController.swift in Sources */,
+				3A23593821D858F80020CA65 /* SignUpEmbeddedViewController.swift in Sources */,
+				3A23593921D858F80020CA65 /* SignUpBackgroundView.swift in Sources */,
+				3A23593B21D858F80020CA65 /* PillTextField.swift in Sources */,
+				3A23593C21D858F80020CA65 /* RoundedCornersImage.swift in Sources */,
+				3A23592821D858390020CA65 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A7C47FA21D09DC200E464FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3A2279DF21D14BFE00D1CD38 /* PillButton.swift in Sources */,
 				3A7C481121D09EAE00E464FD /* SignUpEmbeddedViewController.swift in Sources */,
-				3A7C480321D09DC200E464FD /* SignUpViewController.swift in Sources */,
+				3A7C480321D09DC200E464FD /* StoryboardSignUpViewController.swift in Sources */,
 				3A2279DD21D13C9C00D1CD38 /* SignUpBackgroundView.swift in Sources */,
 				3A2279E121D14C1500D1CD38 /* PillTextField.swift in Sources */,
 				3A2279E521D14F9400D1CD38 /* RoundedCornersImage.swift in Sources */,
@@ -410,6 +504,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3A23593521D858390020CA65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 88HA7759D7;
+				INFOPLIST_FILE = "$(SRCROOT)/Examples/CodeExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.ContainerScrollViewControllerCodeExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3A23593621D858390020CA65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 88HA7759D7;
+				INFOPLIST_FILE = "$(SRCROOT)/Examples/CodeExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.ContainerScrollViewControllerCodeExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		3A7C480E21D09DC300E464FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -417,12 +547,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
-				INFOPLIST_FILE = Example/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Examples/StoryboardExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.ContainerScrollViewControllerExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.ContainerScrollViewControllerStoryboardExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -436,12 +566,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
-				INFOPLIST_FILE = Example/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Examples/StoryboardExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.ContainerScrollViewControllerExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retroactivefiasco.ContainerScrollViewControllerStoryboardExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -664,7 +794,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A7C480D21D09DC300E464FD /* Build configuration list for PBXNativeTarget "Example" */ = {
+		3A23593421D858390020CA65 /* Build configuration list for PBXNativeTarget "CodeExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A23593521D858390020CA65 /* Debug */,
+				3A23593621D858390020CA65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A7C480D21D09DC300E464FD /* Build configuration list for PBXNativeTarget "StoryboardExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A7C480E21D09DC300E464FD /* Debug */,

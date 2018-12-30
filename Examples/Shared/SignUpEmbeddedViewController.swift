@@ -1,6 +1,6 @@
 //
 //  SignUpEmbeddedViewController.swift
-//  Example
+//  Examples
 //
 //  Created by Drew Olbrich on 12/23/18.
 //  Copyright © 2018 Drew Olbrich. All rights reserved.
@@ -18,10 +18,6 @@ class SignUpEmbeddedViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: PillButton!
     @IBOutlet weak var signInButton: UIButton!
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,11 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sign Up View Controller-->
+        <!--Storyboard Sign Up View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SignUpViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="I6h-RB-odK" customClass="SignUpBackgroundView" customModule="Example" customModuleProvider="target">
+                <viewController id="BYZ-38-t0r" customClass="StoryboardSignUpViewController" customModule="StoryboardExample" sceneMemberID="viewController">
+                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="I6h-RB-odK" customClass="SignUpBackgroundView" customModule="CodeExample" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -30,12 +30,12 @@
         <!--Sign Up Embedded View Controller-->
         <scene sceneID="ZD8-Yo-6dX">
             <objects>
-                <viewController storyboardIdentifier="signUpEmbeddedViewController" id="h6e-Hp-WbF" customClass="SignUpEmbeddedViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signUpEmbeddedViewController" id="h6e-Hp-WbF" customClass="SignUpEmbeddedViewController" customModule="CodeExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nNf-RL-bu5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KHf-Ih-6Zy" customClass="PillTextField" customModule="Example" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KHf-Ih-6Zy" customClass="PillTextField" customModule="CodeExample" customModuleProvider="target">
                                 <rect key="frame" x="47.666666666666657" y="398.33333333333331" width="280" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="EZ1-Dr-LtH"/>
@@ -45,7 +45,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y6x-Gv-wx5" customClass="PillTextField" customModule="Example" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y6x-Gv-wx5" customClass="PillTextField" customModule="CodeExample" customModuleProvider="target">
                                 <rect key="frame" x="47.666666666666657" y="458.33333333333331" width="280" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="GC0-f1-zFe"/>
@@ -55,7 +55,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VoQ-gV-n0W" customClass="PillTextField" customModule="Example" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VoQ-gV-n0W" customClass="PillTextField" customModule="CodeExample" customModuleProvider="target">
                                 <rect key="frame" x="47.666666666666657" y="518.33333333333337" width="280" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="a7t-Wz-yxb"/>
@@ -65,7 +65,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8BW-Aw-gvm" customClass="PillButton" customModule="Example" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8BW-Aw-gvm" customClass="PillButton" customModule="CodeExample" customModuleProvider="target">
                                 <rect key="frame" x="47.666666666666657" y="610.33333333333337" width="280" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="DIj-cd-Qzk"/>
