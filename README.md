@@ -235,6 +235,8 @@ class MyEmbeddingViewController: UIViewController {
 
 << Container view mechanism >>
 
+<< Use of additionalSafeAreaInsets vs. content size >>
+
 << Keyboard resize filtering >>
 
 ## Special Cases Handled
