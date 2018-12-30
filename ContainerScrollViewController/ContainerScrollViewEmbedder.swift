@@ -354,17 +354,16 @@ public class ContainerScrollViewEmbedder {
         }
     }
 
-    /// Scrolls the view to make the first responder text field visible.
+    /// Scrolls the view to make a rect visible.
     ///
     /// - Parameters:
+    ///   - rect: The rect to make visible.
     ///   - animated: If `true`, the scrolling is animated.
-    ///   - margin: An optional margin to apply to the text field. If left unspecified,
+    ///   - margin: An optional margin to apply to `rect`. If left unspecified,
     ///   `scrollToVisibleMargin` is used.
-    public func scrollFirstResponderTextFieldToVisible(animated: Bool, margin: CGFloat? = nil) {
-        guard let textField = UIResponder.rf_current as? UITextField else {
-            return
-        }
-        scrollViewToVisible(textField, animated: animated, margin: margin)
+    public func scrollRectToVisible(_ rect: CGRect, animated: Bool, margin: CGFloat? = nil) {
+        let textFieldRect = rect.insetBy(dx: 0, dy: -(margin ?? visibilityScrollMargin))
+        scrollView.scrollRectToVisible(textFieldRect, animated: animated)
     }
 
     /// Scrolls the view to make the specified view visible.
@@ -378,16 +377,17 @@ public class ContainerScrollViewEmbedder {
         scrollRectToVisible(scrollView.convert(view.bounds, from: view), animated: animated, margin: margin)
     }
 
-    /// Scrolls the view to make a rect visible.
+    /// Scrolls the view to make the first responder text field visible.
     ///
     /// - Parameters:
-    ///   - rect: The rect to make visible.
     ///   - animated: If `true`, the scrolling is animated.
-    ///   - margin: An optional margin to apply to `rect`. If left unspecified,
+    ///   - margin: An optional margin to apply to the text field. If left unspecified,
     ///   `scrollToVisibleMargin` is used.
-    public func scrollRectToVisible(_ rect: CGRect, animated: Bool, margin: CGFloat? = nil) {
-        let textFieldRect = rect.insetBy(dx: 0, dy: -(margin ?? visibilityScrollMargin))
-        scrollView.scrollRectToVisible(textFieldRect, animated: animated)
+    public func scrollFirstResponderTextFieldToVisible(animated: Bool, margin: CGFloat? = nil) {
+        guard let textField = UIResponder.rf_current as? UITextField else {
+            return
+        }
+        scrollViewToVisible(textField, animated: animated, margin: margin)
     }
 
 }
