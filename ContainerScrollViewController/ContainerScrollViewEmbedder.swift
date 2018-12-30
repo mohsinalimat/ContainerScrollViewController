@@ -421,19 +421,13 @@ public class ContainerScrollViewEmbedder {
 
     /// Scrolls the view to make a rect visible.
     ///
-    /// Unlike `UIScrollView.scrollRectToVisible`, this method works correctly even if
-    /// `keyboardAdjustmentBehavior` is set to `.adjustScrollViewContentSize`.
-    ///
     /// - Parameters:
     ///   - rect: The rect to make visible.
     ///   - animated: If `true`, the scrolling is animated.
     ///   - margin: An optional margin to apply to `rect`. If left unspecified,
     ///   `scrollToVisibleMargin` is used.
     public func scrollRectToVisible(_ rect: CGRect, animated: Bool, margin: CGFloat? = nil) {
-        var textFieldRect = rect.insetBy(dx: 0, dy: -(margin ?? visibilityScrollMargin))
-        if keyboardAdjustmentBehavior == .adjustScrollViewContentSize {
-            textFieldRect.size.height += scrollViewBottomAnchorConstraint?.constant ?? 0
-        }
+        let textFieldRect = rect.insetBy(dx: 0, dy: -(margin ?? visibilityScrollMargin))
         scrollView.scrollRectToVisible(textFieldRect, animated: animated)
     }
 
