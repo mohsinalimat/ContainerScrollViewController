@@ -35,6 +35,10 @@
 		3A23595F21D873A20020CA65 /* PillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279DE21D14BFE00D1CD38 /* PillButton.swift */; };
 		3A23596021D873A20020CA65 /* PillTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279E021D14C1500D1CD38 /* PillTextField.swift */; };
 		3A23596121D873A20020CA65 /* RoundedCornersImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2279E421D14F9400D1CD38 /* RoundedCornersImage.swift */; };
+		3A23596221D924290020CA65 /* ContainerScrollViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; };
+		3A23596321D924290020CA65 /* ContainerScrollViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A23596721D924300020CA65 /* ContainerScrollViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; };
+		3A23596821D924300020CA65 /* ContainerScrollViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB822D021D0562300ED7576 /* ContainerScrollViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A2A2C4D21D29CE400FA3D20 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2A2C4C21D29CE400FA3D20 /* KeyboardObserver.swift */; };
 		3A7C480121D09DC200E464FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480021D09DC200E464FD /* AppDelegate.swift */; };
 		3A7C480321D09DC200E464FD /* StoryboardSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C480221D09DC200E464FD /* StoryboardSignUpViewController.swift */; };
@@ -60,6 +64,20 @@
 			remoteGlobalIDString = 3AB822CF21D0562300ED7576;
 			remoteInfo = ContainerScrollViewController;
 		};
+		3A23596421D924290020CA65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AB822C721D0562300ED7576 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AB822CF21D0562300ED7576;
+			remoteInfo = ContainerScrollViewController;
+		};
+		3A23596921D924300020CA65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AB822C721D0562300ED7576 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AB822CF21D0562300ED7576;
+			remoteInfo = ContainerScrollViewController;
+		};
 		3AB822DB21D0562300ED7576 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AB822C721D0562300ED7576 /* Project object */;
@@ -77,6 +95,28 @@
 			dstSubfolderSpec = 10;
 			files = (
 				3A2279D321D1356500D1CD38 /* ContainerScrollViewController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A23596621D924290020CA65 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3A23596321D924290020CA65 /* ContainerScrollViewController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A23596B21D924300020CA65 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3A23596821D924300020CA65 /* ContainerScrollViewController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A23596221D924290020CA65 /* ContainerScrollViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A23596721D924300020CA65 /* ContainerScrollViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,10 +348,12 @@
 				3A23592121D858390020CA65 /* Sources */,
 				3A23592221D858390020CA65 /* Frameworks */,
 				3A23592321D858390020CA65 /* Resources */,
+				3A23596621D924290020CA65 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3A23596521D924290020CA65 /* PBXTargetDependency */,
 			);
 			name = CodeExample;
 			productName = CodeExample;
@@ -323,10 +367,12 @@
 				3A23594221D865910020CA65 /* Sources */,
 				3A23594321D865910020CA65 /* Frameworks */,
 				3A23594421D865910020CA65 /* Resources */,
+				3A23596B21D924300020CA65 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3A23596A21D924300020CA65 /* PBXTargetDependency */,
 			);
 			name = EmbedderExample;
 			productName = EmbedderExample;
@@ -559,6 +605,16 @@
 			target = 3AB822CF21D0562300ED7576 /* ContainerScrollViewController */;
 			targetProxy = 3A2279D421D1356500D1CD38 /* PBXContainerItemProxy */;
 		};
+		3A23596521D924290020CA65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AB822CF21D0562300ED7576 /* ContainerScrollViewController */;
+			targetProxy = 3A23596421D924290020CA65 /* PBXContainerItemProxy */;
+		};
+		3A23596A21D924300020CA65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AB822CF21D0562300ED7576 /* ContainerScrollViewController */;
+			targetProxy = 3A23596921D924300020CA65 /* PBXContainerItemProxy */;
+		};
 		3AB822DC21D0562300ED7576 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3AB822CF21D0562300ED7576 /* ContainerScrollViewController */;
@@ -597,6 +653,7 @@
 		3A23593521D858390020CA65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
@@ -615,6 +672,7 @@
 		3A23593621D858390020CA65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
@@ -633,6 +691,7 @@
 		3A23595621D865920020CA65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
@@ -651,6 +710,7 @@
 		3A23595721D865920020CA65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88HA7759D7;
