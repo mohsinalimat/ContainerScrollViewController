@@ -30,7 +30,7 @@
         <!--Sign Up Embedded View Controller-->
         <scene sceneID="ZD8-Yo-6dX">
             <objects>
-                <viewController id="h6e-Hp-WbF" customClass="SignUpEmbeddedViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signUpEmbeddedViewController" id="h6e-Hp-WbF" customClass="SignUpEmbeddedViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nNf-RL-bu5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
