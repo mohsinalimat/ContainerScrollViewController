@@ -239,6 +239,12 @@ class MyEmbeddingViewController: UIViewController {
 
 << Keyboard resize filtering >>
 
+See also:
+
+* [Managing the Keyboard](https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html)
+
+* [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html)
+
 ## Special Cases Handled
 
 << Correct adjustment of the scroll view's additional safe area insets when the keyboard is presented, in the case when the container view doesn't cover the entire screen, but also allowing for the possibility that `additionalSafeAreaInsets.bottom` may have already been set to compensate for an auxilliary view. >>
