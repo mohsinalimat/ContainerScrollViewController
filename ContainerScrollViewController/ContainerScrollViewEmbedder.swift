@@ -202,6 +202,11 @@ public class ContainerScrollViewEmbedder {
         // it must be a container view embedding segue.
         if !viewDidLoadWasCalled {
             assert(segue.source === embeddingViewController)
+            // We're assuming that the view controller has only a single embedding segue. If
+            // it's desirable to use ContainerScrollViewController in a situation with multiple
+            // embedded views, ContainerScrollViewEmbedder should be used instead of
+            // ContainerScrollViewController, while only forwarding prepare(for:sender:) to
+            // ContainerScrollViewEmbedder for segues with a known identifier.
             assert(embeddedViewController == nil, "Only one embed segue is supported")
             // This view controller will be embedded in the scroll view later, in viewDidLoad.
             embeddedViewController = segue.destination
