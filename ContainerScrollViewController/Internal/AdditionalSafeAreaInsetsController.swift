@@ -45,6 +45,7 @@ class AdditionalSafeAreaInsetsController {
                     return
                 }
                 adjustedBottomInset = initialAdditionalSafeAreaInset.bottom
+                initialAdditionalSafeAreaInsets = nil
             } else if bottomInset != oldValue {
                 // The keyboard changed size.
                 guard let initialAdditionalSafeAreaInset = initialAdditionalSafeAreaInsets else {
