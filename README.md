@@ -183,9 +183,21 @@ To specify a background color that extends to the edges of the screen:
 
 ### Resizing the Embedded View
 
-<< Mention calling self.parent?.view.setNeedsLayout (+ layoutIfNeeded for animation) (or scrollView.setNeedsLayout) whenever the embedded view's auto layout changes. >>
+If you make changes to your embedded view that modify its size, you must call the container scroll view's `setNeedsLayout` method, or otherwise the scroll view's content size won't be updated to reflect the size change, and your view may not scroll correctly.
 
-<< Example code >>
+For example, after updating your embedded view's constraint `constant` properties, do this to animate the change:
+
+```swift
+let scrollView = (parent as? ContainerScrollViewController)?.scrollView
+
+UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, 
+        options: [], animations: {
+    // If we don't do this and update only self.view, then the container scroll view's 
+    // content size won't change.
+    scrollView?.setNeedsLayout()
+    scrollView?.layoutIfNeeded()
+}, completion: nil)
+```
 
 ## Usage Without Subclassing
 
