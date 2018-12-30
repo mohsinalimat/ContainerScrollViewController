@@ -318,6 +318,17 @@ public class ContainerScrollViewEmbedder {
         scrollViewBounceController.bottomInset = bottomInset
 
         if shouldAdjustContainerViewForKeyboard {
+            // When the keyboard is presented, we adjust the embedding view controller's
+            // additionalSafeAreaInsets.bottom property to compensate.
+            //
+            // We're using this approach instead of resizing the scroll view's content size,
+            // because doing so requires adjusting its scrollIndicatorInsets property to
+            // compensate, and on iPhone X in landscape orientation, this has the unfortunate
+            // side effect of awkwardly shifting the scroll indicator inset away from the edge
+            // of the screen.
+            //
+            // Additionally, the approach of resizing the scroll view's content size appears to
+            // interact poorly with the scroll view's scrollRectToVisible method.
             adjustAdditionalSafeAreaInsets(withBottomInset: bottomInset)
         }
 
@@ -329,6 +340,7 @@ public class ContainerScrollViewEmbedder {
             // text field visible automatically. At least as of iOS 12, the UIKit default
             // behavior won't take into consideration the new dimensions of the keyboard, and
             // may scroll the view too far.
+            //
             // Note: We're specifying false for animated here, but the scrolling may animate
             // anyway because KeyboardObserver.adjustViewForKeyboard wraps the call in an
             // animation block.
