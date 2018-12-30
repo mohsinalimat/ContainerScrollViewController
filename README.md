@@ -192,8 +192,9 @@ let scrollView = (parent as? ContainerScrollViewController)?.scrollView
 
 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, 
         options: [], animations: {
-    // If we don't do this and update only self.view, then the container scroll view's 
-    // content size won't change.
+    // If we don't do this, and instead update only self.view, then the content size 
+    // of the container scroll view won't change to reflect the new size of the 
+    // embedded view.
     scrollView?.setNeedsLayout()
     scrollView?.layoutIfNeeded()
 }, completion: nil)
