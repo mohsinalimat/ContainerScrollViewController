@@ -149,7 +149,38 @@ To specify a background color that extends to the edges of the screen:
 
 ## Usage Without Subclassing
 
-<< ContainerScrollViewEmbedder supports the same properties as ContainerScrollViewController. >>
+In situations where subclassing `ContainerScrollViewController` is not an option, the helper class `ContainerScrollViewEmbedder` can be used instead:
+
+```swift
+import ContainerScrollViewController
+
+class MyViewController: UIViewController {
+
+    lazy var containerScrollViewEmbedder = ContainerScrollViewEmbedder(embeddingViewController: self)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        containerScrollViewEmbedder.viewDidLoad()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        containerScrollViewEmbedder.prepare(for: segue, sender: sender)
+    }
+
+    override func viewWillTransition(to size: CGSize, 
+            with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        containerScrollViewEmbedder.viewWillTransition(to: size, with: coordinator)
+    }
+
+}
+```
+
+The `ContainerScrollViewEmbedder` class supports all of the same properties as `ContainerScrollViewController`.  
+
+`ContainerScrollViewEmbedder` can also be used to embed a view controller programmatically, in which case the `viewDidLoad` and `prepare(for:sender:)` methods shown above should be omitted. Instead, provide a definition of `viewDidLoad` that calls `embedViewController` to embed the desired view controller.
 
 ## How It Works
 
