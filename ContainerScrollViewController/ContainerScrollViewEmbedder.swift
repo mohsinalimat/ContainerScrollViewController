@@ -318,7 +318,7 @@ public class ContainerScrollViewEmbedder {
         scrollViewBounceController.bottomInset = bottomInset
 
         if shouldAdjustContainerViewForKeyboard {
-            adjustContainerViewAdditionalSafeAreInsets(withBottomInset: bottomInset)
+            adjustAdditionalSafeAreaInsets(withBottomInset: bottomInset)
         }
 
         // If the keyboard isn't dismissed, scroll the first responder text field
@@ -341,7 +341,7 @@ public class ContainerScrollViewEmbedder {
     ///
     /// - Parameter bottomInset: The height of the area of keyboard's frame that
     ///     overlaps the view.
-    private func adjustContainerViewAdditionalSafeAreInsets(withBottomInset bottomInset: CGFloat) {
+    private func adjustAdditionalSafeAreaInsets(withBottomInset bottomInset: CGFloat) {
         if shouldResizeEmbeddedViewForKeyboard {
             // Adjust the additional safe area insets, possibly reducing the size
             // of the embedded view.
