@@ -23,6 +23,7 @@ class CodeSignUpViewController: ContainerScrollViewController {
         super.viewDidLoad()
 
         let signUpEmbeddedViewController = createSignUpEmbeddedViewController()
+
         embedViewController(signUpEmbeddedViewController)
 
         shouldResizeEmbeddedViewForKeyboard = true
@@ -30,7 +31,7 @@ class CodeSignUpViewController: ContainerScrollViewController {
         scrollView.keyboardDismissMode = .interactive
     }
 
-    /// Creates the Sign Up embedded view controller. This example app is supposed
+    /// Creates the Sign Up embedded view controller. This example app is intended to
     /// demonstrate how to use ContainerScrollViewController with code only, but we're
     /// cheating and loading the embedded view controller out of our Storyboard file. In
     /// a real app, this view controller could be created in code.
