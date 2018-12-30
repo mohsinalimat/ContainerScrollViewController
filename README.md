@@ -87,8 +87,6 @@ It's possible to make the embedded view controller larger than the height of the
 
 ## Properties
 
-Modify these `ContainerScrollViewController` properties to change its behavior:
-
 ### shouldResizeEmbeddedViewForKeyboard
 
 A boolean value that determines whether or not the embedded view is resized when the keyboard is presented.
@@ -116,6 +114,16 @@ A boolean value that determines whether or not the scroll view will automaticall
 ### visibilityScrollMargin
 
 A floating point value representing a vertical margin applied to text fields when the scroll view is automatically scrolled to make the first responder text field visible. The default value is 0, which matches the UIKit default behavior.
+
+### embeddedViewController
+
+The view controller embedded in the scroll view. You may want to define a downcasting method for convenient access: 
+
+```swift
+var myEmbeddedViewController: MyEmbeddedViewController? {
+    return embeddedViewController as? MyEmbeddedViewController
+}
+```
 
 ## Methods
 
