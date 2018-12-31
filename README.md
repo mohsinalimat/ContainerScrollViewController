@@ -277,6 +277,12 @@ ContainerScrollViewController inserts a scroll view between the container view a
 
 <img src="Images/How-It-Works-View-Controller-Hierarchy.png" width="564px">
 
+A cleaner approach would have specified a `UIScrollView` as the class of the container scroll view controller's `view` property, eliminating the extra container view. However, when this is attempted, as of iOS 12, the following error occurs:
+
+> Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'There are unexpected subviews in the container view. Perhaps the embed segue has already fired once or a subview was added programmatically?'
+
+This is unexpected because no container scroll view subviews are specified in Interface Builder.
+
 Refer to [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html) for a detailed description of how scroll views are used with Auto Layout.
 
 ### Container View
