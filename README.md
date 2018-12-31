@@ -28,7 +28,7 @@ This case can be handled by nesting the view inside a scroll view. You can do th
 
 To streamline this task, ContainerScrollViewController uses Interface Builder's container view feature to specify the view that should be embedded in the scroll view and creates the necessary Auto Layout constraints for you. The embedded view controllers's contents can then be manipulated separately in Interface Builder.
 
-<< Interface Builder embedding screenshot >>
+<img src="Images/Purpose-Embedding.png" width="600px" align="left">
 
 Most importantly, ContainerScrollViewController takes care of several tricky edge cases involving the keyboard and device rotations. 
 
