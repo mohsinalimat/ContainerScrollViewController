@@ -56,19 +56,19 @@ To create a container scroll view controller and its embedded view controller in
 
 2. In Interface Builder, create a new view controller and set its class to your  `ContainerScrollViewController` subclass.
 
-    <img src="Images/Storyboards-View-Controller.png" width="587px">
+    <img src="Images/Usage-Storyboards-View-Controller.png" width="587px">
 
 3. In the outline view, delete the new view controller's view.
 
-    <img src="Images/Storyboards-Delete-View.png" width="628px">
+    <img src="Images/Usage-Storyboards-Delete-View.png" width="628px">
 
 4. Create a new container view and drag it into the view controller, replacing the view you just deleted.
 
-    <img src="Images/Storyboards-Container-View.png" width="847px">
+    <img src="Images/Usage-Storyboards-Container-View.png" width="847px">
 
 5. Set the container view's background color to anything other than transparent, which is the default value for Interface Builder's container views. Otherwise, it will appear black.
 
-    <img src="Images/Storyboards-Background-Color.png" width="656px">
+    <img src="Images/Usage-Storyboards-Background-Color.png" width="656px">
 
 That's it. You are now ready to add UI elements to the embedded view controller, as long as you ensure that the embedded view's Auto Layout constraints [adequately define its size](#auto-layout-considerations).
 
@@ -76,15 +76,15 @@ Optionally, if you have an existing view controller that you'd like to embed in 
 
 6. Delete the view controller that Interface Builder created as the destination of the container view's embed segue.
 
-    <img src="Images/Storyboards-Delete-Destination.png" width="860px">
+    <img src="Images/Usage-Storyboards-Delete-Destination.png" width="860px">
 
 7. Drag a new segue from the container scroll view controller to your existing view controller.
 
-    <img src="Images/Storyboards-Segue.png" width="640px">
+    <img src="Images/Usage-Storyboards-Segue.png" width="640px">
 
 8. For the segue type's, choose Embed.
 
-    <img src="Images/Storyboards-Embed.png" width="640px">
+    <img src="Images/Usage-Storyboards-Embed.png" width="640px">
 
 ### Code
 
@@ -102,13 +102,13 @@ If you don't define sufficient Auto Layout constraints, the embedded view will n
 
 **IMPORTANT** - You may see Auto Layout constraint errors in Interface Builder if the constraints don't match the simulated size of the view. The easiest way to fix this is to create at least one alignment constraint with a low priority (less than 250).
 
-<img src="Images/Usage-Low-Priority.png" width="625px">
+<img src="Images/Usage-Auto-Layout-Low-Priority.png" width="625px">
 
 ### Oversized Embedded View Controllers
 
 It's possible to make the embedded view controller larger than the height of the screen, even for large devices. To do this, change the embedded view controller's simulated size to Freeform and adjust the view's size.
 
-<img src="Images/Usage-Oversized.png" width="722px">
+<img src="Images/Usage-Auto-Layout-Oversized.png" width="722px">
 
 ## Properties
 
