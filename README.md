@@ -22,7 +22,7 @@ A common UIKit Auto Layout task involves creating a view controller with a layou
 
 For example, consider this sign up screen, which fits on an iPhone XS, but not on an iPhone SE when the keyboard is presented:
 
-<img src="Images/Purpose-Comparison.png">
+<img src="Images/Purpose-Comparison.png" width="888px" align="center">
 
 It's possible to handle this case in Interface Builder by manually nesting the view inside a scroll view, as described by Apple's [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html) documentation, but this approach can be awkward. According to the Medium article [How to configure a UIScrollView with Auto Layout in Interface Builder](https://medium.com/@pradeep_chauhan/how-to-configure-a-uiscrollview-with-auto-layout-in-interface-builder-218dcb4022d7), 17 steps are required.
 
