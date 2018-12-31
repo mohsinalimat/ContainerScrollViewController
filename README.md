@@ -188,11 +188,7 @@ To specify a background color that extends to the edges of the screen:
 
 1. Set the background color of the container view to the desired color.
 
-    << Screenshot >> 
-
 2. Set the embedded view's background color to transparent.
-
-    << Screenshot >>
 
 ### Resizing the Embedded View
 
