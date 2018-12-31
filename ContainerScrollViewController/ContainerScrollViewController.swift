@@ -41,7 +41,7 @@ open class ContainerScrollViewController: UIViewController {
     /// If `true`, the embedded view should be resized to compensate for the portion of
     /// the scroll view obscured by the presented keyboard, if possible. The default
     /// value is `false`.
-    public var shouldResizeEmbeddedViewForKeyboard: Bool {
+    @IBInspectable public var shouldResizeEmbeddedViewForKeyboard: Bool {
         set {
             containerScrollViewEmbedder.shouldResizeEmbeddedViewForKeyboard = newValue
         }
@@ -52,7 +52,7 @@ open class ContainerScrollViewController: UIViewController {
 
     /// If `true`, the container view controller's `additionalSafeAreaInsets` property
     /// is adjusted when the keyboard is presented. The default value is `true`.
-    public var shouldAdjustContainerViewForKeyboard: Bool {
+    @IBInspectable public var shouldAdjustContainerViewForKeyboard: Bool {
         set {
             containerScrollViewEmbedder.shouldAdjustContainerViewForKeyboard = newValue
         }
@@ -67,7 +67,7 @@ open class ContainerScrollViewController: UIViewController {
     ///
     /// Even if this is set to `false`, UIKit may scroll the first responder to visible,
     /// although this may not work correctly in all cases.
-    public var shouldScrollFirstResponderToVisibleForKeyboard: Bool {
+    @IBInspectable public var shouldScrollFirstResponderToVisibleForKeyboard: Bool {
         set {
             containerScrollViewEmbedder.shouldScrollFirstResponderToVisibleForKeyboard = newValue
         }
@@ -81,7 +81,7 @@ open class ContainerScrollViewController: UIViewController {
     /// behavior. This value is also applied to
     /// `scrollFirstResponderTextFieldToVisible`, `scrollViewToVisible`, and
     /// `scrollRectToVisible` unless overridden with the optional `margin` parameter.
-    public var visibilityScrollMargin: CGFloat {
+    @IBInspectable public var visibilityScrollMargin: CGFloat {
         set {
             containerScrollViewEmbedder.visibilityScrollMargin = newValue
         }
