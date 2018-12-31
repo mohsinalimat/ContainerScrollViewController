@@ -72,7 +72,7 @@ To create a container scroll view controller and its embedded view controller in
 
 That's it. You are now ready to add UI elements to the embedded view controller, as long as you ensure that the embedded view's Auto Layout constraints [adequately define its size](#auto-layout-considerations).
 
-However, if you have an existing view controller that you'd like to embed in the container view controller instead of the embedded view controller that Interface Builder created along with the container view, follow these additional steps:
+Optionally, if you have an existing view controller that you'd like to embed in the container view controller instead of the embedded view controller that Interface Builder created along with the container view, follow these additional steps:
 
 6. Delete the view controller that Interface Builder created as the destination of the container view's embed segue.
 
