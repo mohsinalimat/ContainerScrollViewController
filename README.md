@@ -275,7 +275,7 @@ class MyEmbeddingViewController: UIViewController {
 
 ContainerScrollViewController inserts a scroll view between the container view and its embedded view, adding layout constraints to determine the scroll view's content size.
 
-<img src="Images/View-Controller-Hierarchy.png" width="564px">
+<img src="Images/How-It-Works-View-Controller-Hierarchy.png" width="564px">
 
 Refer to [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html) for a detailed description of how scroll views are used with Auto Layout.
 
