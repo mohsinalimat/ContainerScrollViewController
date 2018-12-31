@@ -102,13 +102,13 @@ If insufficient Auto Layout constraints are defined, the embedded view will not 
 
 The easiest way to do this while avoiding Auto Layout constraint errors is to create at least one alignment constraint with a low priority (less than 250).
 
-<< Screenshot >>
+    <img src="Images/Storyboards-Low-Priority.png" width="625px">
 
 ### Oversized Embedded View Controllers
 
 It's possible to make the embedded view controller larger than the height of the screen, even for large devices. To do this, change the embedded view controller's simulated size to Freeform and adjust the view's size.
 
-<< Screenshot >>
+    <img src="Images/Storyboards-Oversized.png" width="722px">
 
 ## Properties
 
