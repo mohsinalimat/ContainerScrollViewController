@@ -150,6 +150,12 @@ var myEmbeddedViewController: MyEmbeddedViewController? {
 }
 ```
 
+### scrollView
+
+The scroll view within which the view is embedded. 
+
+You safely modify any of the scroll view's properties. for example, setting `keyboardDismissMode` to `.interactive` or `.onDrag` will dismiss the keyboard when the user drags inside the scroll view. 
+
 ## Methods
 
 ### scrollRectToVisible(animated:margin:)
