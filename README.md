@@ -271,21 +271,25 @@ class MyEmbeddingViewController: UIViewController {
 
 ## How It Works
 
-ContainerScrollViewController inserts a `UIScrollView` between the container view and the embedded view, adding layout constraints to determine the scroll view's content size.
+### View Controller Hierarchy
+
+ContainerScrollViewController inserts a scroll view between the container view and its embedded view, adding layout constraints to determine the scroll view's content size.
 
 <img src="Images/View-Controller-Hierarchy.png" width="564px">
 
-<< Container view mechanism >>
+Refer to [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html) for a detailed description of how scroll views are used with Auto Layout.
+
+### Container View
+
+### Additional Safe Area Insets
 
 << Use of additionalSafeAreaInsets vs. content size >>
 
+### Keyboard Resize Filtering
+
 << Keyboard resize filtering >>
 
-See also:
-
-* [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html)
-
-* [Managing the Keyboard](https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3)
+Refer to [Managing the Keyboard](https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3) for more information about responding to changes in keyboard visibility.
 
 ## Special Cases Handled
 
