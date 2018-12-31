@@ -112,6 +112,22 @@ It's possible to make the embedded view controller larger than the height of the
 
 ## Properties
 
+### embeddedViewController
+
+The view controller embedded in the scroll view. You may want to define a downcasting computed property for convenient access: 
+
+```swift
+var myEmbeddedViewController: MyEmbeddedViewController? {
+return embeddedViewController as? MyEmbeddedViewController
+}
+```
+
+### scrollView
+
+The scroll view within which the view is embedded. 
+
+You may safely modify any of the scroll view's properties. for example, setting `keyboardDismissMode` to `.interactive` or `.onDrag` will dismiss the keyboard when the user drags inside the scroll view. 
+
 ### shouldResizeEmbeddedViewForKeyboard
 
 A Boolean value that determines whether or not the embedded view is resized when the keyboard is presented.
@@ -139,22 +155,6 @@ A Boolean value that determines whether or not the scroll view will automaticall
 ### visibilityScrollMargin
 
 A floating point value representing a vertical margin applied to the first responder view frame when the scroll view is automatically scrolled to make the first responder visible. The default value is 0, which matches the UIKit default behavior.
-
-### embeddedViewController
-
-The view controller embedded in the scroll view. You may want to define a downcasting computed property for convenient access: 
-
-```swift
-var myEmbeddedViewController: MyEmbeddedViewController? {
-    return embeddedViewController as? MyEmbeddedViewController
-}
-```
-
-### scrollView
-
-The scroll view within which the view is embedded. 
-
-You safely modify any of the scroll view's properties. for example, setting `keyboardDismissMode` to `.interactive` or `.onDrag` will dismiss the keyboard when the user drags inside the scroll view. 
 
 ## Methods
 
