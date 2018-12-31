@@ -301,7 +301,7 @@ During development, the alternate approach recommended by Apple, resizing the sc
 
 When a text field becomes the first responder, UIKit presents the keyboard. If the user taps on another text field, changing the first responder, UIKit may adjust the keyboard's height if an input accessory view is specified. Often, these changes will generate a sequence of `keyboardWillShow` notifications, each with different keyboard heights.
 
-As an extreme example, if the user populates a text field by tapping on an AutoFill input accessory view, and this action causes a password text field to automatically become the first responder, one `keyboardWillHide` notifications and two `keyboardWillShow` notifications will be posted within the span of 0.1seconds.
+As an extreme example, if the user populates a text field by tapping on an AutoFill input accessory view, and this action causes a password text field to automatically become the first responder, one `keyboardWillHide` notifications and two `keyboardWillShow` notifications will be posted within the span of 0.1 seconds.
 
 If ContainerScrollViewController were to respond to each of these notifications individually, this would cause awkward discontinuities in the scroll view animation that accompanies changes to the keyboard's height.
 
