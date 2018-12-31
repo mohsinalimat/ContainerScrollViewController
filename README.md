@@ -26,7 +26,7 @@ For example, consider this sign up screen, which fits iPhone XS, but not iPhone 
 
 This case can be handled by nesting the view inside a scroll view. You can do this manually in Interface Builder, as described by Apple's [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html) documentation, but many steps are required.
 
-To streamline this task, ContainerScrollViewController creates the scroll view and all necessary Auto Layout constraints for you. When used in a storyboard, ContainerScrollViewController leverages Interface Builder's container view feature to specify the view that should be embedded in the scroll view. The embedded view controller's contents can then be configured separately in Interface Builder.
+To streamline this task, ContainerScrollViewController creates the scroll view and all necessary Auto Layout constraints for you. When used in a storyboard, ContainerScrollViewController uses Interface Builder's container view feature to specify the view that should be embedded in the scroll view. The embedded view controller's contents can then be configured separately in Interface Builder.
 
 <img src="Images/Purpose-Embedding.png" width="600px">
 
