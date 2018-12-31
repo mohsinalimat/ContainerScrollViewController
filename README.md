@@ -118,7 +118,7 @@ The view controller embedded in the scroll view. You may want to define a downca
 
 ```swift
 var myEmbeddedViewController: MyEmbeddedViewController? {
-return embeddedViewController as? MyEmbeddedViewController
+    return embeddedViewController as? MyEmbeddedViewController
 }
 ```
 
