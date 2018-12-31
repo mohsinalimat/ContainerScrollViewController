@@ -30,7 +30,7 @@ To streamline this task, ContainerScrollViewController uses Interface Builder's 
 
 <img src="Images/Purpose-Embedding.png" width="600px">
 
-Most importantly, ContainerScrollViewController takes care of several tricky edge cases involving the keyboard and device rotations. 
+Most importantly, ContainerScrollViewController takes care of several tricky [edge cases](#special-cases-handled) involving the keyboard and device rotations. 
 
 ## Installation
 
