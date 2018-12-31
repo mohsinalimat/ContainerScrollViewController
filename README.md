@@ -229,7 +229,7 @@ class MyEmbeddingViewController: UIViewController {
         containerScrollViewEmbedder.prepare(for: segue, sender: sender)
     }
 
-    // Note: Only required in apps that support device orientation changes.
+    // Note: This is only required in apps that support device orientation changes.
     override func viewWillTransition(to size: CGSize, 
             with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -258,7 +258,7 @@ class MyEmbeddingViewController: UIViewController {
         containerScrollViewEmbedder.embedViewController(myEmbeddedViewController)
     }
 
-    // Note: Only required in apps that support device orientation changes.
+    // Note: This is only required in apps that support device orientation changes.
     override func viewWillTransition(to size: CGSize, 
             with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
