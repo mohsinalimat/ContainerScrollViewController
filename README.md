@@ -70,10 +70,9 @@ To create a container scroll view controller and its embedded view controller in
 
     <img src="Images/Storyboards-Background-Color.png" width="656px">
 
-That's it.
+That's it. You are now ready to add UI elements to the embedded view controller, as long as you ensure that the embedded view's Auto Layout constraints [adequately define its size](#auto-layout-considerations).
 
-However, if you have an existing view controller that you'd like to embed in the container view controller instead of the new embedded view controller that
-Interface Builder created along with the container view, follow these additional steps:
+However, if you have an existing view controller that you'd like to embed in the container view controller instead of the embedded view controller that Interface Builder created along with the container view, follow these additional steps:
 
 6. Delete the view controller that Interface Builder created as the destination of the container view's embed segue.
 
@@ -83,7 +82,7 @@ Interface Builder created along with the container view, follow these additional
 
     <img src="Images/Storyboards-Segue.png" width="640px">
 
-    Choose Embed as the segue type.
+    For the segue type, choose Embed.
 
     <img src="Images/Storyboards-Embed.png" width="640px">
 
