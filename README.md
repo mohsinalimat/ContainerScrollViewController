@@ -295,6 +295,8 @@ ContainerScrollViewController is able to detect the embeded view controller beca
 
 When the keyboard is presented, ContainerScrollViewController modifies the container view controller's `additionalSafeAreaInsets.bottom` property to reflect the area of the keyboard that overlaps the scroll view, as recommended in [Managing the Keyboard](https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3).
 
+If `additionalSafeAreaInsets.bottom` is nonzero when the keyboard is presented, it is restored to its original value when the keyboard is dismissed. This allows for the use of `additionalSafeAreaInsets` for other purposes, such as custom tool palettes.
+
 During development, the alternate approach recommended by Apple, resizing the scroll view's content size, was also tried. However, this requires adjusting the scroll view's `scrollIndicatorInsets` property to compensate, and on iPhone X in landscape orientation, doing so has the unfortunate side effect of awkwardly shifting the scroll indicator away from the edge of the screen. Additionally, this approach appears to interact poorly with the scroll view's `scrollRectToVisible` method.
 
 ### Keyboard Resize Filtering
@@ -311,15 +313,22 @@ Refer to [Managing the Keyboard](https://developer.apple.com/library/archive/doc
 
 ## Special Cases Handled
 
-<< Correct adjustment of the scroll view's additional safe area insets when the keyboard is presented, in the case when the container view doesn't cover the entire screen, but also allowing for the possibility that `additionalSafeAreaInsets.bottom` may have already been set to compensate for an auxilliary view. >>
+### Device Orientation Changes
 
-<< Suppresses unwanted UITextField text position animation as the focus
-moves between text fields. >>
+When the device orientation changes occur, ContainerScrollViewController improves upon the default scroll view behavior by pinning the upper left corner of the scroll view in place, while at the same time while preventing out of range content offsets.
 
-<< Pins the upper left corner of the embedded view during device rotations, while preventing out of range content offsets. >>
+### keyboardDismissMode Enhancement
 
-<< Works around an issue when the keyboard is presented and the device orientation changes, in which case, as of iOS 12, UIKit doesn't correctly scroll the first responder text field to make it visible. >>
+ContainerScrollViewController automatically enables `UIScrollView.alwaysBounceVertical` when the keyboard is presented if `UIScrollView.keyboardDismissMode` is set to anything other than `.none`, so the keyboard can be dismissed even if the view is too short to normally allow scrolling.
 
-<< Correctly handles the keyboard partially occluding a `ContainerScrollView` that doesn't completely cover the screen. >>
+### Arbitrary Scroll View Sizes
 
-<< Enables `UIScrollView.alwaysBounceVertical` when the keyboard is presented if `UIScrollView.keyboardDismissMode` is set to anything other than `.none`, so the keyboard can be dismissed even if the view is too short to normally allow scrolling. >>
+ContainerScrollViewController correctly handles the case when the scroll view doesn't cover the full extent of the screen, in which case it may only partially intersect the keyboard.
+
+### Text Field Animation Artifact Fix
+
+As of iOS 12, if the user taps on a sequence of custom text fields, UIKit may awkwardly animate the text field's text. ContainerScrollViewController suppresses this animation.     
+
+### Scroll to Visible Fix
+
+ContainerScrollViewController works around an issue whereby, as of iOS 12, when the orientation changes and the keyboard is visible, UIKit doesn't necessarily correctly scroll the first responder text field to make it visible, leaving the scroll view with a content offset that is out of legal range.
