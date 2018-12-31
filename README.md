@@ -114,7 +114,7 @@ It's possible to make the embedded view controller larger than the height of the
 
 ### shouldResizeEmbeddedViewForKeyboard
 
-A boolean value that determines whether or not the embedded view is resized when the keyboard is presented.
+A Boolean value that determines whether or not the embedded view is resized when the keyboard is presented.
 
 * `true` - When the keyboard is presented, the embedded view shrinks to fit the portion of the scroll view not overlapped by the keyboard, to the extent that this is permitted by the embedded view's Auto Layout constraints. With an appropriate use of constraints, this may allow for more effective use of the reduced screen real estate. 
 
@@ -122,7 +122,7 @@ A boolean value that determines whether or not the embedded view is resized when
 
 ### shouldAdjustContainerViewForKeyboard
 
-A boolean value that determines whether or not the container view controller's `additionalSafeAreaInsets` property is adjusted when the keyboard is presented.
+A Boolean value that determines whether or not the container view controller's `additionalSafeAreaInsets` property is adjusted when the keyboard is presented.
 
 * `true` - When the keyboard is presented, the container view controller's `additionalSafeAreaInsets.bottom` property is adjusted to compensate for the portion of the scroll view that is overlapped by the keyboard, ensuring that all of the embedded view's content is accessible via scrolling. This is the default value.
 
@@ -130,7 +130,7 @@ A boolean value that determines whether or not the container view controller's `
 
 ### shouldScrollFirstResponderToVisibleForKeyboard
 
-A boolean value that determines whether or not the scroll view will automatically scroll to make the first responder visible in response to keyboard changes.
+A Boolean value that determines whether or not the scroll view will automatically scroll to make the first responder visible in response to keyboard changes.
 
 * `true` - When the keyboard is presented or changes size, for example in response to a device orientation change, the scroll view scrolls to make the first responder visible. This is the default value.
 
