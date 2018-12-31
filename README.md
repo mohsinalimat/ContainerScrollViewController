@@ -182,7 +182,7 @@ The optional `margin` parameter specifies an extra margin around the first respo
 
 The embedded view is positioned within the container view's safe area. Consequently, if the embedded view's background color is set, it won't extend underneath the status bar, home indicator, navigation bar or toolbar.
 
-<img src="Images/Caveats-Background-Color-Embedded-View.png" width="466px">
+<img src="Images/Caveats-Background-Color-Embedded-View.png" width="233px">
 
 To specify a background color that extends to the edges of the screen:
 
