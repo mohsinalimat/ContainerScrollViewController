@@ -142,7 +142,7 @@ A floating point value representing a vertical margin applied to the first respo
 
 ### embeddedViewController
 
-The view controller embedded in the scroll view. You may want to define a downcasting method for convenient access: 
+The view controller embedded in the scroll view. You may want to define a downcasting computed property for convenient access: 
 
 ```swift
 var myEmbeddedViewController: MyEmbeddedViewController? {
