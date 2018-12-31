@@ -46,7 +46,7 @@ Subclasses of `ContainerScrollViewController` may be configured using storyboard
 
 You may also configure `ContainerScrollViewController` subclasses in code.
 
-It's also possible to use either of these approaches without subclassing, and instead use an arbitrary view controller in conjunction with the helper class `ContainerScrollViewEmbedder`. This is described below in the [Usage Without Subclassing](#usage-without-subclassing) section.     
+It's also possible to apply either of these approaches without subclassing, and instead use an arbitrary view controller in conjunction with the helper class `ContainerScrollViewEmbedder`. This is described below in the [Usage Without Subclassing](#usage-without-subclassing) section.     
 
 ### Storyboards
 
