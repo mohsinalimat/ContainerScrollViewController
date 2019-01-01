@@ -307,7 +307,7 @@ As an extreme example, if the user populates a text field by tapping on an AutoF
 
 If ContainerScrollViewController were to respond to each of these notifications individually, this would cause awkward discontinuities in the scroll view animation that accompanies changes to the keyboard's height.
 
-To work around this issue, ContainerScrollViewController filters out sequences of notifications that occur within a small time window, acting only on the final assigned keyboard frame in the sequence. This appears to be consistent with the way Apple's iOS apps are implemented. As of iOS 12, they seem to respond to keyboard size changes only after a short delay, and do not animate in concert with the keyboard's animation.
+To work around this issue, ContainerScrollViewController filters out sequences of notifications that occur within a small time window, acting only on the final assigned keyboard frame in the sequence. This appears to be consistent with the way Apple's iOS apps are implemented. As of iOS 12, they seem to respond to keyboard size changes only after a short delay, and do not animate their views in concert with the keyboard's animation.
 
 Refer to [Managing the Keyboard](https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3) for more information about responding to changes in keyboard visibility.
 
