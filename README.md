@@ -196,7 +196,7 @@ To specify a background color that extends to the edges of the screen:
 
 If you make changes to your embedded view that modify its size, you must call the container scroll view's `setNeedsLayout` method, or otherwise the scroll view's content size won't be updated to reflect the size change, and your view may not scroll correctly.
 
-For example, in your embedded view controller implementation, after updating the embedded view's `NSLayoutConstraint.constant` properties, you may animate the change like this:
+For example, in your embedded view controller implementation, after updating the embedded view's `NSLayoutConstraint.constant` properties, you may animate the changes like this:
 
 ```swift
 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, 
