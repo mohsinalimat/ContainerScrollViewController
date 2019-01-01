@@ -283,7 +283,7 @@ A cleaner design for ContainerScrollViewController could directly specify `UIScr
 
 > *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'There are unexpected subviews in the container view. Perhaps the embed segue has already fired once or a subview was added programmatically?'
 
-This was unexpected because no container scroll view subviews were specified in Interface Builder.
+This is unexpected because no container scroll view subviews were specified in Interface Builder.
 
 Refer to [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html) for a detailed description of how scroll views are used with Auto Layout.
 
