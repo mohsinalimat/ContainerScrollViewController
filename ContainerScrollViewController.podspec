@@ -12,7 +12,7 @@ separately, within an embedded view controller of arbitrary size.
   s.homepage         = 'https://github.com/milpitas/ContainerScrollViewController'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'milpitas' => 'drew.olbrich@gmail.com' }
-  s.source           = { :git => 'https://github.com/milpitas/ContainerScrollViewController', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/milpitas/ContainerScrollViewController.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/drewolbrich'
 
   s.ios.deployment_target = '11.0'
