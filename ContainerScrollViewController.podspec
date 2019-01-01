@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ContainerScrollViewController'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'A Swift class for embedding a view controller in a scroll view container view controller'
 
   s.description      = <<-DESC
