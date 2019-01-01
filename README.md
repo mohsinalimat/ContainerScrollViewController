@@ -18,6 +18,8 @@
 
 ## Overview
 
+ContainerScrollViewController simplifies embedding a view controller in a scroll view.
+
 A common UIKit Auto Layout task involves creating a view controller with a fixed layout that is too large to fit older, smaller devices, or devices in landscape orientation, or the area of the screen that remains when the keyboard is presented.
 
 For example, consider this sign up screen, which fits iPhone XS, but not iPhone SE with a keyboard:
