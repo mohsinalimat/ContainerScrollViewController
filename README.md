@@ -34,7 +34,7 @@ To streamline this task, ContainerScrollViewController creates the scroll view a
 
 An explanation of [how ContainerScrollViewController works](#how-it-works) is provided below.
 
-Most importantly, ContainerScrollViewController takes care of [several tricky edge cases](#special-cases-handled) involving the keyboard and device orientation changes. 
+Most importantly, ContainerScrollViewController takes care of [several tricky edge cases](#special-cases-handled) involving the keyboard as well as device orientation changes. 
 
 ## Installation
 
