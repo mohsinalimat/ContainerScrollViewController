@@ -30,7 +30,7 @@ To streamline this task, ContainerScrollViewController creates the scroll view a
 
 <img src="Images/Purpose-Embedding.png" width="600px">
 
-Most importantly, ContainerScrollViewController takes care of several tricky [edge cases](#special-cases-handled) involving the keyboard and device rotations. 
+Most importantly, ContainerScrollViewController takes care of several tricky [edge cases](#special-cases-handled) involving the keyboard and device orientation changes. 
 
 ## Installation
 
@@ -312,6 +312,8 @@ To work around this issue, ContainerScrollViewController filters out sequences o
 Refer to [Managing the Keyboard](https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3) for more information about responding to changes in keyboard visibility.
 
 ## Special Cases Handled
+
+In addition to [keyboard resize filtering](#keyboard-resize-filtering), above, ContainerScrollViewController addresses several undocumented edge cases and UIKit bugs:
 
 ### Device Orientation Changes
 
