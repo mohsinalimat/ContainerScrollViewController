@@ -321,7 +321,7 @@ When the device orientation changes occur, ContainerScrollViewController improve
 
 ### keyboardDismissMode Enhancement
 
-ContainerScrollViewController automatically enables `UIScrollView.alwaysBounceVertical` when the keyboard is presented if `UIScrollView.keyboardDismissMode` is set to anything other than `.none`, so the keyboard can be dismissed even if the view is too short to normally allow scrolling.
+ContainerScrollViewController automatically enables `UIScrollView.alwaysBounceVertical` while the keyboard is presented if `UIScrollView.keyboardDismissMode` is set to anything other than `.none`, so the keyboard can be dismissed even if the view is too short to normally allow scrolling.
 
 ### Arbitrary Scroll View Sizes
 
