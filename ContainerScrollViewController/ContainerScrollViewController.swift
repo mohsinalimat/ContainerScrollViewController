@@ -29,19 +29,19 @@ import UIKit
 open class ContainerScrollViewController: UIViewController {
 
     /// The view controller whose view is embedded within the container scroll view.
-    public var embeddedViewController: UIViewController? {
+    open var embeddedViewController: UIViewController? {
         return containerScrollViewEmbedder.embeddedViewController
     }
 
     /// The scroll view within which a view will be embedded.
-    public var scrollView: UIScrollView {
+    open var scrollView: UIScrollView {
         return containerScrollViewEmbedder.scrollView
     }
 
     /// If `true`, the embedded view should be resized to compensate for the portion of
     /// the scroll view obscured by the presented keyboard, if possible. The default
     /// value is `false`.
-    @IBInspectable public var shouldResizeEmbeddedViewForKeyboard: Bool {
+    @IBInspectable open var shouldResizeEmbeddedViewForKeyboard: Bool {
         set {
             containerScrollViewEmbedder.shouldResizeEmbeddedViewForKeyboard = newValue
         }
@@ -52,7 +52,7 @@ open class ContainerScrollViewController: UIViewController {
 
     /// If `true`, the container view controller's `additionalSafeAreaInsets` property
     /// is adjusted when the keyboard is presented. The default value is `true`.
-    @IBInspectable public var shouldAdjustContainerViewForKeyboard: Bool {
+    @IBInspectable open var shouldAdjustContainerViewForKeyboard: Bool {
         set {
             containerScrollViewEmbedder.shouldAdjustContainerViewForKeyboard = newValue
         }
@@ -67,7 +67,7 @@ open class ContainerScrollViewController: UIViewController {
     ///
     /// Even if this is set to `false`, UIKit may scroll the first responder to visible,
     /// although this may not work correctly in all cases.
-    @IBInspectable public var shouldScrollFirstResponderToVisibleForKeyboard: Bool {
+    @IBInspectable open var shouldScrollFirstResponderToVisibleForKeyboard: Bool {
         set {
             containerScrollViewEmbedder.shouldScrollFirstResponderToVisibleForKeyboard = newValue
         }
@@ -81,7 +81,7 @@ open class ContainerScrollViewController: UIViewController {
     /// behavior. This value is also applied to
     /// `scrollFirstResponderTextFieldToVisible`, `scrollViewToVisible`, and
     /// `scrollRectToVisible` unless overridden with the optional `margin` parameter.
-    @IBInspectable public var visibilityScrollMargin: CGFloat {
+    @IBInspectable open var visibilityScrollMargin: CGFloat {
         set {
             containerScrollViewEmbedder.visibilityScrollMargin = newValue
         }
@@ -127,7 +127,7 @@ open class ContainerScrollViewController: UIViewController {
     /// This method may only be called once.
     ///
     /// - Parameter embeddedViewController: The view controller to embed in the scroll view.
-    public func embedViewController(_ embeddedViewController: UIViewController) {
+    open func embedViewController(_ embeddedViewController: UIViewController) {
         containerScrollViewEmbedder.embedViewController(embeddedViewController)
     }
 
@@ -141,7 +141,7 @@ open class ContainerScrollViewController: UIViewController {
     ///   - animated: If `true`, the scrolling is animated.
     ///   - margin: An optional margin to apply to `rect`. If left unspecified,
     ///   `scrollToVisibleMargin` is used.
-    public func scrollRectToVisible(_ rect: CGRect, animated: Bool, margin: CGFloat? = nil) {
+    open func scrollRectToVisible(_ rect: CGRect, animated: Bool, margin: CGFloat? = nil) {
         containerScrollViewEmbedder.scrollRectToVisible(rect, animated: animated, margin: margin)
     }
 
@@ -152,7 +152,7 @@ open class ContainerScrollViewController: UIViewController {
     ///   - animated: If `true`, the scrolling is animated.
     ///   - margin: An optional margin to apply to the view. If left unspecified,
     ///   `scrollToVisibleMargin` is used.
-    public func scrollViewToVisible(_ view: UIView, animated: Bool, margin: CGFloat? = nil) {
+    open func scrollViewToVisible(_ view: UIView, animated: Bool, margin: CGFloat? = nil) {
         containerScrollViewEmbedder.scrollViewToVisible(view, animated: animated, margin: margin)
     }
 
@@ -163,7 +163,7 @@ open class ContainerScrollViewController: UIViewController {
     ///   - animated: If `true`, the scrolling is animated.
     ///   - margin: An optional margin to apply to the first responder view. If left
     ///   unspecified, `scrollToVisibleMargin` is used.
-    public func scrollFirstResponderToVisible(animated: Bool, margin: CGFloat? = nil) {
+    open func scrollFirstResponderToVisible(animated: Bool, margin: CGFloat? = nil) {
         containerScrollViewEmbedder.scrollFirstResponderToVisible(animated: animated, margin: margin)
     }
 
