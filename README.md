@@ -22,13 +22,13 @@ A common UIKit Auto Layout task involves creating a view controller with a fixed
 
 For example, consider this sign up screen, which fits iPhone XS, but not iPhone SE with a keyboard:
 
-<img src="Images/Purpose-Comparison.png" width="888px">
+<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Purpose-Comparison.png" width="888px">
 
 This case can be handled by nesting the view inside a scroll view. You can do this manually in Interface Builder, as described by Apple's [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html) documentation, but many steps are required.
 
 To streamline this task, ContainerScrollViewController creates the scroll view and all necessary Auto Layout constraints for you. When used in a storyboard, ContainerScrollViewController employs Interface Builder's container view feature to specify the view that should be embedded in the scroll view. The embedded view controller's contents can then be configured separately in Interface Builder.
 
-<img src="Images/Purpose-Embedding.png" width="600px">
+<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Purpose-Embedding.png" width="600px">
 
 An explanation of [how ContainerScrollViewController works](#how-it-works) is provided below.
 
@@ -58,19 +58,19 @@ To create a container scroll view controller and its embedded view controller in
 
 2. In Interface Builder, create a new view controller and set its class to your  `ContainerScrollViewController` subclass.
 
-    <img src="Images/Usage-Storyboards-View-Controller.png" width="587px">
+    <img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Usage-Storyboards-View-Controller.png" width="587px">
 
 3. In the outline view, delete the new view controller's view.
 
-    <img src="Images/Usage-Storyboards-Delete-View.png" width="628px">
+    <img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Usage-Storyboards-Delete-View.png" width="628px">
 
 4. Create a new container view and drag it into the view controller, replacing the view you just deleted.
 
-    <img src="Images/Usage-Storyboards-Container-View.png" width="847px">
+    <img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Usage-Storyboards-Container-View.png" width="847px">
 
 5. Set the container view's background color to anything other than transparent, which is the default value for Interface Builder's container views. Otherwise, it will appear black.
 
-    <img src="Images/Usage-Storyboards-Background-Color.png" width="656px">
+    <img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Usage-Storyboards-Background-Color.png" width="656px">
 
 That's it. You are now ready to add UI elements to the embedded view controller, as long as you ensure that the embedded view's Auto Layout constraints [adequately define its size](#auto-layout-considerations).
 
@@ -78,15 +78,15 @@ Optionally, if you have an existing view controller that you'd like to embed in 
 
 6. Delete the view controller that Interface Builder created as the destination of the container view's embed segue.
 
-    <img src="Images/Usage-Storyboards-Delete-Destination.png" width="860px">
+    <img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Usage-Storyboards-Delete-Destination.png" width="860px">
 
 7. Drag a new segue from the container scroll view controller to your existing view controller.
 
-    <img src="Images/Usage-Storyboards-Segue.png" width="640px">
+    <img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Usage-Storyboards-Segue.png" width="640px">
 
 8. For the segue's type, choose Embed.
 
-    <img src="Images/Usage-Storyboards-Embed.png" width="640px">
+    <img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Usage-Storyboards-Embed.png" width="640px">
 
 ### Code
 
@@ -104,13 +104,13 @@ If you don't define sufficient Auto Layout constraints, the embedded view will n
 
 You may see Auto Layout constraint errors in Interface Builder if the constraints don't match the simulated size of the view. The easiest way to fix this is to create at least one vertical or horizontal space constraint with a low priority (less than 250).
 
-<img src="Images/Usage-Auto-Layout-Low-Priority.png" width="625px">
+<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Usage-Auto-Layout-Low-Priority.png" width="625px">
 
 ### Oversized Embedded View Controllers
 
 It's possible to make the embedded view controller larger than the height of the screen, even for large devices. To do this, change the embedded view controller's simulated size to Freeform and adjust the view's size.
 
-<img src="Images/Usage-Auto-Layout-Oversized.png" width="722px">
+<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Usage-Auto-Layout-Oversized.png" width="722px">
 
 ## Properties
 
@@ -184,7 +184,7 @@ The optional `margin` parameter specifies an extra margin around the first respo
 
 The embedded view is positioned within the container view's safe area. Consequently, if the embedded view's background color is set, it won't extend underneath the status bar, home indicator, navigation bar or toolbar.
 
-<img src="Images/Caveats-Background-Color-Embedded-View.png" width="233px">
+<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Caveats-Background-Color-Embedded-View.png" width="233px">
 
 To specify a background color that extends to the edges of the screen:
 
@@ -277,7 +277,7 @@ class MyEmbeddingViewController: UIViewController {
 
 ContainerScrollViewController inserts a scroll view between the container view and its embedded view, adding layout constraints to determine the scroll view's content size.
 
-<img src="Images/How-It-Works-View-Controller-Hierarchy.png" width="564px">
+<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/How-It-Works-View-Controller-Hierarchy.png" width="564px">
 
 A cleaner design for ContainerScrollViewController could directly specify `UIScrollView` as the class of the container scroll view controller's `view` property, eliminating the extra container view. However, when this was experimentally attempted in iOS 11 and 12, it resulted in the following exception:
 
