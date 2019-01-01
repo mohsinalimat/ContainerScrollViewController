@@ -32,6 +32,8 @@ To streamline this task, ContainerScrollViewController creates the scroll view a
 
 Most importantly, ContainerScrollViewController takes care of several tricky [edge cases](#special-cases-handled) involving the keyboard and device orientation changes. 
 
+An explanation of [how ContainerScrollViewController works](#how-it-works) is provided below.
+
 ## Installation
 
 To install ContainerScrollViewController using CocoaPods, add the following to your Podfile:
