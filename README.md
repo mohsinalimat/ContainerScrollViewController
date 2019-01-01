@@ -100,7 +100,7 @@ To integrate `ContainerScrollViewController` programmatically:
 
 If you don't define sufficient Auto Layout constraints, the embedded view will not scroll correctly. 
 
-**IMPORTANT** - You may see Auto Layout constraint errors in Interface Builder if the constraints don't match the simulated size of the view. The easiest way to fix this is to create at least one vertical or horizontal space constraint with a low priority (less than 250).
+You may see Auto Layout constraint errors in Interface Builder if the constraints don't match the simulated size of the view. The easiest way to fix this is to create at least one vertical or horizontal space constraint with a low priority (less than 250).
 
 <img src="Images/Usage-Auto-Layout-Low-Priority.png" width="625px">
 
