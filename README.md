@@ -297,7 +297,7 @@ ContainerScrollViewController is able to detect the embedded view controller bec
 
 When the keyboard is presented, ContainerScrollViewController modifies the container view controller's `additionalSafeAreaInsets.bottom` property to reflect the area of the keyboard that overlaps the scroll view, as recommended in [Managing the Keyboard](https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html#//apple_ref/doc/uid/TP40009542-CH5-SW3).
 
-If `additionalSafeAreaInsets.bottom` is nonzero when the keyboard is presented, it is restored to its original value when the keyboard is dismissed. This allows for the use of `additionalSafeAreaInsets` for other purposes, such as custom tool palettes.
+Although ContainerScrollViewController modifies `additionalSafeAreaInsets.bottom` when the keyboard is presented, it is restored to its original value when the keyboard is dismissed. This allows `additionalSafeAreaInsets` to be used for other purposes, such as custom tool palettes.
 
 During development, the alternate approach recommended by Apple, resizing the scroll view's content size, was also tried. However, this requires adjusting the scroll view's `scrollIndicatorInsets` property to compensate, and on iPhone X in landscape orientation, doing so has the unfortunate side effect of awkwardly shifting the scroll indicator away from the edge of the screen. Additionally, this approach appears to interact poorly with the scroll view's `scrollRectToVisible` method.
 
