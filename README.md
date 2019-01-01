@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/github/license/milpitas/ContainerScrollViewController.svg)](https://tldrlegal.com/license/mit-license)
 [![Twitter](https://img.shields.io/badge/twitter-@drewolbrich-blue.svg)](http://twitter.com/drewolbrich)
 
-* [Purpose](#purpose)
+* [Overview](#overview)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Properties](#properties)
@@ -16,19 +16,19 @@
 * [How it Works](#how-it-works)
 * [Special Cases Handled](#special-cases-handled)
 
-## Purpose
+## Overview
 
 A common UIKit Auto Layout task involves creating a view controller with a fixed layout that is too large to fit older, smaller devices, or devices in landscape orientation, or the area of the screen that remains when the keyboard is presented.
 
 For example, consider this sign up screen, which fits iPhone XS, but not iPhone SE with a keyboard:
 
-<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Purpose-Comparison.png" width="888px">
+<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Overview-Comparison.png" width="888px">
 
 This case can be handled by nesting the view inside a scroll view. You can do this manually in Interface Builder, as described by Apple's [Working with Scroll Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithScrollViews.html) documentation, but many steps are required.
 
 To streamline this task, ContainerScrollViewController creates the scroll view and all necessary Auto Layout constraints for you. When used in a storyboard, ContainerScrollViewController employs Interface Builder's container view feature to specify the view that should be embedded in the scroll view. The embedded view controller's contents can then be configured separately in Interface Builder.
 
-<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Purpose-Embedding.png" width="600px">
+<img src="https://github.com/milpitas/ContainerScrollViewController/raw/master/Images/Overview-Embedding.png" width="600px">
 
 An explanation of [how ContainerScrollViewController works](#how-it-works) is provided below.
 
