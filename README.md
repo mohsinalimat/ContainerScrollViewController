@@ -333,6 +333,6 @@ ContainerScrollViewController correctly handles the case when the scroll view do
 
 As of iOS 12, if the user taps on a sequence of custom text fields, UIKit may awkwardly animate the text field's text. ContainerScrollViewController suppresses this animation.     
 
-### Scroll to Visible Fix
+### Device Orientation Scroll to Visible Fix
 
 ContainerScrollViewController works around an issue whereby, as of iOS 12, when the orientation changes and the keyboard is visible, UIKit doesn't necessarily correctly scroll the first responder text field to make it visible, leaving the scroll view with a content offset that is out of legal range.
