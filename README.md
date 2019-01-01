@@ -317,7 +317,7 @@ In addition to [keyboard resize filtering](#keyboard-resize-filtering), above, C
 
 ### Device Orientation Changes
 
-When the device orientation changes occur, ContainerScrollViewController improves upon the default scroll view behavior by pinning the upper left corner of the scroll view in place, while at the same time while preventing out of range content offsets.
+When the device orientation changes occur, ContainerScrollViewController improves upon the default scroll view behavior by pinning the upper left corner of the scroll view in place, while at the same time preventing out of range content offsets.
 
 ### keyboardDismissMode Enhancement
 
