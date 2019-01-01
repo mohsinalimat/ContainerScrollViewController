@@ -84,7 +84,7 @@ Optionally, if you have an existing view controller that you'd like to embed in 
 
     <img src="Images/Usage-Storyboards-Segue.png" width="640px">
 
-8. For the segue type's, choose Embed.
+8. For the segue's type, choose Embed.
 
     <img src="Images/Usage-Storyboards-Embed.png" width="640px">
 
