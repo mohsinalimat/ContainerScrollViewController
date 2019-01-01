@@ -289,7 +289,7 @@ Refer to [Working with Scroll Views](https://developer.apple.com/library/archive
 
 When used in a storyboard, ContainerScrollViewController requires an Interface Builder container view and its associated embed segue to define the embedding view controller relationship.
 
-ContainerScrollViewController is able to detect the embeded view controller because UIKit calls `UIViewController.prepare(for:sender:)` for the embed segue after the container view controller is created, but before `UIViewController.viewDidLoad` is called. The embedded view controller is referenced by the embed segue's `destination` parameter.
+ContainerScrollViewController is able to detect the embedded view controller because UIKit calls `UIViewController.prepare(for:sender:)` for the embed segue after the container view controller is created, but before `UIViewController.viewDidLoad` is called. The embedded view controller is referenced by the embed segue's `destination` parameter.
 
 ### Additional Safe Area Insets
 
