@@ -26,7 +26,7 @@ open class ContainerScrollViewEmbedder {
     open private(set) var embeddedViewController: UIViewController?
 
     /// The scroll view that contains the embedded view.
-    open let scrollView: UIScrollView = {
+    open var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         // If we don't do this, and instead leave contentInsetAdjustmentBehavior at
         // .automatic (its default value), then in the case when a container view
